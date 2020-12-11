@@ -45,7 +45,7 @@ namespace EESSP
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-            updateDatagrid();
+
         }
 
         private void maskedTextBoxID_TextChanged(object sender, EventArgs e)

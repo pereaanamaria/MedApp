@@ -1,4 +1,12 @@
 .vs
-EESSP/Properties
-EESSP/bin
-EESSP/obj
+
+*.suo
+*.user
+*.ncb
+*.sdf
+*.opensdf
+
+ipch/
+Debug/
+Release/
+CodeAnalyst/

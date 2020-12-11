@@ -21,14 +21,14 @@ namespace EESSP
             return command.ExecuteReader();
         }
 
-        public DataSet ExecuteDataSet(string sql)
+        public DataSet ExecuteDataSet(string command, string table)
         {
             try
             {
-                DataSet ds = new DataSet();
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, mySqlConn);
-                da.Fill(ds, "result");
-                return ds;
+                DataSet dataSet = new DataSet();
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, mySqlConn);
+                dataAdapter.Fill(dataSet, table);
+                return dataSet;
             }
             catch (Exception ex)
             {
