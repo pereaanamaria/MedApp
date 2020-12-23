@@ -38,7 +38,7 @@ namespace EESSP
             return null;
         }
 
-        public bool insertCommand(string command, List<string> paramList, List<object> valueList)
+        public bool sqlCommand(string command, List<string> paramList, List<object> valueList, string except)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace EESSP
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Patient CNP already exists!");
+                MessageBox.Show(except);
             }
             return false;
         }
@@ -94,7 +94,8 @@ namespace EESSP
                         string address = rowReader["address"].ToString();
                         string mi = rowReader["MI"].ToString();
                         int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        Patient p = new Patient(this, cnp, name, lastName, address, idDoc, mi);
+                        int ID = int.Parse(rowReader["ID"].ToString());
+                        Patient p = new Patient(this, ID, cnp, name, lastName, address, idDoc, mi);
                         listPatients.Add(p);
                     }
                 }

@@ -1,12 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections;
-using System.Windows.Forms;
 
 namespace EESSP
 {
     class Patient
     {
+        public int ID { get; private set; }
         public string CNP { get; private set; }
         public string Name { get; private set; }
         public string LastName { get; private set; }
@@ -24,8 +23,9 @@ namespace EESSP
 
         public Patient() { }
 
-        public Patient(ConnectionClass connectionClass, string CNP, string Name, string LastName, string Address, int IDDoc, string MiddleInitials)
+        public Patient(ConnectionClass connectionClass, int ID, string CNP, string Name, string LastName, string Address, int IDDoc, string MiddleInitials)
         {
+            this.ID = ID;
             this.CNP = CNP;
             getCnpDetails(CNP);
             this.Name = Name;
@@ -65,6 +65,7 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
+                        ID = int.Parse(rowReader["ID"].ToString());
                         Name = rowReader["name"].ToString();
                         LastName = rowReader["lastname"].ToString();
                         Address = rowReader["address"].ToString();

@@ -28,20 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoctor = new System.Windows.Forms.Label();
             this.labelDoctorName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarMain = new System.Windows.Forms.MonthCalendar();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MIColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNPColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelRefDoc = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxMI = new System.Windows.Forms.TextBox();
@@ -62,6 +58,12 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MIColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNPColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControlMain.SuspendLayout();
@@ -100,17 +102,18 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Tan;
-            this.panel2.Controls.Add(this.monthCalendar1);
+            this.panel2.Controls.Add(this.monthCalendarMain);
             this.panel2.Location = new System.Drawing.Point(12, 55);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(236, 391);
             this.panel2.TabIndex = 0;
             // 
-            // monthCalendar1
+            // monthCalendarMain
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(4, 4);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendarMain.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.monthCalendarMain.Location = new System.Drawing.Point(4, 4);
+            this.monthCalendarMain.Name = "monthCalendarMain";
+            this.monthCalendarMain.TabIndex = 0;
             // 
             // tabControlMain
             // 
@@ -158,59 +161,28 @@
             this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameColumn,
-            this.MIColumn,
             this.LastNameColumn,
+            this.MIColumn,
             this.CNPColumn,
             this.AddressColumn,
             this.DoctorColumn});
             this.dataGridViewPatients.Location = new System.Drawing.Point(17, 211);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Tan;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tan;
+            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPatients.Size = new System.Drawing.Size(587, 140);
             this.dataGridViewPatients.TabIndex = 17;
             this.dataGridViewPatients.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellDoubleClick);
-            // 
-            // NameColumn
-            // 
-            this.NameColumn.HeaderText = "Name";
-            this.NameColumn.Name = "NameColumn";
-            this.NameColumn.ReadOnly = true;
-            this.NameColumn.Width = 60;
-            // 
-            // MIColumn
-            // 
-            this.MIColumn.HeaderText = "M. I.";
-            this.MIColumn.Name = "MIColumn";
-            this.MIColumn.ReadOnly = true;
-            this.MIColumn.Width = 53;
-            // 
-            // LastNameColumn
-            // 
-            this.LastNameColumn.HeaderText = "Last Name";
-            this.LastNameColumn.Name = "LastNameColumn";
-            this.LastNameColumn.ReadOnly = true;
-            this.LastNameColumn.Width = 83;
-            // 
-            // CNPColumn
-            // 
-            this.CNPColumn.HeaderText = "CNP";
-            this.CNPColumn.Name = "CNPColumn";
-            this.CNPColumn.ReadOnly = true;
-            this.CNPColumn.Width = 54;
-            // 
-            // AddressColumn
-            // 
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.ReadOnly = true;
-            this.AddressColumn.Width = 70;
-            // 
-            // DoctorColumn
-            // 
-            this.DoctorColumn.HeaderText = "Doctor\'s Name";
-            this.DoctorColumn.Name = "DoctorColumn";
-            this.DoctorColumn.ReadOnly = true;
-            this.DoctorColumn.Width = 102;
             // 
             // labelRefDoc
             // 
@@ -261,6 +233,7 @@
             this.buttonRemoveP.TabIndex = 7;
             this.buttonRemoveP.Text = "Remove Patient";
             this.buttonRemoveP.UseVisualStyleBackColor = false;
+            this.buttonRemoveP.Click += new System.EventHandler(this.buttonRemoveP_Click);
             // 
             // buttonModifyP
             // 
@@ -272,6 +245,7 @@
             this.buttonModifyP.TabIndex = 6;
             this.buttonModifyP.Text = "Modify Patient";
             this.buttonModifyP.UseVisualStyleBackColor = false;
+            this.buttonModifyP.Click += new System.EventHandler(this.buttonModifyP_Click);
             // 
             // buttonAddP
             // 
@@ -403,6 +377,48 @@
             this.textBoxName.TabIndex = 0;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
+            // NameColumn
+            // 
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            this.NameColumn.Width = 60;
+            // 
+            // LastNameColumn
+            // 
+            this.LastNameColumn.HeaderText = "Last Name";
+            this.LastNameColumn.Name = "LastNameColumn";
+            this.LastNameColumn.ReadOnly = true;
+            this.LastNameColumn.Width = 83;
+            // 
+            // MIColumn
+            // 
+            this.MIColumn.HeaderText = "M. I.";
+            this.MIColumn.Name = "MIColumn";
+            this.MIColumn.ReadOnly = true;
+            this.MIColumn.Width = 53;
+            // 
+            // CNPColumn
+            // 
+            this.CNPColumn.HeaderText = "CNP";
+            this.CNPColumn.Name = "CNPColumn";
+            this.CNPColumn.ReadOnly = true;
+            this.CNPColumn.Width = 54;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            this.AddressColumn.Width = 70;
+            // 
+            // DoctorColumn
+            // 
+            this.DoctorColumn.HeaderText = "Doctor\'s Name";
+            this.DoctorColumn.Name = "DoctorColumn";
+            this.DoctorColumn.ReadOnly = true;
+            this.DoctorColumn.Width = 102;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -432,7 +448,7 @@
         private System.Windows.Forms.Label labelDoctorName;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar monthCalendarMain;
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabPagePatients;
         private System.Windows.Forms.Label labelAge;
@@ -457,8 +473,8 @@
         private System.Windows.Forms.Label labelRefDoc;
         private System.Windows.Forms.DataGridView dataGridViewPatients;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MIColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MIColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNPColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoctorColumn;

@@ -61,7 +61,7 @@ namespace EESSP
                         int id = -1;
                         while (rowReader.Read())
                         {
-                            id = int.Parse(rowReader["id"].ToString());
+                            id = int.Parse(rowReader["IDDoc"].ToString());
 
                         }
                         if(id != -1)

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -12,7 +13,8 @@ namespace EESSP
         private ConnectionClass connectionClass = new ConnectionClass();
         private HelperForm helperForm;
 
-        private bool existingPatient = false;
+        private ArrayList patients;
+        private Patient selectedPatient = null;
 
         public MainForm(int IdDoc)
         {
@@ -24,18 +26,69 @@ namespace EESSP
 
         private void buttonAddP_Click(object sender, EventArgs e)
         {
-            if (existingPatient)
+            if (selectedPatient != null)
             {
                 MessageBox.Show("The patient is already registered.");
                 return;
             }
 
-            if (!maskedTextBoxID.Text.Equals("") && maskedTextBoxID.Text.Length == 13) new AddPatientForm(connectionClass, userDoctor.ID, maskedTextBoxID.Text).Show();
-            else new AddPatientForm(connectionClass, userDoctor.ID).Show();
+            if (!maskedTextBoxID.Text.Equals("") && maskedTextBoxID.Text.Length == 13) new AddPatientForm(connectionClass, userDoctor.IDDoc, maskedTextBoxID.Text).Show();
+            else new AddPatientForm(connectionClass, userDoctor.IDDoc).Show();
 
             buttonCancelP_Click(sender, e);
-
             maskedTextBoxID.Text = string.Empty;
+        }
+
+        private void buttonModifyP_Click(object sender, EventArgs e)
+        {
+            if(!checkAllNotEmptyFields())
+            {
+                MessageBox.Show("Search for a patient.");
+                return;
+            }
+
+            string cnp = maskedTextBoxID.Text;
+            string name = textBoxName.Text;
+            string lastname = textBoxLastName.Text;
+            string MI = textBoxMI.Text;
+            string address = textBoxAddress.Text;
+            selectedPatient.getDoc(connectionClass);
+            
+            string command = "UPDATE patients SET cnp=@cnp, name=@name, lastname =@lastname, address=@address, IDDoc=@IDDoc, MI=@MI WHERE ID=@ID";
+            List<string> paramList = new List<string>();
+            List<object> valueList = new List<object>();
+            paramList.Add("@cnp");       valueList.Add(cnp);
+            paramList.Add("@name");      valueList.Add(name);
+            paramList.Add("@lastname");  valueList.Add(lastname);
+            paramList.Add("@address");   valueList.Add(address);
+            paramList.Add("@IDDoc");     valueList.Add(selectedPatient.ReferingDoctor.IDDoc);
+            paramList.Add("@MI");        valueList.Add(MI);
+            paramList.Add("@ID");        valueList.Add(selectedPatient.ID);
+
+            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
+            {
+                MessageBox.Show("Successfully updated!");
+            }
+        }
+
+        private void buttonRemoveP_Click(object sender, EventArgs e)
+        {
+            if (!checkAllNotEmptyFields())
+            {
+                MessageBox.Show("Search for a patient.");
+                return;
+            }
+
+            string command = "DELETE FROM patients WHERE ID=@ID";
+            List<string> paramList = new List<string>();
+            List<object> valueList = new List<object>();
+            paramList.Add("@ID");    valueList.Add(selectedPatient.ID);
+
+            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
+            {
+                MessageBox.Show("Successfully deleted!");
+                buttonCancelP_Click(sender, e);
+            }
         }
 
         private void buttonCancelP_Click(object sender, EventArgs e)
@@ -50,19 +103,19 @@ namespace EESSP
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-            if (checkNotEmptyFields()) updateDataGrid();
+            if (checkAllNotEmptyFields()) updateDataGrid();
             else dataGridViewPatients.Rows.Clear();
         }
 
         private void textBoxLastName_TextChanged(object sender, EventArgs e)
         {
-            if (checkNotEmptyFields()) updateDataGrid();
+            if (checkAllNotEmptyFields()) updateDataGrid();
             else dataGridViewPatients.Rows.Clear();
         }
 
         private void textBoxMI_TextChanged(object sender, EventArgs e)
         {
-            if (checkNotEmptyFields()) updateDataGrid();
+            if (checkAllNotEmptyFields()) updateDataGrid();
             else dataGridViewPatients.Rows.Clear();
         }
 
@@ -80,7 +133,7 @@ namespace EESSP
                     removeCNPDetails();
                 }
 
-                if (checkNotEmptyFields()) updateDataGrid();
+                if (checkAllNotEmptyFields()) updateDataGrid();
                 else dataGridViewPatients.Rows.Clear();
 
                 if (maskedTextBoxID.Text.Length == 13)
@@ -92,11 +145,11 @@ namespace EESSP
                     if (patient.checkExistingPatient(connectionClass))
                     {
                         autoFillInPatient(patient);
-                        existingPatient = true;
+                        selectedPatient = patient;
                     }
-                    else existingPatient = false;
+                    else selectedPatient = null;
                 }
-                else existingPatient = false;
+                else selectedPatient = null;
             }
             catch(Exception ex)
             {
@@ -106,7 +159,7 @@ namespace EESSP
 
         private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
-            if (checkNotEmptyFields()) updateDataGrid();
+            if (checkAllNotEmptyFields()) updateDataGrid();
             else dataGridViewPatients.Rows.Clear();
         }
 
@@ -158,7 +211,7 @@ namespace EESSP
             query += "CNP like \'" + maskedTextBoxID.Text + "%\' and ";
             query += "address like \'%" + textBoxAddress.Text + "%\'";
 
-            ArrayList patients = connectionClass.getPatientsData(query);
+            patients = connectionClass.getPatientsData(query);
 
             dataGridViewPatients.Rows.Clear();
 
@@ -181,7 +234,7 @@ namespace EESSP
             }
         }
 
-        private bool checkNotEmptyFields()
+        private bool checkAllNotEmptyFields()
         {
             if (textBoxName.Text == string.Empty &&
                 textBoxLastName.Text == string.Empty &&
@@ -193,12 +246,12 @@ namespace EESSP
 
         private void postPatient(int rowIndex)
         {
-            DataGridViewCellCollection selectedRow = dataGridViewPatients.Rows[rowIndex].Cells;
-            textBoxName.Text = selectedRow[0].Value.ToString();
-            textBoxMI.Text = selectedRow[1].Value.ToString();
-            textBoxLastName.Text = selectedRow[2].Value.ToString();
-            maskedTextBoxID.Text = selectedRow[3].Value.ToString();
-            textBoxAddress.Text = selectedRow[4].Value.ToString();
+            selectedPatient = (Patient) patients[rowIndex];
+            textBoxName.Text = selectedPatient.Name;
+            textBoxMI.Text = selectedPatient.MiddleInitials;
+            textBoxLastName.Text = selectedPatient.LastName;
+            maskedTextBoxID.Text = selectedPatient.CNP;
+            textBoxAddress.Text = selectedPatient.Address;
         }
     }
 }

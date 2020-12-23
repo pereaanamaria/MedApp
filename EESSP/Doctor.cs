@@ -6,21 +6,21 @@ namespace EESSP
 {
     class Doctor
     {
-        public int ID { get; private set; }
+        public int IDDoc { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
         public string Name { get; private set; }
         public string LastName { get; private set; }
 
-        public Doctor(ConnectionClass connectionClass, int id)
+        public Doctor(ConnectionClass connectionClass, int IDDoc)
         {
-            ID = id;
+            this.IDDoc = IDDoc;
             createDoc(connectionClass);
         }
 
-        public Doctor(ConnectionClass connectionClass, string id)
+        public Doctor(ConnectionClass connectionClass, string IDDoc)
         {
-            ID = int.Parse(id);
+            this.IDDoc = int.Parse(IDDoc);
             createDoc(connectionClass);
         }
 
@@ -28,7 +28,7 @@ namespace EESSP
         {
             try
             {
-                string query = "select * from doctors WHERE ID=" + ID;
+                string query = "select * from doctors WHERE IDDoc=" + IDDoc;
                 MySqlDataReader rowReader = connectionClass.execReader(query);
                 if (rowReader.HasRows)
                 {

@@ -31,7 +31,7 @@ namespace EESSP
 
         private void buttonAddP_Click(object sender, EventArgs e)
         {
-            long cnp = long.Parse(maskedTextBoxID.Text);
+            string cnp = maskedTextBoxID.Text;
             string name = textBoxName.Text;
             string lastname = textBoxLastName.Text;
             string MI = textBoxMI.Text;
@@ -40,16 +40,16 @@ namespace EESSP
             string command = "INSERT INTO patients(cnp,name,lastname,address,IDDoc,MI) VALUES(@cnp,@name,@lastname,@address,@IDDoc,@MI)";
             List<string> paramList = new List<string>();
             List<object> valueList = new List<object>();
-            paramList.Add("@cnp"); valueList.Add(cnp);
-            paramList.Add("@name"); valueList.Add(name);
-            paramList.Add("@lastname"); valueList.Add(lastname);
-            paramList.Add("@address"); valueList.Add(address);
-            paramList.Add("@IDDoc"); valueList.Add(IdDoc);
-            paramList.Add("@MI"); valueList.Add(MI);
+            paramList.Add("@cnp");       valueList.Add(cnp);
+            paramList.Add("@name");      valueList.Add(name);
+            paramList.Add("@lastname");  valueList.Add(lastname);
+            paramList.Add("@address");   valueList.Add(address);
+            paramList.Add("@IDDoc");     valueList.Add(IdDoc);
+            paramList.Add("@MI");        valueList.Add(MI);
 
-            if (connectionClass.insertCommand(command, paramList, valueList))
+            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient CNP already exists!"))
             {
-                MessageBox.Show("Successful insertion!");
+                MessageBox.Show("Successfully inserted!");
                 emptyFields();
             }
             else maskedTextBoxID.Text = string.Empty;
