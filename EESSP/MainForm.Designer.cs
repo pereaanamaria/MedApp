@@ -35,6 +35,13 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
+            this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MIColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNPColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelRefDoc = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxMI = new System.Windows.Forms.TextBox();
@@ -55,7 +62,6 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControlMain.SuspendLayout();
@@ -146,6 +152,66 @@
             this.tabPagePatients.TabIndex = 0;
             this.tabPagePatients.Text = "Patients";
             // 
+            // dataGridViewPatients
+            // 
+            this.dataGridViewPatients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameColumn,
+            this.MIColumn,
+            this.LastNameColumn,
+            this.CNPColumn,
+            this.AddressColumn,
+            this.DoctorColumn});
+            this.dataGridViewPatients.Location = new System.Drawing.Point(17, 211);
+            this.dataGridViewPatients.Name = "dataGridViewPatients";
+            this.dataGridViewPatients.ReadOnly = true;
+            this.dataGridViewPatients.Size = new System.Drawing.Size(587, 140);
+            this.dataGridViewPatients.TabIndex = 17;
+            this.dataGridViewPatients.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellDoubleClick);
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            this.NameColumn.Width = 60;
+            // 
+            // MIColumn
+            // 
+            this.MIColumn.HeaderText = "M. I.";
+            this.MIColumn.Name = "MIColumn";
+            this.MIColumn.ReadOnly = true;
+            this.MIColumn.Width = 53;
+            // 
+            // LastNameColumn
+            // 
+            this.LastNameColumn.HeaderText = "Last Name";
+            this.LastNameColumn.Name = "LastNameColumn";
+            this.LastNameColumn.ReadOnly = true;
+            this.LastNameColumn.Width = 83;
+            // 
+            // CNPColumn
+            // 
+            this.CNPColumn.HeaderText = "CNP";
+            this.CNPColumn.Name = "CNPColumn";
+            this.CNPColumn.ReadOnly = true;
+            this.CNPColumn.Width = 54;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            this.AddressColumn.Width = 70;
+            // 
+            // DoctorColumn
+            // 
+            this.DoctorColumn.HeaderText = "Doctor\'s Name";
+            this.DoctorColumn.Name = "DoctorColumn";
+            this.DoctorColumn.ReadOnly = true;
+            this.DoctorColumn.Width = 102;
+            // 
             // labelRefDoc
             // 
             this.labelRefDoc.AutoSize = true;
@@ -171,6 +237,7 @@
             this.textBoxMI.Name = "textBoxMI";
             this.textBoxMI.Size = new System.Drawing.Size(46, 20);
             this.textBoxMI.TabIndex = 2;
+            this.textBoxMI.TextChanged += new System.EventHandler(this.textBoxMI_TextChanged);
             // 
             // buttonCancelP
             // 
@@ -279,6 +346,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(217, 20);
             this.textBoxAddress.TabIndex = 4;
+            this.textBoxAddress.TextChanged += new System.EventHandler(this.textBoxAddress_TextChanged);
             // 
             // label3
             // 
@@ -296,6 +364,7 @@
             this.maskedTextBoxID.Name = "maskedTextBoxID";
             this.maskedTextBoxID.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxID.TabIndex = 3;
+            this.maskedTextBoxID.Click += new System.EventHandler(this.maskedTextBoxID_Click);
             this.maskedTextBoxID.TextChanged += new System.EventHandler(this.maskedTextBoxID_TextChanged);
             // 
             // label2
@@ -314,6 +383,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 1;
+            this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
             // 
             // label1
             // 
@@ -332,14 +402,6 @@
             this.textBoxName.Size = new System.Drawing.Size(100, 20);
             this.textBoxName.TabIndex = 0;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
-            // 
-            // dataGridViewPatients
-            // 
-            this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatients.Location = new System.Drawing.Point(17, 211);
-            this.dataGridViewPatients.Name = "dataGridViewPatients";
-            this.dataGridViewPatients.Size = new System.Drawing.Size(587, 140);
-            this.dataGridViewPatients.TabIndex = 17;
             // 
             // MainForm
             // 
@@ -394,5 +456,11 @@
         private System.Windows.Forms.Button buttonAddP;
         private System.Windows.Forms.Label labelRefDoc;
         private System.Windows.Forms.DataGridView dataGridViewPatients;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MIColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNPColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DoctorColumn;
     }
 }

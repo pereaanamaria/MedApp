@@ -47,12 +47,12 @@ namespace EESSP
             paramList.Add("@IDDoc"); valueList.Add(IdDoc);
             paramList.Add("@MI"); valueList.Add(MI);
 
-            if(connectionClass.insertCommand(command, paramList, valueList))
+            if (connectionClass.insertCommand(command, paramList, valueList))
             {
                 MessageBox.Show("Successful insertion!");
-
                 emptyFields();
             }
+            else maskedTextBoxID.Text = string.Empty;
         }
 
         private void buttonCancelP_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace EESSP
                     patient.getCnpDetails(maskedTextBoxID.Text);
                     addPatientCNPDetails(patient);
 
-                    if(checkForEmptyField()) buttonAddP.Enabled = true;
+                    checkForEmptyField();
                 }
             }
             catch (Exception ex)
@@ -86,26 +86,22 @@ namespace EESSP
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-            if (checkForEmptyField()) buttonAddP.Enabled = false;
-            else buttonAddP.Enabled = true;
+            checkForEmptyField();
         }
 
         private void textBoxLastName_TextChanged(object sender, EventArgs e)
         {
-            if (checkForEmptyField()) buttonAddP.Enabled = false;
-            else buttonAddP.Enabled = true;
+            checkForEmptyField();
         }
 
         private void textBoxMI_TextChanged(object sender, EventArgs e)
         {
-            if (checkForEmptyField()) buttonAddP.Enabled = false;
-            else buttonAddP.Enabled = true;
+            checkForEmptyField();
         }
 
         private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
-            if (checkForEmptyField()) buttonAddP.Enabled = false;
-            else buttonAddP.Enabled = true;
+            checkForEmptyField();
         }
 
         private void addPatientCNPDetails(Patient p)
@@ -139,7 +135,7 @@ namespace EESSP
             buttonAddP.Enabled = false;
         }
 
-        private bool checkForEmptyField()
+        private void checkForEmptyField()
         {
             bool cnp = maskedTextBoxID.Text.Equals("");
             bool name = textBoxName.Text.Equals("");
@@ -147,8 +143,8 @@ namespace EESSP
             bool mi = textBoxMI.Text.Equals("");
             bool address = textBoxAddress.Text.Equals("");
 
-            if (cnp && name && lastName && mi && address) return true;
-            return false;
+            if (cnp && name && lastName && mi && address) buttonAddP.Enabled = false;
+            else buttonAddP.Enabled = true;
         }
     }
 }
