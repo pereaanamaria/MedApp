@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace EESSP
 {
-    class Doctor
+    public class Doctor
     {
         public int IDDoc { get; private set; }
         public string UserName { get; private set; }

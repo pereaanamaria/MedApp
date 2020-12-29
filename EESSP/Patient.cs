@@ -3,7 +3,7 @@ using System;
 
 namespace EESSP
 {
-    class Patient
+    public class Patient
     {
         public int ID { get; private set; }
         public string CNP { get; private set; }
@@ -23,7 +23,7 @@ namespace EESSP
 
         public Patient() { }
 
-        public Patient(ConnectionClass connectionClass, int ID, string CNP, string Name, string LastName, string Address, int IDDoc, string MiddleInitials)
+        public Patient(int ID, string CNP, string Name, string LastName, string Address, int IDDoc, string MiddleInitials)
         {
             this.ID = ID;
             this.CNP = CNP;
@@ -51,43 +51,6 @@ namespace EESSP
             Age = getAge(DateOfBirth);
             BirthPlace = new JudeteRo().getJudet(cnp.Substring(7, 2));
             RegisterNr = cnp.Substring(9, 3);
-        }
-
-        public bool checkExistingPatient(ConnectionClass connectionClass)
-        {
-            try
-            {
-                string idDoc = null;
-
-                string query = "select * from patients WHERE cnp=\'" + CNP + "\'";
-                rowReader = connectionClass.execReader(query);
-                if (rowReader.HasRows)
-                {
-                    while (rowReader.Read())
-                    {
-                        ID = int.Parse(rowReader["ID"].ToString());
-                        Name = rowReader["name"].ToString();
-                        LastName = rowReader["lastname"].ToString();
-                        Address = rowReader["address"].ToString();
-                        MiddleInitials = rowReader["MI"].ToString();
-                        idDoc = rowReader["IDDoc"].ToString();
-                    }
-                }
-                rowReader.Close();
-
-                if (idDoc != null)
-                {
-                    ReferingDoctor = new Doctor(connectionClass, idDoc);
-                    return true;
-                }
-                return false;
-
-            }
-            catch (Exception ex)
-            {
-                rowReader.Close();
-                return false;
-            }
         }
 
         //get age from date of birth method

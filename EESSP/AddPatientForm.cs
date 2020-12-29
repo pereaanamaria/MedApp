@@ -7,8 +7,9 @@ namespace EESSP
     public partial class AddPatientForm : Form
     {
         private ConnectionClass connectionClass;
-
         private int IdDoc;
+
+        public Patient newPatient { get; private set; }
 
         private void startForm(ConnectionClass connectionClass, int IdDoc)
         {
@@ -16,6 +17,7 @@ namespace EESSP
             this.connectionClass = connectionClass;
             this.IdDoc = IdDoc;
             buttonAddP.Enabled = false;
+            newPatient = null;
         }
 
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc)
@@ -49,8 +51,11 @@ namespace EESSP
 
             if (connectionClass.sqlCommand(command, paramList, valueList, "Patient CNP already exists!"))
             {
+                newPatient = connectionClass.checkCNP(cnp);
+                newPatient.getDoc(connectionClass);
                 MessageBox.Show("Successfully inserted!");
                 emptyFields();
+                buttonCancelP_Click(sender, e);
             }
             else maskedTextBoxID.Text = string.Empty;
         }
@@ -110,7 +115,6 @@ namespace EESSP
             labelAge.Text = "Age: " + p.Age;
             labelSex.Text = "Sex: " + p.Sex;
             labelBirthPlace.Text = "Birth Place: " + p.BirthPlace;
-            labelRegisterNr.Text = "Register Number: " + p.RegisterNr;
         }
 
         private void removeCNPDetails()
@@ -119,7 +123,6 @@ namespace EESSP
             labelAge.Text = "Age: ";
             labelSex.Text = "Sex: ";
             labelBirthPlace.Text = "Birth Place: ";
-            labelRegisterNr.Text = "Register Number: ";
 
             buttonAddP.Enabled = false;
         }

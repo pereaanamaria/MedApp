@@ -95,7 +95,7 @@ namespace EESSP
                         string mi = rowReader["MI"].ToString();
                         int idDoc = int.Parse(rowReader["IDDoc"].ToString());
                         int ID = int.Parse(rowReader["ID"].ToString());
-                        Patient p = new Patient(this, ID, cnp, name, lastName, address, idDoc, mi);
+                        Patient p = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
                         listPatients.Add(p);
                     }
                 }
@@ -108,6 +108,73 @@ namespace EESSP
                 if(rowReader != null) rowReader.Close();
                 return null;
             }
+        }
+
+        public Patient updatePatient(int ID)
+        {
+            MySqlDataReader rowReader = null;
+            Patient patient = null;
+
+            try
+            {
+                string query = "select * from patients WHERE ID=" + ID;
+                rowReader = execReader(query);
+                if (rowReader.HasRows)
+                {
+                    while (rowReader.Read())
+                    {
+                        string cnp = rowReader["CNP"].ToString();
+                        string name = rowReader["name"].ToString();
+                        string lastName = rowReader["lastname"].ToString();
+                        string address = rowReader["address"].ToString();
+                        string mi = rowReader["MI"].ToString();
+                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
+                        patient = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
+                    }
+                }
+                rowReader.Close();
+            }
+            catch (Exception ex)
+            {
+                if (rowReader != null) rowReader.Close();
+            }
+
+            if (patient != null) patient.getDoc(this);
+            return patient;
+        }
+
+        public Patient checkCNP(string cnp)
+        {
+            MySqlDataReader rowReader = null;
+            Patient patient = null;
+
+            try
+            {
+                string query = "select * from patients WHERE cnp=\'" + cnp + "\'";
+                rowReader = execReader(query);
+                if (rowReader.HasRows)
+                {
+                    while (rowReader.Read())
+                    {
+                        int ID = int.Parse(rowReader["ID"].ToString());
+                        string name = rowReader["name"].ToString();
+                        string lastName = rowReader["lastname"].ToString();
+                        string address = rowReader["address"].ToString();
+                        string mi = rowReader["MI"].ToString();
+                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
+                        patient = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
+                    }
+                }
+                rowReader.Close();
+
+                return patient;
+
+            }
+            catch (Exception ex)
+            {
+                if (rowReader != null) rowReader.Close();
+            }
+            return null;
         }
 
         private void connect()

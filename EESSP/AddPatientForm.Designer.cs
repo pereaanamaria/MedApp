@@ -37,7 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxMI = new System.Windows.Forms.TextBox();
-            this.labelRegisterNr = new System.Windows.Forms.Label();
             this.labelAge = new System.Windows.Forms.Label();
             this.labelBirthPlace = new System.Windows.Forms.Label();
             this.labelSex = new System.Windows.Forms.Label();
@@ -60,7 +59,6 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBoxMI);
-            this.panel1.Controls.Add(this.labelRegisterNr);
             this.panel1.Controls.Add(this.labelAge);
             this.panel1.Controls.Add(this.labelBirthPlace);
             this.panel1.Controls.Add(this.labelSex);
@@ -151,15 +149,6 @@
             this.textBoxMI.Size = new System.Drawing.Size(46, 20);
             this.textBoxMI.TabIndex = 3;
             this.textBoxMI.TextChanged += new System.EventHandler(this.textBoxMI_TextChanged);
-            // 
-            // labelRegisterNr
-            // 
-            this.labelRegisterNr.AutoSize = true;
-            this.labelRegisterNr.Location = new System.Drawing.Point(21, 280);
-            this.labelRegisterNr.Name = "labelRegisterNr";
-            this.labelRegisterNr.Size = new System.Drawing.Size(92, 13);
-            this.labelRegisterNr.TabIndex = 26;
-            this.labelRegisterNr.Text = "Register Number: ";
             // 
             // labelAge
             // 
@@ -256,7 +245,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxMI;
-        private System.Windows.Forms.Label labelRegisterNr;
         private System.Windows.Forms.Label labelAge;
         private System.Windows.Forms.Label labelBirthPlace;
         private System.Windows.Forms.Label labelSex;
