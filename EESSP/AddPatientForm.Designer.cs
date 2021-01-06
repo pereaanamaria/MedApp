@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonCancelP = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.buttonAddP = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,13 +45,21 @@
             this.maskedTextBoxID = new System.Windows.Forms.MaskedTextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Tan;
-            this.panel1.Controls.Add(this.buttonCancelP);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.buttonExit);
             this.panel1.Controls.Add(this.buttonAddP);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -72,17 +80,17 @@
             this.panel1.Size = new System.Drawing.Size(298, 314);
             this.panel1.TabIndex = 0;
             // 
-            // buttonCancelP
+            // buttonExit
             // 
-            this.buttonCancelP.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonCancelP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCancelP.Location = new System.Drawing.Point(188, 229);
-            this.buttonCancelP.Name = "buttonCancelP";
-            this.buttonCancelP.Size = new System.Drawing.Size(90, 23);
-            this.buttonCancelP.TabIndex = 6;
-            this.buttonCancelP.Text = "Cancel";
-            this.buttonCancelP.UseVisualStyleBackColor = false;
-            this.buttonCancelP.Click += new System.EventHandler(this.buttonCancelP_Click);
+            this.buttonExit.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonExit.Location = new System.Drawing.Point(188, 229);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(90, 23);
+            this.buttonExit.TabIndex = 6;
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // buttonAddP
             // 
@@ -153,7 +161,7 @@
             // labelAge
             // 
             this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(21, 210);
+            this.labelAge.Location = new System.Drawing.Point(90, 215);
             this.labelAge.Name = "labelAge";
             this.labelAge.Size = new System.Drawing.Size(32, 13);
             this.labelAge.TabIndex = 25;
@@ -162,7 +170,7 @@
             // labelBirthPlace
             // 
             this.labelBirthPlace.AutoSize = true;
-            this.labelBirthPlace.Location = new System.Drawing.Point(21, 256);
+            this.labelBirthPlace.Location = new System.Drawing.Point(90, 261);
             this.labelBirthPlace.Name = "labelBirthPlace";
             this.labelBirthPlace.Size = new System.Drawing.Size(64, 13);
             this.labelBirthPlace.TabIndex = 24;
@@ -171,7 +179,7 @@
             // labelSex
             // 
             this.labelSex.AutoSize = true;
-            this.labelSex.Location = new System.Drawing.Point(21, 233);
+            this.labelSex.Location = new System.Drawing.Point(90, 238);
             this.labelSex.Name = "labelSex";
             this.labelSex.Size = new System.Drawing.Size(31, 13);
             this.labelSex.TabIndex = 23;
@@ -180,7 +188,7 @@
             // labelDOB
             // 
             this.labelDOB.AutoSize = true;
-            this.labelDOB.Location = new System.Drawing.Point(21, 187);
+            this.labelDOB.Location = new System.Drawing.Point(90, 192);
             this.labelDOB.Name = "labelDOB";
             this.labelDOB.Size = new System.Drawing.Size(72, 13);
             this.labelDOB.TabIndex = 22;
@@ -223,6 +231,42 @@
             this.textBoxName.TabIndex = 1;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 215);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "Age: ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 261);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 13);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "Birth Place: ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 238);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Sex: ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(19, 192);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Date of Birth: ";
+            // 
             // AddPatientForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
@@ -258,7 +302,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonCancelP;
+        private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonAddP;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

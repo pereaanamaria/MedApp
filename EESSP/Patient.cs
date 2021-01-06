@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 
 namespace EESSP
 {
@@ -19,7 +18,6 @@ namespace EESSP
         public Doctor ReferingDoctor { get; private set; }
 
         private int IDDoc;
-        private MySqlDataReader rowReader;
 
         public Patient() { }
 

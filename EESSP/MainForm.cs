@@ -11,10 +11,9 @@ namespace EESSP
         private ConnectionClass connectionClass = new ConnectionClass();
         private HelperForm helperForm;
 
-        private AddPatientForm addForm = null;
-
         private ArrayList patients;
         public Patient selectedPatient = null;
+        private AddPatientForm addForm = null;
 
         public MainForm(int IdDoc)
         {
@@ -22,32 +21,33 @@ namespace EESSP
             userDoctor = new Doctor(connectionClass, IdDoc);
             labelDoctor.Text = "Doctor: " + userDoctor.Name + " " + userDoctor.LastName;
             helperForm = new HelperForm(this);
+            removePatientDetails();
         }
         
         private void buttonAddP_Click(object sender, EventArgs e)
         {
-            addForm = null;
-
             if (!maskedTextBoxSearchCNP.Text.Equals("") && maskedTextBoxSearchCNP.Text.Length == 13) addForm = new AddPatientForm(connectionClass, userDoctor.IDDoc, maskedTextBoxSearchCNP.Text);
             else addForm = new AddPatientForm(connectionClass, userDoctor.IDDoc);
 
             addForm.Show();
-            if (addForm.newPatient != null)
-            {
-                addForm.FormClosed += new FormClosedEventHandler(AddPatietForm_FormClosed);
-            }
-
-            buttonCancelSearch_Click(sender, e);
-            maskedTextBoxID.Text = string.Empty;
+            addForm.FormClosed += new FormClosedEventHandler(AddPatietForm_FormClosed);
         }
 
         void AddPatietForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (addForm.newPatient != null)
+            if (addForm.result == DialogResult.OK)
             {
                 selectedPatient = addForm.newPatient;
                 patientDetails();
             }
+            
+            buttonCancelSearch_Click(sender, e);
+            maskedTextBoxID.Text = string.Empty;
+        }
+
+        private void buttonList_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void buttonCancelSearch_Click(object sender, EventArgs e)
@@ -111,19 +111,22 @@ namespace EESSP
                         break;
                     }
             }
-
-            string command = "UPDATE patients SET " + option + "=@" + option + " WHERE ID=@ID";
-            List<string> paramList = new List<string>();
-            List<object> valueList = new List<object>();
-            paramList.Add("@" + option); valueList.Add(modifiedField);
-            paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
-
-            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
+            var confirmResult = MessageBox.Show("Are you sure to modify this patient?", "Modify Patient", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
             {
-                MessageBox.Show("Successfully updated!");
-                buttonDiscard_Click(sender, e);
-                selectedPatient = connectionClass.updatePatient(selectedPatient.ID);
-                patientDetails();
+                string command = "UPDATE patients SET " + option + "=@" + option + " WHERE ID=@ID";
+                List<string> paramList = new List<string>();
+                List<object> valueList = new List<object>();
+                paramList.Add("@" + option); valueList.Add(modifiedField);
+                paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+
+                if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
+                {
+                    MessageBox.Show("Successfully updated!");
+                    buttonDiscard_Click(sender, e);
+                    selectedPatient = connectionClass.updatePatient(selectedPatient.ID);
+                    patientDetails();
+                }
             }
         }
 
@@ -153,6 +156,8 @@ namespace EESSP
                 MessageBox.Show("No patient selected!");
                 return;
             }
+
+            new ConsultationsForm(connectionClass, selectedPatient).Show();
         }
 
         private void buttonRemoveP_Click(object sender, EventArgs e)
@@ -163,14 +168,19 @@ namespace EESSP
                 return;
             }
 
-            string command = "DELETE FROM patients WHERE ID=@ID";
-            List<string> paramList = new List<string>();
-            List<object> valueList = new List<object>();
-            paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
-
-            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
+            var confirmResult = MessageBox.Show("Are you sure to delete this patient?","Delete Patient",MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
             {
-                MessageBox.Show("Successfully deleted!");
+                string command = "DELETE FROM patients WHERE ID=@ID";
+                List<string> paramList = new List<string>();
+                List<object> valueList = new List<object>();
+                paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+
+                if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
+                {
+                    MessageBox.Show("Successfully deleted!");
+                    buttonChangeP_Click(sender, e);
+                }
             }
         }
 
@@ -296,11 +306,11 @@ namespace EESSP
 
             if (maskedTextBoxID.Text.Length == 13)
             {
-                if (connectionClass.checkCNP(maskedTextBoxID.Text) != null)
+                if (connectionClass.checkCNP(maskedTextBoxID.Text) == null)
                 {
                     buttonConfirm.Enabled = true;
                 }
-                else MessageBox.Show("The CNP already exists.");
+                else MessageBox.Show("CNP already exists.");
             }
         }
 
@@ -329,8 +339,9 @@ namespace EESSP
 
                     newRow.CreateCells(dataGridViewPatients);
                     newRow.Cells[0].Value = p.Name;
-                    newRow.Cells[1].Value = p.LastName;
-                    newRow.Cells[2].Value = p.CNP;
+                    newRow.Cells[1].Value = p.MiddleInitials;
+                    newRow.Cells[2].Value = p.LastName;
+                    newRow.Cells[3].Value = p.CNP;
                     dataGridViewPatients.Rows.Add(newRow);
                 }
             }
@@ -365,31 +376,31 @@ namespace EESSP
 
         private void patientDetails()
         {
-            labelName.Text = "Name: " + selectedPatient.Name;
-            labelLastName.Text = "Last Name: " + selectedPatient.LastName;
-            labelMI.Text = "M.I.: " + selectedPatient.MiddleInitials;
-            labelCNP.Text = "CNP: " + selectedPatient.CNP;
-            labelAddress.Text = "Address: " + selectedPatient.Address;
-            labelDOB.Text = "Date of Birth: " + selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy");
-            labelAge.Text = "Age: " + selectedPatient.Age;
-            labelSex.Text = "Sex: " + selectedPatient.Sex;
-            labelBirthPlace.Text = "Birth Place: " + selectedPatient.BirthPlace;
+            labelName.Text = selectedPatient.Name;
+            labelLastName.Text = selectedPatient.LastName;
+            labelMI.Text = selectedPatient.MiddleInitials;
+            labelCNP.Text = selectedPatient.CNP;
+            labelAddress.Text = selectedPatient.Address;
+            labelDOB.Text = selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy");
+            labelAge.Text = selectedPatient.Age.ToString();
+            labelSex.Text = selectedPatient.Sex;
+            labelBirthPlace.Text = selectedPatient.BirthPlace;
             selectedPatient.getDoc(connectionClass);
-            labelRefDoc.Text = "Refering Doctor: " + selectedPatient.ReferingDoctor.Name + " " + selectedPatient.ReferingDoctor.LastName;
+            labelRefDoc.Text = selectedPatient.ReferingDoctor.Name + " " + selectedPatient.ReferingDoctor.LastName;
         }
 
         private void removePatientDetails()
         {
-            labelName.Text = "Name: ";
-            labelLastName.Text = "Last Name: ";
-            labelMI.Text = "M.I.: ";
-            labelCNP.Text = "CNP: ";
-            labelAddress.Text = "Address: ";
-            labelDOB.Text = "Date of Birth: ";
-            labelAge.Text = "Age: ";
-            labelSex.Text = "Sex: ";
-            labelBirthPlace.Text = "Birth Place: ";
-            labelRefDoc.Text = "Refering Doctor: ";
+            labelName.Text = string.Empty;
+            labelLastName.Text = string.Empty;
+            labelMI.Text = string.Empty;
+            labelCNP.Text = string.Empty;
+            labelAddress.Text = string.Empty;
+            labelDOB.Text = string.Empty;
+            labelAge.Text = string.Empty;
+            labelSex.Text = string.Empty;
+            labelBirthPlace.Text = string.Empty;
+            labelRefDoc.Text = string.Empty;
         }
     }
 }

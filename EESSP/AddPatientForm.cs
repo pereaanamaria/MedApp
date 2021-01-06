@@ -6,10 +6,11 @@ namespace EESSP
 {
     public partial class AddPatientForm : Form
     {
+        public Patient newPatient { get; private set; }
+        public DialogResult result { get; private set; }
+
         private ConnectionClass connectionClass;
         private int IdDoc;
-
-        public Patient newPatient { get; private set; }
 
         private void startForm(ConnectionClass connectionClass, int IdDoc)
         {
@@ -23,12 +24,14 @@ namespace EESSP
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc)
         {
             startForm(connectionClass, IdDoc);
+            removeCNPDetails();
         }
 
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc, string cnp)
         {
             maskedTextBoxID.Text = cnp;
             startForm(connectionClass, IdDoc);
+            removeCNPDetails();
         }
 
         private void buttonAddP_Click(object sender, EventArgs e)
@@ -53,16 +56,20 @@ namespace EESSP
             {
                 newPatient = connectionClass.checkCNP(cnp);
                 newPatient.getDoc(connectionClass);
-                MessageBox.Show("Successfully inserted!");
+                result = MessageBox.Show("Successfully inserted!");
                 emptyFields();
-                buttonCancelP_Click(sender, e);
+                Close();
             }
             else maskedTextBoxID.Text = string.Empty;
         }
 
-        private void buttonCancelP_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
-            Close();
+            var confirmResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void maskedTextBoxID_TextChanged(object sender, EventArgs e)
@@ -111,18 +118,18 @@ namespace EESSP
 
         private void addPatientCNPDetails(Patient p)
         {
-            labelDOB.Text = "Date of Birth: " + p.DateOfBirth.ToString("dd - MMM - yyyy");
-            labelAge.Text = "Age: " + p.Age;
-            labelSex.Text = "Sex: " + p.Sex;
-            labelBirthPlace.Text = "Birth Place: " + p.BirthPlace;
+            labelDOB.Text = p.DateOfBirth.ToString("dd - MMM - yyyy");
+            labelAge.Text = p.Age.ToString();
+            labelSex.Text = p.Sex;
+            labelBirthPlace.Text = p.BirthPlace;
         }
 
         private void removeCNPDetails()
         {
-            labelDOB.Text = "Date of Birth: ";
-            labelAge.Text = "Age: ";
-            labelSex.Text = "Sex: ";
-            labelBirthPlace.Text = "Birth Place: ";
+            labelDOB.Text = string.Empty;
+            labelAge.Text = string.Empty;
+            labelSex.Text = string.Empty;
+            labelBirthPlace.Text = string.Empty;
 
             buttonAddP.Enabled = false;
         }

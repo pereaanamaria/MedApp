@@ -33,8 +33,9 @@ namespace EESSP
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.Write(ex);
             }
+
             return null;
         }
 
@@ -50,30 +51,14 @@ namespace EESSP
                 for(int i=0; i<paramList.Count; i++)
                     cmd.Parameters.AddWithValue(paramList[i], valueList[i]);
                 cmd.ExecuteNonQuery();
-
                 return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(except);
+                Console.Write(ex);
             }
             return false;
-        }
-
-        public DataSet loadDataGridiew(string command, string table)
-        {
-            try
-            {
-                DataSet dataSet = new DataSet();
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, mySqlConn);
-                dataAdapter.Fill(dataSet, table);
-                return dataSet;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return null;
         }
 
         public ArrayList getPatientsData(string query)
@@ -101,13 +86,14 @@ namespace EESSP
                 }
                 rowReader.Close();
                 if (listPatients.Count != 0) return listPatients;
-                return null;
             }
             catch (Exception ex)
             {
                 if(rowReader != null) rowReader.Close();
-                return null;
+                Console.Write(ex);
             }
+
+            return null;
         }
 
         public Patient updatePatient(int ID)
@@ -137,6 +123,7 @@ namespace EESSP
             catch (Exception ex)
             {
                 if (rowReader != null) rowReader.Close();
+                Console.Write(ex);
             }
 
             if (patient != null) patient.getDoc(this);
@@ -168,11 +155,102 @@ namespace EESSP
                 rowReader.Close();
 
                 return patient;
-
             }
             catch (Exception ex)
             {
                 if (rowReader != null) rowReader.Close();
+                Console.Write(ex);
+            }
+
+            return null;
+        }
+
+        public int getLastConsultation()
+        {
+            MySqlDataReader rowReader = null;
+            int ID = -1;
+
+            try
+            {
+                string query = "select * from consultations order by ID desc limit 1";
+                rowReader = execReader(query);
+                if (rowReader.HasRows)
+                {
+                    while (rowReader.Read())
+                    {
+                        ID = int.Parse(rowReader["ID"].ToString()) + 1;
+                    }
+                }
+                rowReader.Close();
+
+                if (ID == -1) return 1;
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (rowReader != null) rowReader.Close();
+                Console.Write(ex);
+            }
+
+            return ID;
+        }
+
+        public ArrayList getListCIM()
+        {
+            MySqlDataReader rowReader = null;
+            try
+            {
+                ArrayList listCim = new ArrayList();
+
+                string query = "select * from cim";
+                rowReader = execReader(query);
+                if (rowReader.HasRows)
+                {
+                    while (rowReader.Read())
+                    {
+                        CimCodes cim = new CimCodes(rowReader["ID"].ToString(), rowReader["name"].ToString());
+                        listCim.Add(cim);
+                    }
+                }
+                rowReader.Close();
+                if (listCim.Count != 0) return listCim;
+            }
+            catch (Exception ex)
+            {
+                if (rowReader != null) rowReader.Close();
+                Console.Write(ex);
+            }
+
+            return null;
+        }
+
+        public ArrayList getConsultationsData(string query)
+        {
+            MySqlDataReader rowReader = null;
+            try
+            {
+                ArrayList listConsultations = new ArrayList();
+
+                rowReader = execReader(query);
+                if (rowReader.HasRows)
+                {
+                    while (rowReader.Read())
+                    {
+                        int ID = int.Parse(rowReader["ID"].ToString());
+                        int IdPatient = int.Parse(rowReader["IdPatient"].ToString());
+                        string CIM = rowReader["CIM"].ToString();
+                        string ConsDate = rowReader["ConsDate"].ToString();
+                        Consultation cons = new Consultation(ID, IdPatient, CIM, ConsDate);
+                        listConsultations.Add(cons);
+                    }
+                }
+                rowReader.Close();
+                if (listConsultations.Count != 0) return listConsultations;
+            }
+            catch (Exception ex)
+            {
+                if (rowReader != null) rowReader.Close();
+                Console.Write(ex);
             }
             return null;
         }
@@ -187,7 +265,7 @@ namespace EESSP
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Console.Write(ex);
             }
         }
 
