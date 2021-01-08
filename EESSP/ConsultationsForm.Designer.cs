@@ -33,35 +33,35 @@
             this.buttonModify = new System.Windows.Forms.Button();
             this.buttonReport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelPatient = new System.Windows.Forms.Label();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridViewConsultations = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.buttonDiscard = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonConfirm = new System.Windows.Forms.Button();
-            this.radioButtonToday = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.radioButtonAnotherDate = new System.Windows.Forms.RadioButton();
-            this.maskedTextBoxDate = new System.Windows.Forms.MaskedTextBox();
-            this.textBoxDiagnostic = new System.Windows.Forms.TextBox();
-            this.labelDiagnostic = new System.Windows.Forms.Label();
-            this.labelIdC = new System.Windows.Forms.Label();
-            this.labelPatient = new System.Windows.Forms.Label();
-            this.labelOption = new System.Windows.Forms.Label();
-            this.numericUpDownSearchID = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxID = new System.Windows.Forms.CheckBox();
-            this.checkBoxDiagnostic = new System.Windows.Forms.CheckBox();
-            this.checkBoxDate = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.checkBoxDate = new System.Windows.Forms.CheckBox();
+            this.checkBoxDiagnostic = new System.Windows.Forms.CheckBox();
+            this.checkBoxID = new System.Windows.Forms.CheckBox();
+            this.numericUpDownSearchID = new System.Windows.Forms.NumericUpDown();
+            this.labelOption = new System.Windows.Forms.Label();
+            this.dataGridViewConsultations = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Diagnostic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelIdC = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelDiagnostic = new System.Windows.Forms.Label();
+            this.buttonDiscard = new System.Windows.Forms.Button();
+            this.textBoxDiagnostic = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.maskedTextBoxDate = new System.Windows.Forms.MaskedTextBox();
+            this.buttonConfirm = new System.Windows.Forms.Button();
+            this.radioButtonAnotherDate = new System.Windows.Forms.RadioButton();
+            this.radioButtonToday = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConsultations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearchID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConsultations)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -124,6 +124,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Consultations Menu";
             // 
+            // labelPatient
+            // 
+            this.labelPatient.AutoSize = true;
+            this.labelPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPatient.Location = new System.Drawing.Point(3, 4);
+            this.labelPatient.Name = "labelPatient";
+            this.labelPatient.Size = new System.Drawing.Size(47, 13);
+            this.labelPatient.TabIndex = 8;
+            this.labelPatient.Text = "Patient";
+            // 
             // buttonExit
             // 
             this.buttonExit.BackColor = System.Drawing.Color.Gainsboro;
@@ -174,170 +184,47 @@
             this.panel2.Size = new System.Drawing.Size(665, 286);
             this.panel2.TabIndex = 1;
             // 
-            // dataGridViewConsultations
+            // label6
             // 
-            this.dataGridViewConsultations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewConsultations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewConsultations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Date,
-            this.Diagnostic});
-            this.dataGridViewConsultations.Location = new System.Drawing.Point(343, 0);
-            this.dataGridViewConsultations.Name = "dataGridViewConsultations";
-            this.dataGridViewConsultations.Size = new System.Drawing.Size(321, 286);
-            this.dataGridViewConsultations.TabIndex = 13;
-            this.dataGridViewConsultations.Visible = false;
-            this.dataGridViewConsultations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConsultations_CellDoubleClick);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Search a consultation:";
             // 
-            // label5
+            // checkBoxDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 162);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Consultation Date:";
-            this.label5.Visible = false;
+            this.checkBoxDate.AutoSize = true;
+            this.checkBoxDate.Location = new System.Drawing.Point(20, 162);
+            this.checkBoxDate.Name = "checkBoxDate";
+            this.checkBoxDate.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxDate.TabIndex = 20;
+            this.checkBoxDate.UseVisualStyleBackColor = true;
+            this.checkBoxDate.Visible = false;
+            this.checkBoxDate.CheckedChanged += new System.EventHandler(this.checkBoxDate_CheckedChanged);
             // 
-            // buttonDiscard
+            // checkBoxDiagnostic
             // 
-            this.buttonDiscard.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDiscard.Location = new System.Drawing.Point(115, 248);
-            this.buttonDiscard.Name = "buttonDiscard";
-            this.buttonDiscard.Size = new System.Drawing.Size(90, 23);
-            this.buttonDiscard.TabIndex = 10;
-            this.buttonDiscard.Text = "Discard";
-            this.buttonDiscard.UseVisualStyleBackColor = false;
-            this.buttonDiscard.Visible = false;
-            this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
+            this.checkBoxDiagnostic.AutoSize = true;
+            this.checkBoxDiagnostic.Location = new System.Drawing.Point(20, 104);
+            this.checkBoxDiagnostic.Name = "checkBoxDiagnostic";
+            this.checkBoxDiagnostic.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxDiagnostic.TabIndex = 19;
+            this.checkBoxDiagnostic.UseVisualStyleBackColor = true;
+            this.checkBoxDiagnostic.Visible = false;
+            this.checkBoxDiagnostic.CheckedChanged += new System.EventHandler(this.checkBoxDiagnostic_CheckedChanged);
             // 
-            // label2
+            // checkBoxID
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Consultation number:";
-            this.label2.Visible = false;
-            // 
-            // buttonConfirm
-            // 
-            this.buttonConfirm.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonConfirm.Enabled = false;
-            this.buttonConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonConfirm.Location = new System.Drawing.Point(16, 248);
-            this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(90, 23);
-            this.buttonConfirm.TabIndex = 9;
-            this.buttonConfirm.Text = "Confirm";
-            this.buttonConfirm.UseVisualStyleBackColor = false;
-            this.buttonConfirm.Visible = false;
-            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
-            // 
-            // radioButtonToday
-            // 
-            this.radioButtonToday.AutoSize = true;
-            this.radioButtonToday.Checked = true;
-            this.radioButtonToday.Location = new System.Drawing.Point(131, 160);
-            this.radioButtonToday.Name = "radioButtonToday";
-            this.radioButtonToday.Size = new System.Drawing.Size(55, 17);
-            this.radioButtonToday.TabIndex = 6;
-            this.radioButtonToday.TabStop = true;
-            this.radioButtonToday.Text = "Today";
-            this.radioButtonToday.UseVisualStyleBackColor = true;
-            this.radioButtonToday.Visible = false;
-            this.radioButtonToday.CheckedChanged += new System.EventHandler(this.radioButtonToday_CheckedChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 104);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Diagnostic:";
-            this.label4.Visible = false;
-            // 
-            // radioButtonAnotherDate
-            // 
-            this.radioButtonAnotherDate.AutoSize = true;
-            this.radioButtonAnotherDate.Location = new System.Drawing.Point(131, 183);
-            this.radioButtonAnotherDate.Name = "radioButtonAnotherDate";
-            this.radioButtonAnotherDate.Size = new System.Drawing.Size(88, 17);
-            this.radioButtonAnotherDate.TabIndex = 7;
-            this.radioButtonAnotherDate.Text = "Another Date";
-            this.radioButtonAnotherDate.UseVisualStyleBackColor = true;
-            this.radioButtonAnotherDate.Visible = false;
-            this.radioButtonAnotherDate.CheckedChanged += new System.EventHandler(this.radioButtonAnotherDate_CheckedChanged);
-            // 
-            // maskedTextBoxDate
-            // 
-            this.maskedTextBoxDate.Location = new System.Drawing.Point(225, 182);
-            this.maskedTextBoxDate.Mask = "00/00/0000";
-            this.maskedTextBoxDate.Name = "maskedTextBoxDate";
-            this.maskedTextBoxDate.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBoxDate.TabIndex = 8;
-            this.maskedTextBoxDate.ValidatingType = typeof(System.DateTime);
-            this.maskedTextBoxDate.Visible = false;
-            this.maskedTextBoxDate.Click += new System.EventHandler(this.maskedTextBoxDate_Click);
-            this.maskedTextBoxDate.TextChanged += new System.EventHandler(this.maskedTextBoxDate_TextChanged);
-            // 
-            // textBoxDiagnostic
-            // 
-            this.textBoxDiagnostic.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBoxDiagnostic.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxDiagnostic.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxDiagnostic.Location = new System.Drawing.Point(38, 125);
-            this.textBoxDiagnostic.Name = "textBoxDiagnostic";
-            this.textBoxDiagnostic.Size = new System.Drawing.Size(255, 20);
-            this.textBoxDiagnostic.TabIndex = 5;
-            this.textBoxDiagnostic.Visible = false;
-            this.textBoxDiagnostic.TextChanged += new System.EventHandler(this.textBoxDiagnostic_TextChanged);
-            this.textBoxDiagnostic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxDiagnostic_KeyDown);
-            this.textBoxDiagnostic.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxDiagnostic_KeyUp);
-            // 
-            // labelDiagnostic
-            // 
-            this.labelDiagnostic.AutoSize = true;
-            this.labelDiagnostic.Location = new System.Drawing.Point(95, 104);
-            this.labelDiagnostic.Name = "labelDiagnostic";
-            this.labelDiagnostic.Size = new System.Drawing.Size(57, 13);
-            this.labelDiagnostic.TabIndex = 7;
-            this.labelDiagnostic.Text = "Diagnostic";
-            this.labelDiagnostic.Visible = false;
-            // 
-            // labelIdC
-            // 
-            this.labelIdC.AutoSize = true;
-            this.labelIdC.Location = new System.Drawing.Point(144, 81);
-            this.labelIdC.Name = "labelIdC";
-            this.labelIdC.Size = new System.Drawing.Size(18, 13);
-            this.labelIdC.TabIndex = 6;
-            this.labelIdC.Text = "ID";
-            this.labelIdC.Visible = false;
-            // 
-            // labelPatient
-            // 
-            this.labelPatient.AutoSize = true;
-            this.labelPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPatient.Location = new System.Drawing.Point(3, 4);
-            this.labelPatient.Name = "labelPatient";
-            this.labelPatient.Size = new System.Drawing.Size(47, 13);
-            this.labelPatient.TabIndex = 8;
-            this.labelPatient.Text = "Patient";
-            // 
-            // labelOption
-            // 
-            this.labelOption.AutoSize = true;
-            this.labelOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOption.Location = new System.Drawing.Point(16, 14);
-            this.labelOption.Name = "labelOption";
-            this.labelOption.Size = new System.Drawing.Size(90, 13);
-            this.labelOption.TabIndex = 2;
-            this.labelOption.Text = "Chosen Option";
+            this.checkBoxID.AutoSize = true;
+            this.checkBoxID.Location = new System.Drawing.Point(20, 81);
+            this.checkBoxID.Name = "checkBoxID";
+            this.checkBoxID.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxID.TabIndex = 18;
+            this.checkBoxID.UseVisualStyleBackColor = true;
+            this.checkBoxID.Visible = false;
+            this.checkBoxID.CheckedChanged += new System.EventHandler(this.checkBoxID_CheckedChanged);
             // 
             // numericUpDownSearchID
             // 
@@ -364,47 +251,31 @@
             this.numericUpDownSearchID.Visible = false;
             this.numericUpDownSearchID.ValueChanged += new System.EventHandler(this.numericUpDownSearchID_ValueChanged);
             // 
-            // checkBoxID
+            // labelOption
             // 
-            this.checkBoxID.AutoSize = true;
-            this.checkBoxID.Location = new System.Drawing.Point(20, 81);
-            this.checkBoxID.Name = "checkBoxID";
-            this.checkBoxID.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxID.TabIndex = 18;
-            this.checkBoxID.UseVisualStyleBackColor = true;
-            this.checkBoxID.Visible = false;
-            this.checkBoxID.CheckedChanged += new System.EventHandler(this.checkBoxID_CheckedChanged);
+            this.labelOption.AutoSize = true;
+            this.labelOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOption.Location = new System.Drawing.Point(16, 14);
+            this.labelOption.Name = "labelOption";
+            this.labelOption.Size = new System.Drawing.Size(90, 13);
+            this.labelOption.TabIndex = 2;
+            this.labelOption.Text = "Chosen Option";
             // 
-            // checkBoxDiagnostic
+            // dataGridViewConsultations
             // 
-            this.checkBoxDiagnostic.AutoSize = true;
-            this.checkBoxDiagnostic.Location = new System.Drawing.Point(20, 104);
-            this.checkBoxDiagnostic.Name = "checkBoxDiagnostic";
-            this.checkBoxDiagnostic.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxDiagnostic.TabIndex = 19;
-            this.checkBoxDiagnostic.UseVisualStyleBackColor = true;
-            this.checkBoxDiagnostic.Visible = false;
-            this.checkBoxDiagnostic.CheckedChanged += new System.EventHandler(this.checkBoxDiagnostic_CheckedChanged);
-            // 
-            // checkBoxDate
-            // 
-            this.checkBoxDate.AutoSize = true;
-            this.checkBoxDate.Location = new System.Drawing.Point(20, 162);
-            this.checkBoxDate.Name = "checkBoxDate";
-            this.checkBoxDate.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxDate.TabIndex = 20;
-            this.checkBoxDate.UseVisualStyleBackColor = true;
-            this.checkBoxDate.Visible = false;
-            this.checkBoxDate.CheckedChanged += new System.EventHandler(this.checkBoxDate_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 13);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Search a consultation:";
+            this.dataGridViewConsultations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewConsultations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewConsultations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Date,
+            this.Diagnostic});
+            this.dataGridViewConsultations.Location = new System.Drawing.Point(343, 0);
+            this.dataGridViewConsultations.Name = "dataGridViewConsultations";
+            this.dataGridViewConsultations.Size = new System.Drawing.Size(321, 286);
+            this.dataGridViewConsultations.TabIndex = 13;
+            this.dataGridViewConsultations.Visible = false;
+            this.dataGridViewConsultations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConsultations_CellDoubleClick);
             // 
             // ID
             // 
@@ -427,6 +298,136 @@
             this.Diagnostic.ReadOnly = true;
             this.Diagnostic.Width = 82;
             // 
+            // labelIdC
+            // 
+            this.labelIdC.AutoSize = true;
+            this.labelIdC.Location = new System.Drawing.Point(144, 81);
+            this.labelIdC.Name = "labelIdC";
+            this.labelIdC.Size = new System.Drawing.Size(18, 13);
+            this.labelIdC.TabIndex = 6;
+            this.labelIdC.Text = "ID";
+            this.labelIdC.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 162);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Consultation Date:";
+            this.label5.Visible = false;
+            // 
+            // labelDiagnostic
+            // 
+            this.labelDiagnostic.AutoSize = true;
+            this.labelDiagnostic.Location = new System.Drawing.Point(95, 104);
+            this.labelDiagnostic.Name = "labelDiagnostic";
+            this.labelDiagnostic.Size = new System.Drawing.Size(57, 13);
+            this.labelDiagnostic.TabIndex = 7;
+            this.labelDiagnostic.Text = "Diagnostic";
+            this.labelDiagnostic.Visible = false;
+            // 
+            // buttonDiscard
+            // 
+            this.buttonDiscard.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDiscard.Location = new System.Drawing.Point(115, 248);
+            this.buttonDiscard.Name = "buttonDiscard";
+            this.buttonDiscard.Size = new System.Drawing.Size(90, 23);
+            this.buttonDiscard.TabIndex = 10;
+            this.buttonDiscard.Text = "Discard";
+            this.buttonDiscard.UseVisualStyleBackColor = false;
+            this.buttonDiscard.Visible = false;
+            this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
+            // 
+            // textBoxDiagnostic
+            // 
+            this.textBoxDiagnostic.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxDiagnostic.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBoxDiagnostic.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxDiagnostic.Location = new System.Drawing.Point(38, 125);
+            this.textBoxDiagnostic.Name = "textBoxDiagnostic";
+            this.textBoxDiagnostic.Size = new System.Drawing.Size(255, 20);
+            this.textBoxDiagnostic.TabIndex = 5;
+            this.textBoxDiagnostic.Visible = false;
+            this.textBoxDiagnostic.TextChanged += new System.EventHandler(this.textBoxDiagnostic_TextChanged);
+            this.textBoxDiagnostic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxDiagnostic_KeyDown);
+            this.textBoxDiagnostic.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxDiagnostic_KeyUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Consultation number:";
+            this.label2.Visible = false;
+            // 
+            // maskedTextBoxDate
+            // 
+            this.maskedTextBoxDate.Location = new System.Drawing.Point(225, 182);
+            this.maskedTextBoxDate.Mask = "00/00/0000";
+            this.maskedTextBoxDate.Name = "maskedTextBoxDate";
+            this.maskedTextBoxDate.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBoxDate.TabIndex = 8;
+            this.maskedTextBoxDate.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBoxDate.Visible = false;
+            this.maskedTextBoxDate.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.maskedTextBoxDate_TypeValidationCompleted);
+            this.maskedTextBoxDate.Click += new System.EventHandler(this.maskedTextBoxDate_Click);
+            this.maskedTextBoxDate.TextChanged += new System.EventHandler(this.maskedTextBoxDate_TextChanged);
+            // 
+            // buttonConfirm
+            // 
+            this.buttonConfirm.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonConfirm.Enabled = false;
+            this.buttonConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonConfirm.Location = new System.Drawing.Point(16, 248);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(90, 23);
+            this.buttonConfirm.TabIndex = 9;
+            this.buttonConfirm.Text = "Confirm";
+            this.buttonConfirm.UseVisualStyleBackColor = false;
+            this.buttonConfirm.Visible = false;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
+            // 
+            // radioButtonAnotherDate
+            // 
+            this.radioButtonAnotherDate.AutoSize = true;
+            this.radioButtonAnotherDate.Location = new System.Drawing.Point(131, 183);
+            this.radioButtonAnotherDate.Name = "radioButtonAnotherDate";
+            this.radioButtonAnotherDate.Size = new System.Drawing.Size(88, 17);
+            this.radioButtonAnotherDate.TabIndex = 7;
+            this.radioButtonAnotherDate.Text = "Another Date";
+            this.radioButtonAnotherDate.UseVisualStyleBackColor = true;
+            this.radioButtonAnotherDate.Visible = false;
+            this.radioButtonAnotherDate.CheckedChanged += new System.EventHandler(this.radioButtonAnotherDate_CheckedChanged);
+            // 
+            // radioButtonToday
+            // 
+            this.radioButtonToday.AutoSize = true;
+            this.radioButtonToday.Checked = true;
+            this.radioButtonToday.Location = new System.Drawing.Point(131, 160);
+            this.radioButtonToday.Name = "radioButtonToday";
+            this.radioButtonToday.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonToday.TabIndex = 6;
+            this.radioButtonToday.TabStop = true;
+            this.radioButtonToday.Text = "Today";
+            this.radioButtonToday.UseVisualStyleBackColor = true;
+            this.radioButtonToday.Visible = false;
+            this.radioButtonToday.CheckedChanged += new System.EventHandler(this.radioButtonToday_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Diagnostic:";
+            this.label4.Visible = false;
+            // 
             // ConsultationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,8 +444,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConsultations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearchID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConsultations)).EndInit();
             this.ResumeLayout(false);
 
         }

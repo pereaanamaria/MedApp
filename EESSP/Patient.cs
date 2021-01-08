@@ -5,32 +5,33 @@ namespace EESSP
     public class Patient
     {
         public int ID { get; private set; }
-        public string CNP { get; private set; }
+        public Doctor ReferingDoctor { get; private set; }
         public string Name { get; private set; }
-        public string LastName { get; private set; }
         public string MiddleInitials { get; private set; }
+        public string LastName { get; private set; }
+        public string CNP { get; private set; }
         public string Address { get; private set; }
         public DateTime DateOfBirth { get; private set; }
         public int Age { get; private set; }
         public string Sex { get; private set; }
         public string BirthPlace { get; private set; }
         public string RegisterNr { get; private set; }
-        public Doctor ReferingDoctor { get; private set; }
 
         private int IDDoc;
 
         public Patient() { }
 
-        public Patient(int ID, string CNP, string Name, string LastName, string Address, int IDDoc, string MiddleInitials)
+        public Patient(int ID, int IDDoc, string Name, string MiddleInitials, string LastName, string CNP, string Address)
         {
             this.ID = ID;
+            this.IDDoc = IDDoc;
             this.CNP = CNP;
-            getCnpDetails(CNP);
             this.Name = Name;
+            this.MiddleInitials = MiddleInitials;
             this.LastName = LastName;
             this.Address = Address;
-            this.MiddleInitials = MiddleInitials;
-            this.IDDoc = IDDoc;
+
+            getCnpDetails(CNP);
         }
 
         public void getDoc(ConnectionClass connectionClass)

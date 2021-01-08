@@ -42,15 +42,15 @@ namespace EESSP
             string MI = textBoxMI.Text;
             string address = textBoxAddress.Text;
 
-            string command = "INSERT INTO patients(cnp,name,lastname,address,IDDoc,MI) VALUES(@cnp,@name,@lastname,@address,@IDDoc,@MI)";
+            string command = "INSERT INTO patients(IDDoc,name,MI,lastname,cnp,address) VALUES(@IDDoc,@name,@MI,@lastname,@cnp,@address)";
             List<string> paramList = new List<string>();
             List<object> valueList = new List<object>();
+            paramList.Add("@IDDoc"); valueList.Add(IdDoc);
+            paramList.Add("@name"); valueList.Add(name);
+            paramList.Add("@MI"); valueList.Add(MI);
+            paramList.Add("@lastname"); valueList.Add(lastname);
             paramList.Add("@cnp");       valueList.Add(cnp);
-            paramList.Add("@name");      valueList.Add(name);
-            paramList.Add("@lastname");  valueList.Add(lastname);
             paramList.Add("@address");   valueList.Add(address);
-            paramList.Add("@IDDoc");     valueList.Add(IdDoc);
-            paramList.Add("@MI");        valueList.Add(MI);
 
             if (connectionClass.sqlCommand(command, paramList, valueList, "Patient CNP already exists!"))
             {

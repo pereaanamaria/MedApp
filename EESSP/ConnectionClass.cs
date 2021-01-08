@@ -73,14 +73,14 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
-                        string cnp = rowReader["CNP"].ToString();
-                        string name = rowReader["name"].ToString();
-                        string lastName = rowReader["lastname"].ToString();
-                        string address = rowReader["address"].ToString();
-                        string mi = rowReader["MI"].ToString();
-                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
                         int ID = int.Parse(rowReader["ID"].ToString());
-                        Patient p = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
+                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
+                        string name = rowReader["name"].ToString();
+                        string mi = rowReader["MI"].ToString();
+                        string lastName = rowReader["lastname"].ToString();
+                        string cnp = rowReader["CNP"].ToString();
+                        string address = rowReader["address"].ToString();
+                        Patient p = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
                         listPatients.Add(p);
                     }
                 }
@@ -109,13 +109,13 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
-                        string cnp = rowReader["CNP"].ToString();
-                        string name = rowReader["name"].ToString();
-                        string lastName = rowReader["lastname"].ToString();
-                        string address = rowReader["address"].ToString();
-                        string mi = rowReader["MI"].ToString();
                         int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        patient = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
+                        string name = rowReader["name"].ToString();
+                        string mi = rowReader["MI"].ToString();
+                        string lastName = rowReader["lastname"].ToString();
+                        string cnp = rowReader["CNP"].ToString();
+                        string address = rowReader["address"].ToString();
+                        patient = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
                     }
                 }
                 rowReader.Close();
@@ -144,12 +144,12 @@ namespace EESSP
                     while (rowReader.Read())
                     {
                         int ID = int.Parse(rowReader["ID"].ToString());
+                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
                         string name = rowReader["name"].ToString();
+                        string mi = rowReader["MI"].ToString();
                         string lastName = rowReader["lastname"].ToString();
                         string address = rowReader["address"].ToString();
-                        string mi = rowReader["MI"].ToString();
-                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        patient = new Patient(ID, cnp, name, lastName, address, idDoc, mi);
+                        patient = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
                     }
                 }
                 rowReader.Close();

@@ -168,18 +168,26 @@ namespace EESSP
                 return;
             }
 
-            var confirmResult = MessageBox.Show("Are you sure to delete this patient?","Delete Patient",MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Warning! Deleting this patient implies deleting all its consultations as well.\nAre you sure to delete this patient?","Delete Patient",MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                string command = "DELETE FROM patients WHERE ID=@ID";
+                string command = "DELETE FROM consultations WHERE IdPatient=@IdPatient";
                 List<string> paramList = new List<string>();
                 List<object> valueList = new List<object>();
-                paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+                paramList.Add("@IdPatient"); valueList.Add(selectedPatient.ID);
 
-                if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
+                if (connectionClass.sqlCommand(command, paramList, valueList, "Patient's consultations could not be deleted!"))
                 {
-                    MessageBox.Show("Successfully deleted!");
-                    buttonChangeP_Click(sender, e);
+                    command = "DELETE FROM patients WHERE ID=@ID";
+                    paramList = new List<string>();
+                    valueList = new List<object>();
+                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+
+                    if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
+                    {
+                        MessageBox.Show("Successfully deleted!");
+                        buttonChangeP_Click(sender, e);
+                    }
                 }
             }
         }
@@ -333,6 +341,9 @@ namespace EESSP
 
             if (patients != null)
             {
+                dataGridViewPatients.Visible = patients.Count > 0;
+                buttonCancelSearch.Visible = patients.Count > 0;
+
                 foreach (Patient p in patients)
                 {
                     DataGridViewRow newRow = new DataGridViewRow();
@@ -344,6 +355,11 @@ namespace EESSP
                     newRow.Cells[3].Value = p.CNP;
                     dataGridViewPatients.Rows.Add(newRow);
                 }
+            }
+            else
+            {
+                dataGridViewPatients.Visible = false;
+                buttonCancelSearch.Visible = false;
             }
         }
 
@@ -370,7 +386,12 @@ namespace EESSP
         {
             if (textBoxSearchN.Text == string.Empty &&
                 textBoxSearchLN.Text == string.Empty &&
-                maskedTextBoxSearchCNP.Text == string.Empty) return false;
+                maskedTextBoxSearchCNP.Text == string.Empty)
+            {
+                dataGridViewPatients.Visible = false;
+                buttonCancelSearch.Visible = false;
+                return false;
+            }
             return true;
         }
 

@@ -49,7 +49,6 @@ namespace EESSP
             visibleModifyAndRemove();
         }
 
-        //todo
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             emptyFields();
@@ -68,8 +67,7 @@ namespace EESSP
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes) Close();
+            Close();
         }
         
         private void buttonConfirm_Click(object sender, EventArgs e)
@@ -124,6 +122,11 @@ namespace EESSP
         {
             if (!labelOption.Text.Contains("Add")) updateDataGrid();
             buttonConfirm.Enabled = radioButtonAnotherDate.Checked && !maskedTextBoxDate.Text.Equals("  -  -") && !textBoxDiagnostic.Text.Equals("");
+        }
+
+        private void maskedTextBoxDate_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput) MessageBox.Show("Date is not valid.");
         }
 
         private void numericUpDownSearchID_ValueChanged(object sender, EventArgs e)
@@ -252,10 +255,26 @@ namespace EESSP
 
         private void deleteConsultation()
         {
+            if (selectedPatient == null)
+            {
+                MessageBox.Show("No consultation selected!");
+                return;
+            }
+
             var confirmResult = MessageBox.Show("Are you sure to delete this consultation?", "Delete Consultation", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                // If 'Yes', do something here.
+                string command = "DELETE FROM consultations WHERE ID=@ID";
+                List<string> paramList = new List<string>();
+                List<object> valueList = new List<object>();
+                paramList.Add("@ID"); valueList.Add(selectedConsultation.ID);
+
+                if (connectionClass.sqlCommand(command, paramList, valueList, "Consultation could not be deleted!"))
+                {
+                    MessageBox.Show("Successfully deleted!");
+                    updateDataGrid();
+                    emptyFields();
+                }
             }
         }
 
@@ -336,6 +355,7 @@ namespace EESSP
             radioButtonToday.Checked = true;
             radioButtonAnotherDate.Checked = false;
             maskedTextBoxDate.Text = string.Empty;
+            labelIdC.Visible = false;
 
             checkBoxID.Checked = false;
             checkBoxDate.Checked = false;
