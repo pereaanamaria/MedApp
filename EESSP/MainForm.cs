@@ -22,6 +22,7 @@ namespace EESSP
             labelDoctor.Text = "Doctor: " + userDoctor.Name + " " + userDoctor.LastName;
             helperForm = new HelperForm(this);
             removePatientDetails();
+            ActiveControl = buttonAddP;
         }
         
         private void buttonAddP_Click(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace EESSP
             maskedTextBoxID.Text = string.Empty;
         }
 
+        //todo
         private void buttonList_Click(object sender, EventArgs e)
         {
 
@@ -64,6 +66,7 @@ namespace EESSP
             if (selectedPatient == null)
             {
                 MessageBox.Show("No patient selected!");
+                ActiveControl = textBoxSearchN;
                 return;
             }
 
@@ -114,11 +117,27 @@ namespace EESSP
             var confirmResult = MessageBox.Show("Are you sure to modify this patient?", "Modify Patient", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                string command = "UPDATE patients SET " + option + "=@" + option + " WHERE ID=@ID";
+                string command;
                 List<string> paramList = new List<string>();
                 List<object> valueList = new List<object>();
-                paramList.Add("@" + option); valueList.Add(modifiedField);
-                paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+
+                if(option.Equals("cnp"))
+                {
+                    selectedPatient.getCnpDetails(maskedTextBoxID.Text);
+                    command = "UPDATE patients SET cnp=@cnp, sex=@sex, DOB=@DOB, RomanianCountry=@RomanianCountry, age=@age WHERE ID=@ID";
+                    paramList.Add("@cnp"); valueList.Add(selectedPatient.CNP);
+                    paramList.Add("@sex"); valueList.Add(selectedPatient.Sex);
+                    paramList.Add("@DOB"); valueList.Add(selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy"));
+                    paramList.Add("@RomanianCountry"); valueList.Add(selectedPatient.BirthPlace);
+                    paramList.Add("@age"); valueList.Add(selectedPatient.Age);
+                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+                }
+                else
+                {
+                    command = "UPDATE patients SET " + option + "=@" + option + " WHERE ID=@ID";
+                    paramList.Add("@" + option); valueList.Add(modifiedField);
+                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+                }
 
                 if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
                 {
@@ -147,6 +166,8 @@ namespace EESSP
             domainUpDownOptions.Visible = false;
             buttonConfirm.Visible = false;
             buttonDiscard.Visible = false;
+
+            ActiveControl = textBoxSearchN;
         }
 
         private void buttonConsultationsP_Click(object sender, EventArgs e)
@@ -154,9 +175,9 @@ namespace EESSP
             if (selectedPatient == null)
             {
                 MessageBox.Show("No patient selected!");
+                ActiveControl = textBoxSearchN;
                 return;
             }
-
             new ConsultationsForm(connectionClass, selectedPatient).Show();
         }
 
@@ -165,6 +186,7 @@ namespace EESSP
             if (selectedPatient == null)
             {
                 MessageBox.Show("No patient selected!");
+                ActiveControl = textBoxSearchN;
                 return;
             }
 
@@ -197,9 +219,9 @@ namespace EESSP
             if (selectedPatient == null)
             {
                 MessageBox.Show("No patient selected!");
+                ActiveControl = textBoxSearchN;
                 return;
             }
-
             removePatientDetails();
             buttonDiscard_Click(sender, e);
         }
@@ -232,9 +254,20 @@ namespace EESSP
             try
             {
                 selectedPatient = (Patient)patients[e.RowIndex];
-                if (selectedPatient != null) patientDetails();
+                if (selectedPatient != null)
+                {
+                    patientDetails();
 
-                buttonCancelSearch_Click(sender, e);
+                    string command = "UPDATE patients SET age=@age WHERE ID=@ID";
+                    List<string> paramList = new List<string>();
+                    List<object> valueList = new List<object>();
+                    paramList.Add("@age"); valueList.Add(selectedPatient.Age);
+                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
+
+                    connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be updated!");
+                    buttonCancelSearch_Click(sender, e);
+                    ActiveControl = buttonModifyP;
+                }
             }
             catch (Exception ex)
             {
@@ -284,6 +317,39 @@ namespace EESSP
             buttonConfirm.Visible = true;
         }
 
+        private void domainUpDownOptions_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = textBoxSearchN;
+            switch (domainUpDownOptions.Text)
+            {
+                case "Name":
+                    {
+                        ActiveControl = textBoxName;
+                        break;
+                    }
+                case "Last Name":
+                    {
+                        ActiveControl = textBoxLastName;
+                        break;
+                    }
+                case "M.I.":
+                    {
+                        ActiveControl = textBoxMI;
+                        break;
+                    }
+                case "CNP":
+                    {
+                        ActiveControl = maskedTextBoxID;
+                        break;
+                    }
+                case "Address":
+                    {
+                        ActiveControl = textBoxAddress;
+                        break;
+                    }
+            }
+        }
+
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             buttonConfirm.Enabled = false;
@@ -326,6 +392,31 @@ namespace EESSP
         {
             buttonConfirm.Enabled = false;
             if (checkAllNotEmptyFields()) buttonConfirm.Enabled = true;
+        }
+
+        private void textBoxName_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = buttonConfirm;
+        }
+
+        private void textBoxMI_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = buttonConfirm;
+        }
+
+        private void textBoxLastName_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = buttonConfirm;
+        }
+
+        private void maskedTextBoxID_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = buttonConfirm;
+        }
+
+        private void textBoxAddress_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = buttonConfirm;
         }
 
         private void updateDataGrid()

@@ -10,6 +10,7 @@ namespace EESSP
         public DialogResult result { get; private set; }
 
         private ConnectionClass connectionClass;
+        private HelperForm helperForm;
         private int IdDoc;
 
         private void startForm(ConnectionClass connectionClass, int IdDoc)
@@ -19,6 +20,8 @@ namespace EESSP
             this.IdDoc = IdDoc;
             buttonAddP.Enabled = false;
             newPatient = null;
+            ActiveControl = textBoxName;
+            helperForm = new HelperForm(this);
         }
 
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc)
@@ -36,21 +39,51 @@ namespace EESSP
 
         private void buttonAddP_Click(object sender, EventArgs e)
         {
+            string email = textBoxEmail.Text;
+            if (!isValidEmail(email))
+            {
+                MessageBox.Show("Email format is not correct!");
+                return;
+            }
             string cnp = maskedTextBoxID.Text;
             string name = textBoxName.Text;
             string lastname = textBoxLastName.Text;
             string MI = textBoxMI.Text;
             string address = textBoxAddress.Text;
+            double weight = double.Parse(textBoxWeight.Text);
+            double height = double.Parse(textBoxHeight.Text);
+            string bloodType = (radioButton0I.Checked) ? "O (I)" : (
+                    (radioButtonAII.Checked) ? "A (II)" : (
+                    (radioButtonBIII.Checked) ? "B (III)" : "AB (IV)"));
+            string rh = (radioButtonPositive.Checked) ? "POSITIVE" : "NEGATIVE";
+            string occupation = (radioButtonNoOccupation.Checked) ? "NO OCCUPATION" : (
+                    (radioButtonStudent.Checked) ? "STUDENT" : (
+                    (radioButtonUnemployed.Checked) ? "UNEMPLOYED" : textBoxOccupation.Text));
+            string allergies = textBoxAllergies.Text;
 
-            string command = "INSERT INTO patients(IDDoc,name,MI,lastname,cnp,address) VALUES(@IDDoc,@name,@MI,@lastname,@cnp,@address)";
+            string command = "INSERT INTO patients(IDDoc,name,MI,lastname,cnp,email,address,";
+            command += "occupation,sex,DOB,RomanianCountry,age,weight,height,bloodType,rh,allergies) ";
+            command += "VALUES(@IDDoc,@name,@MI,@lastname,@cnp,@email,@address,";
+            command += "@occupation,@sex,@DOB,@RomanianCountry,@age,@weight,@height,@bloodType,@rh,@allergies)";
             List<string> paramList = new List<string>();
             List<object> valueList = new List<object>();
-            paramList.Add("@IDDoc"); valueList.Add(IdDoc);
-            paramList.Add("@name"); valueList.Add(name);
-            paramList.Add("@MI"); valueList.Add(MI);
-            paramList.Add("@lastname"); valueList.Add(lastname);
-            paramList.Add("@cnp");       valueList.Add(cnp);
-            paramList.Add("@address");   valueList.Add(address);
+            paramList.Add("@IDDoc");           valueList.Add(IdDoc);
+            paramList.Add("@name");            valueList.Add(name);
+            paramList.Add("@MI");              valueList.Add(MI);
+            paramList.Add("@lastname");        valueList.Add(lastname);
+            paramList.Add("@cnp");             valueList.Add(cnp);
+            paramList.Add("@email");           valueList.Add(email);
+            paramList.Add("@address");         valueList.Add(address);
+            paramList.Add("@occupation");      valueList.Add(occupation);
+            paramList.Add("@sex");             valueList.Add(labelSex.Text);
+            paramList.Add("@DOB");             valueList.Add(labelDOB.Text);
+            paramList.Add("@RomanianCountry"); valueList.Add(labelBirthPlace.Text);
+            paramList.Add("@age");             valueList.Add(int.Parse(labelAge.Text));
+            paramList.Add("@weight");          valueList.Add(weight);
+            paramList.Add("@height");          valueList.Add(height);
+            paramList.Add("@bloodType");       valueList.Add(bloodType);
+            paramList.Add("@rh");              valueList.Add(rh);
+            paramList.Add("@allergies");       valueList.Add(allergies);
 
             if (connectionClass.sqlCommand(command, paramList, valueList, "Patient CNP already exists!"))
             {
@@ -96,6 +129,11 @@ namespace EESSP
             }
         }
 
+        private void maskedTextBoxID_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxID.Select(0, 0);
+        }
+
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             checkForEmptyField();
@@ -114,6 +152,46 @@ namespace EESSP
         private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
             checkForEmptyField();
+        }
+
+        private void textBoxHeight_TextChanged(object sender, EventArgs e)
+        {
+            checkForEmptyField();
+        }
+
+        private void textBoxHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            helperForm.checkDoubles(sender,e);
+        }
+
+        private void textBoxWeight_TextChanged(object sender, EventArgs e)
+        {
+            checkForEmptyField();
+        }
+
+        private void textBoxWeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            helperForm.checkDoubles(sender, e);
+        }
+
+        private void textBoxOccupation_TextChanged(object sender, EventArgs e)
+        {
+            checkForEmptyField();
+        }
+
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            checkForEmptyField();
+        }
+
+        private void textBoxAllergies_TextChanged(object sender, EventArgs e)
+        {
+            checkForEmptyField();
+        }
+
+        private void radioButtonEmployed_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxOccupation.Visible = radioButtonEmployed.Checked;
         }
 
         private void addPatientCNPDetails(Patient p)
@@ -141,6 +219,15 @@ namespace EESSP
             textBoxLastName.Text = string.Empty;
             textBoxMI.Text = string.Empty;
             textBoxAddress.Text = string.Empty;
+            textBoxEmail.Text = string.Empty;
+            textBoxWeight.Text = string.Empty;
+            textBoxHeight.Text = string.Empty;
+            textBoxOccupation.Text = string.Empty;
+            textBoxAllergies.Text = string.Empty;
+
+            removeCheckedBloodType();
+            removeCheckedRh();
+            removeCheckedOccupation();
 
             buttonAddP.Enabled = false;
         }
@@ -152,9 +239,49 @@ namespace EESSP
             bool lastName = textBoxLastName.Text.Equals("");
             bool mi = textBoxMI.Text.Equals("");
             bool address = textBoxAddress.Text.Equals("");
+            bool email = textBoxEmail.Text.Equals("");
+            bool weight = textBoxWeight.Text.Equals("");
+            bool height = textBoxHeight.Text.Equals("");
+            bool occupation = (radioButtonEmployed.Checked) ? textBoxOccupation.Text.Equals("") : false;
+            bool allergies = textBoxAllergies.Text.Equals("");
 
-            if (cnp && name && lastName && mi && address) buttonAddP.Enabled = false;
+            if (cnp || name || lastName || mi || address || email || height || weight || occupation || allergies) buttonAddP.Enabled = false;
             else buttonAddP.Enabled = true;
+        }
+
+        private void removeCheckedBloodType()
+        {
+            radioButton0I.Checked = true;
+            radioButtonAII.Checked = false;
+            radioButtonBIII.Checked = false;
+            radioButtonABIV.Checked = false;
+        }
+
+        private void removeCheckedRh()
+        {
+            radioButtonPositive.Checked = true;
+            radioButtonNegative.Checked = false;
+        }
+
+        private void removeCheckedOccupation()
+        {
+            radioButtonNoOccupation.Checked = true;
+            radioButtonStudent.Checked = false;
+            radioButtonUnemployed.Checked = false;
+            radioButtonEmployed.Checked = false;
+        }
+
+        private bool isValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

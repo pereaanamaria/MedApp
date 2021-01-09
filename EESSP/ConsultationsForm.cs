@@ -57,12 +57,15 @@ namespace EESSP
             visibleModifyAndRemove();
         }
 
-        //todo
+
         private void buttonReport_Click(object sender, EventArgs e)
         {
             emptyFields();
             invisibleAll();
             labelOption.Text = "Generate consultation report";
+
+            PatientReport1.SetParameterValue("cnpParam", selectedPatient.CNP);
+            new ReportsForm(PatientReport1).Show();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -203,6 +206,7 @@ namespace EESSP
             labelOption.Text = "Add new consultation";
             visibleAdd();
             labelIdC.Text = currentConsultation.ToString();
+            ActiveControl = textBoxDiagnostic;
         }
 
         private void insertConsultation()
@@ -225,6 +229,10 @@ namespace EESSP
                 MessageBox.Show("Successfully inserted!");
                 emptyFields();
                 visibleAdd();
+
+                buttonModify.Enabled = true;
+                buttonRemove.Enabled = true;
+                buttonReport.Enabled = true;
             }
         }
 
@@ -399,6 +407,7 @@ namespace EESSP
             checkBoxDiagnostic.Visible = true;
 
             dataGridViewConsultations.Visible = true;
+            ActiveControl = checkBoxID;
         }
 
         private void invisibleAll()

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,23 +21,6 @@ namespace EESSP
         {
             MySqlCommand command = new MySqlCommand(query, mySqlConn);
             return command.ExecuteReader();
-        }
-
-        public DataSet ExecuteDataSet(string command, string table)
-        {
-            try
-            {
-                DataSet dataSet = new DataSet();
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, mySqlConn);
-                dataAdapter.Fill(dataSet, table);
-                return dataSet;
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex);
-            }
-
-            return null;
         }
 
         public bool sqlCommand(string command, List<string> paramList, List<object> valueList, string except)

@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoctor = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonAddP = new System.Windows.Forms.Button();
+            this.buttonList = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonCancelSearch = new System.Windows.Forms.Button();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
@@ -46,7 +48,6 @@
             this.maskedTextBoxSearchCNP = new System.Windows.Forms.MaskedTextBox();
             this.textBoxSearchN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonAddP = new System.Windows.Forms.Button();
             this.buttonChangeP = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.buttonConsultationsP = new System.Windows.Forms.Button();
             this.buttonRemoveP = new System.Windows.Forms.Button();
             this.textBoxMI = new System.Windows.Forms.TextBox();
-            this.buttonList = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
@@ -105,7 +105,31 @@
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(545, 41);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 22;
+            // 
+            // buttonAddP
+            // 
+            this.buttonAddP.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonAddP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonAddP.Location = new System.Drawing.Point(287, 8);
+            this.buttonAddP.Name = "buttonAddP";
+            this.buttonAddP.Size = new System.Drawing.Size(113, 23);
+            this.buttonAddP.TabIndex = 0;
+            this.buttonAddP.Text = "Add Patient";
+            this.buttonAddP.UseVisualStyleBackColor = false;
+            this.buttonAddP.Click += new System.EventHandler(this.buttonAddP_Click);
+            // 
+            // buttonList
+            // 
+            this.buttonList.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonList.Location = new System.Drawing.Point(420, 8);
+            this.buttonList.Name = "buttonList";
+            this.buttonList.Size = new System.Drawing.Size(113, 23);
+            this.buttonList.TabIndex = 1;
+            this.buttonList.Text = "Patients List";
+            this.buttonList.UseVisualStyleBackColor = false;
+            this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
             // 
             // panel2
             // 
@@ -122,7 +146,7 @@
             this.panel2.Location = new System.Drawing.Point(564, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(324, 344);
-            this.panel2.TabIndex = 0;
+            this.panel2.TabIndex = 26;
             // 
             // buttonCancelSearch
             // 
@@ -131,7 +155,7 @@
             this.buttonCancelSearch.Location = new System.Drawing.Point(223, 99);
             this.buttonCancelSearch.Name = "buttonCancelSearch";
             this.buttonCancelSearch.Size = new System.Drawing.Size(94, 22);
-            this.buttonCancelSearch.TabIndex = 3;
+            this.buttonCancelSearch.TabIndex = 5;
             this.buttonCancelSearch.Text = "Cancel Search";
             this.buttonCancelSearch.UseVisualStyleBackColor = false;
             this.buttonCancelSearch.Visible = false;
@@ -149,17 +173,17 @@
             this.dataGridViewPatients.Location = new System.Drawing.Point(7, 127);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewPatients.Size = new System.Drawing.Size(310, 212);
             this.dataGridViewPatients.TabIndex = 17;
             this.dataGridViewPatients.Visible = false;
@@ -227,7 +251,7 @@
             this.textBoxSearchLN.Location = new System.Drawing.Point(7, 60);
             this.textBoxSearchLN.Name = "textBoxSearchLN";
             this.textBoxSearchLN.Size = new System.Drawing.Size(90, 20);
-            this.textBoxSearchLN.TabIndex = 1;
+            this.textBoxSearchLN.TabIndex = 3;
             this.textBoxSearchLN.TextChanged += new System.EventHandler(this.textBoxSearchLN_TextChanged);
             // 
             // maskedTextBoxSearchCNP
@@ -236,7 +260,7 @@
             this.maskedTextBoxSearchCNP.Mask = "0000000000000";
             this.maskedTextBoxSearchCNP.Name = "maskedTextBoxSearchCNP";
             this.maskedTextBoxSearchCNP.Size = new System.Drawing.Size(90, 20);
-            this.maskedTextBoxSearchCNP.TabIndex = 2;
+            this.maskedTextBoxSearchCNP.TabIndex = 4;
             this.maskedTextBoxSearchCNP.Click += new System.EventHandler(this.maskedTextBoxSearchCNP_Click);
             this.maskedTextBoxSearchCNP.TextChanged += new System.EventHandler(this.maskedTextBoxSearchCNP_TextChanged);
             // 
@@ -246,7 +270,7 @@
             this.textBoxSearchN.Location = new System.Drawing.Point(7, 21);
             this.textBoxSearchN.Name = "textBoxSearchN";
             this.textBoxSearchN.Size = new System.Drawing.Size(90, 20);
-            this.textBoxSearchN.TabIndex = 0;
+            this.textBoxSearchN.TabIndex = 2;
             this.textBoxSearchN.TextChanged += new System.EventHandler(this.textBoxSearchN_TextChanged);
             // 
             // label2
@@ -258,18 +282,6 @@
             this.label2.TabIndex = 58;
             this.label2.Text = "Last Name";
             // 
-            // buttonAddP
-            // 
-            this.buttonAddP.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonAddP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAddP.Location = new System.Drawing.Point(287, 8);
-            this.buttonAddP.Name = "buttonAddP";
-            this.buttonAddP.Size = new System.Drawing.Size(113, 23);
-            this.buttonAddP.TabIndex = 4;
-            this.buttonAddP.Text = "Add Patient";
-            this.buttonAddP.UseVisualStyleBackColor = false;
-            this.buttonAddP.Click += new System.EventHandler(this.buttonAddP_Click);
-            // 
             // buttonChangeP
             // 
             this.buttonChangeP.BackColor = System.Drawing.Color.Gainsboro;
@@ -277,7 +289,7 @@
             this.buttonChangeP.Location = new System.Drawing.Point(420, 245);
             this.buttonChangeP.Name = "buttonChangeP";
             this.buttonChangeP.Size = new System.Drawing.Size(113, 23);
-            this.buttonChangeP.TabIndex = 9;
+            this.buttonChangeP.TabIndex = 10;
             this.buttonChangeP.Text = "Change Patient";
             this.buttonChangeP.UseVisualStyleBackColor = false;
             this.buttonChangeP.Click += new System.EventHandler(this.buttonChangeP_Click);
@@ -320,7 +332,7 @@
             this.panel3.Location = new System.Drawing.Point(12, 59);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(545, 297);
-            this.panel3.TabIndex = 4;
+            this.panel3.TabIndex = 24;
             // 
             // label4
             // 
@@ -419,7 +431,7 @@
             this.buttonDiscard.Location = new System.Drawing.Point(287, 178);
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(113, 23);
-            this.buttonDiscard.TabIndex = 9;
+            this.buttonDiscard.TabIndex = 10;
             this.buttonDiscard.Text = "Discard Modification";
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
@@ -464,12 +476,13 @@
             // textBoxLastName
             // 
             this.textBoxLastName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxLastName.Location = new System.Drawing.Point(287, 87);
+            this.textBoxLastName.Location = new System.Drawing.Point(440, 123);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(113, 20);
-            this.textBoxLastName.TabIndex = 7;
+            this.textBoxLastName.TabIndex = 8;
             this.textBoxLastName.Visible = false;
             this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
+            this.textBoxLastName.Enter += new System.EventHandler(this.textBoxLastName_Enter);
             // 
             // labelAddress
             // 
@@ -483,12 +496,13 @@
             // textBoxName
             // 
             this.textBoxName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxName.Location = new System.Drawing.Point(287, 88);
+            this.textBoxName.Location = new System.Drawing.Point(406, 87);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(113, 20);
-            this.textBoxName.TabIndex = 7;
+            this.textBoxName.TabIndex = 8;
             this.textBoxName.Visible = false;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            this.textBoxName.Enter += new System.EventHandler(this.textBoxName_Enter);
             // 
             // labelBirthPlace
             // 
@@ -502,13 +516,14 @@
             // textBoxAddress
             // 
             this.textBoxAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxAddress.Location = new System.Drawing.Point(287, 87);
+            this.textBoxAddress.Location = new System.Drawing.Point(420, 151);
             this.textBoxAddress.Multiline = true;
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(113, 46);
-            this.textBoxAddress.TabIndex = 7;
+            this.textBoxAddress.TabIndex = 8;
             this.textBoxAddress.Visible = false;
             this.textBoxAddress.TextChanged += new System.EventHandler(this.textBoxAddress_TextChanged);
+            this.textBoxAddress.Enter += new System.EventHandler(this.textBoxAddress_Enter);
             // 
             // labelName
             // 
@@ -529,11 +544,12 @@
             this.domainUpDownOptions.Location = new System.Drawing.Point(287, 57);
             this.domainUpDownOptions.Name = "domainUpDownOptions";
             this.domainUpDownOptions.Size = new System.Drawing.Size(113, 20);
-            this.domainUpDownOptions.TabIndex = 6;
+            this.domainUpDownOptions.TabIndex = 7;
             this.domainUpDownOptions.Text = "Choose category";
             this.domainUpDownOptions.Visible = false;
             this.domainUpDownOptions.Wrap = true;
             this.domainUpDownOptions.SelectedItemChanged += new System.EventHandler(this.domainUpDownOptions_SelectedItemChanged);
+            this.domainUpDownOptions.Enter += new System.EventHandler(this.domainUpDownOptions_Enter);
             // 
             // labelCNP
             // 
@@ -546,14 +562,15 @@
             // 
             // maskedTextBoxID
             // 
-            this.maskedTextBoxID.Location = new System.Drawing.Point(287, 87);
+            this.maskedTextBoxID.Location = new System.Drawing.Point(298, 123);
             this.maskedTextBoxID.Mask = "0000000000000";
             this.maskedTextBoxID.Name = "maskedTextBoxID";
             this.maskedTextBoxID.Size = new System.Drawing.Size(113, 20);
-            this.maskedTextBoxID.TabIndex = 7;
+            this.maskedTextBoxID.TabIndex = 8;
             this.maskedTextBoxID.Visible = false;
             this.maskedTextBoxID.Click += new System.EventHandler(this.maskedTextBoxID_Click);
             this.maskedTextBoxID.TextChanged += new System.EventHandler(this.maskedTextBoxID_TextChanged);
+            this.maskedTextBoxID.Enter += new System.EventHandler(this.maskedTextBoxID_Enter);
             // 
             // labelSex
             // 
@@ -581,7 +598,7 @@
             this.buttonConfirm.Location = new System.Drawing.Point(287, 149);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(113, 23);
-            this.buttonConfirm.TabIndex = 8;
+            this.buttonConfirm.TabIndex = 9;
             this.buttonConfirm.Text = "Confirm Modification";
             this.buttonConfirm.UseVisualStyleBackColor = false;
             this.buttonConfirm.Visible = false;
@@ -606,7 +623,7 @@
             this.buttonConsultationsP.Location = new System.Drawing.Point(420, 21);
             this.buttonConsultationsP.Name = "buttonConsultationsP";
             this.buttonConsultationsP.Size = new System.Drawing.Size(113, 23);
-            this.buttonConsultationsP.TabIndex = 6;
+            this.buttonConsultationsP.TabIndex = 7;
             this.buttonConsultationsP.Text = "Consultations";
             this.buttonConsultationsP.UseVisualStyleBackColor = false;
             this.buttonConsultationsP.Click += new System.EventHandler(this.buttonConsultationsP_Click);
@@ -618,7 +635,7 @@
             this.buttonRemoveP.Location = new System.Drawing.Point(420, 54);
             this.buttonRemoveP.Name = "buttonRemoveP";
             this.buttonRemoveP.Size = new System.Drawing.Size(113, 23);
-            this.buttonRemoveP.TabIndex = 7;
+            this.buttonRemoveP.TabIndex = 8;
             this.buttonRemoveP.Text = "Remove Patient";
             this.buttonRemoveP.UseVisualStyleBackColor = false;
             this.buttonRemoveP.Click += new System.EventHandler(this.buttonRemoveP_Click);
@@ -629,21 +646,10 @@
             this.textBoxMI.Location = new System.Drawing.Point(287, 87);
             this.textBoxMI.Name = "textBoxMI";
             this.textBoxMI.Size = new System.Drawing.Size(113, 20);
-            this.textBoxMI.TabIndex = 7;
+            this.textBoxMI.TabIndex = 8;
             this.textBoxMI.Visible = false;
             this.textBoxMI.TextChanged += new System.EventHandler(this.textBoxMI_TextChanged);
-            // 
-            // buttonList
-            // 
-            this.buttonList.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonList.Location = new System.Drawing.Point(420, 8);
-            this.buttonList.Name = "buttonList";
-            this.buttonList.Size = new System.Drawing.Size(113, 23);
-            this.buttonList.TabIndex = 5;
-            this.buttonList.Text = "Patients List";
-            this.buttonList.UseVisualStyleBackColor = false;
-            this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
+            this.textBoxMI.Enter += new System.EventHandler(this.textBoxMI_Enter);
             // 
             // MainForm
             // 
