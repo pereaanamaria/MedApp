@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxAllergies = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.radioButtonRetired = new System.Windows.Forms.RadioButton();
             this.textBoxOccupation = new System.Windows.Forms.TextBox();
             this.radioButtonNoOccupation = new System.Windows.Forms.RadioButton();
             this.radioButtonStudent = new System.Windows.Forms.RadioButton();
@@ -76,7 +78,7 @@
             this.maskedTextBoxID = new System.Windows.Forms.MaskedTextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.radioButtonRetired = new System.Windows.Forms.RadioButton();
+            this.tips = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -135,6 +137,7 @@
             this.textBoxAllergies.Size = new System.Drawing.Size(302, 20);
             this.textBoxAllergies.TabIndex = 12;
             this.textBoxAllergies.Text = "-";
+            this.tips.SetToolTip(this.textBoxAllergies, "Type new patient\'s allergies");
             this.textBoxAllergies.TextChanged += new System.EventHandler(this.textBoxAllergies_TextChanged);
             // 
             // label18
@@ -178,6 +181,17 @@
             this.panel4.Size = new System.Drawing.Size(351, 51);
             this.panel4.TabIndex = 57;
             // 
+            // radioButtonRetired
+            // 
+            this.radioButtonRetired.AutoSize = true;
+            this.radioButtonRetired.Location = new System.Drawing.Point(105, 3);
+            this.radioButtonRetired.Name = "radioButtonRetired";
+            this.radioButtonRetired.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonRetired.TabIndex = 12;
+            this.radioButtonRetired.Text = "Retired";
+            this.tips.SetToolTip(this.radioButtonRetired, "Retired");
+            this.radioButtonRetired.UseVisualStyleBackColor = true;
+            // 
             // textBoxOccupation
             // 
             this.textBoxOccupation.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -185,6 +199,7 @@
             this.textBoxOccupation.Name = "textBoxOccupation";
             this.textBoxOccupation.Size = new System.Drawing.Size(143, 20);
             this.textBoxOccupation.TabIndex = 11;
+            this.tips.SetToolTip(this.textBoxOccupation, "Type new patient\'s profession");
             this.textBoxOccupation.Visible = false;
             this.textBoxOccupation.TextChanged += new System.EventHandler(this.textBoxOccupation_TextChanged);
             // 
@@ -198,6 +213,7 @@
             this.radioButtonNoOccupation.TabIndex = 10;
             this.radioButtonNoOccupation.TabStop = true;
             this.radioButtonNoOccupation.Text = "No Occupation";
+            this.tips.SetToolTip(this.radioButtonNoOccupation, "No occupation");
             this.radioButtonNoOccupation.UseVisualStyleBackColor = true;
             // 
             // radioButtonStudent
@@ -208,6 +224,7 @@
             this.radioButtonStudent.Size = new System.Drawing.Size(62, 17);
             this.radioButtonStudent.TabIndex = 10;
             this.radioButtonStudent.Text = "Student";
+            this.tips.SetToolTip(this.radioButtonStudent, "Student");
             this.radioButtonStudent.UseVisualStyleBackColor = true;
             // 
             // radioButtonEmployed
@@ -218,6 +235,7 @@
             this.radioButtonEmployed.Size = new System.Drawing.Size(71, 17);
             this.radioButtonEmployed.TabIndex = 10;
             this.radioButtonEmployed.Text = "Employed";
+            this.tips.SetToolTip(this.radioButtonEmployed, "Employed");
             this.radioButtonEmployed.UseVisualStyleBackColor = true;
             this.radioButtonEmployed.CheckedChanged += new System.EventHandler(this.radioButtonEmployed_CheckedChanged);
             // 
@@ -229,6 +247,7 @@
             this.radioButtonUnemployed.Size = new System.Drawing.Size(84, 17);
             this.radioButtonUnemployed.TabIndex = 10;
             this.radioButtonUnemployed.Text = "Unemployed";
+            this.tips.SetToolTip(this.radioButtonUnemployed, "Unemployed");
             this.radioButtonUnemployed.UseVisualStyleBackColor = true;
             // 
             // label15
@@ -257,6 +276,7 @@
             this.textBoxWeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxWeight.Size = new System.Drawing.Size(73, 20);
             this.textBoxWeight.TabIndex = 7;
+            this.tips.SetToolTip(this.textBoxWeight, "Type new patient\'s weight");
             this.textBoxWeight.TextChanged += new System.EventHandler(this.textBoxWeight_TextChanged);
             this.textBoxWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWeight_KeyPress);
             // 
@@ -277,6 +297,7 @@
             this.textBoxHeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxHeight.Size = new System.Drawing.Size(73, 20);
             this.textBoxHeight.TabIndex = 6;
+            this.tips.SetToolTip(this.textBoxHeight, "Type new patient\'s height");
             this.textBoxHeight.TextChanged += new System.EventHandler(this.textBoxHeight_TextChanged);
             this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxHeight_KeyPress);
             // 
@@ -300,6 +321,7 @@
             this.radioButtonPositive.TabIndex = 9;
             this.radioButtonPositive.TabStop = true;
             this.radioButtonPositive.Text = "Pozitive";
+            this.tips.SetToolTip(this.radioButtonPositive, "Rh+");
             this.radioButtonPositive.UseVisualStyleBackColor = true;
             // 
             // radioButtonNegative
@@ -310,6 +332,7 @@
             this.radioButtonNegative.Size = new System.Drawing.Size(68, 17);
             this.radioButtonNegative.TabIndex = 9;
             this.radioButtonNegative.Text = "Negative";
+            this.tips.SetToolTip(this.radioButtonNegative, "Rh-");
             this.radioButtonNegative.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -334,6 +357,7 @@
             this.radioButton0I.TabIndex = 8;
             this.radioButton0I.TabStop = true;
             this.radioButton0I.Text = "0 (I)";
+            this.tips.SetToolTip(this.radioButton0I, "O (I)");
             this.radioButton0I.UseVisualStyleBackColor = true;
             // 
             // radioButtonABIV
@@ -344,6 +368,7 @@
             this.radioButtonABIV.Size = new System.Drawing.Size(58, 17);
             this.radioButtonABIV.TabIndex = 8;
             this.radioButtonABIV.Text = "AB (IV)";
+            this.tips.SetToolTip(this.radioButtonABIV, "AB (IV)");
             this.radioButtonABIV.UseVisualStyleBackColor = true;
             // 
             // radioButtonBIII
@@ -354,6 +379,7 @@
             this.radioButtonBIII.Size = new System.Drawing.Size(50, 17);
             this.radioButtonBIII.TabIndex = 8;
             this.radioButtonBIII.Text = "B (III)";
+            this.tips.SetToolTip(this.radioButtonBIII, "B (III)");
             this.radioButtonBIII.UseVisualStyleBackColor = true;
             // 
             // radioButtonAII
@@ -364,6 +390,7 @@
             this.radioButtonAII.Size = new System.Drawing.Size(47, 17);
             this.radioButtonAII.TabIndex = 8;
             this.radioButtonAII.Text = "A (II)";
+            this.tips.SetToolTip(this.radioButtonAII, "A (II)");
             this.radioButtonAII.UseVisualStyleBackColor = true;
             // 
             // label12
@@ -382,6 +409,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(105, 20);
             this.textBoxEmail.TabIndex = 3;
+            this.tips.SetToolTip(this.textBoxEmail, "Type new patient\'s email");
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
             // label11
@@ -441,12 +469,14 @@
             // buttonExit
             // 
             this.buttonExit.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonExit.Location = new System.Drawing.Point(279, 361);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(90, 23);
             this.buttonExit.TabIndex = 14;
             this.buttonExit.Text = "Exit";
+            this.tips.SetToolTip(this.buttonExit, "Discard new patient");
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
@@ -459,6 +489,7 @@
             this.buttonAddP.Size = new System.Drawing.Size(90, 23);
             this.buttonAddP.TabIndex = 13;
             this.buttonAddP.Text = "Add Patient";
+            this.tips.SetToolTip(this.buttonAddP, "Add new patient");
             this.buttonAddP.UseVisualStyleBackColor = false;
             this.buttonAddP.Click += new System.EventHandler(this.buttonAddP_Click);
             // 
@@ -514,6 +545,7 @@
             this.textBoxMI.Name = "textBoxMI";
             this.textBoxMI.Size = new System.Drawing.Size(28, 20);
             this.textBoxMI.TabIndex = 1;
+            this.tips.SetToolTip(this.textBoxMI, "Type new patient\'s middle initials");
             this.textBoxMI.TextChanged += new System.EventHandler(this.textBoxMI_TextChanged);
             // 
             // labelAge
@@ -524,6 +556,7 @@
             this.labelAge.Size = new System.Drawing.Size(32, 13);
             this.labelAge.TabIndex = 25;
             this.labelAge.Text = "Age: ";
+            this.tips.SetToolTip(this.labelAge, "New patient\'s age");
             // 
             // labelBirthPlace
             // 
@@ -533,6 +566,7 @@
             this.labelBirthPlace.Size = new System.Drawing.Size(64, 13);
             this.labelBirthPlace.TabIndex = 24;
             this.labelBirthPlace.Text = "Birth Place: ";
+            this.tips.SetToolTip(this.labelBirthPlace, "New patient\'s birth place");
             // 
             // labelSex
             // 
@@ -542,6 +576,7 @@
             this.labelSex.Size = new System.Drawing.Size(31, 13);
             this.labelSex.TabIndex = 23;
             this.labelSex.Text = "Sex: ";
+            this.tips.SetToolTip(this.labelSex, "New patient\'s sex");
             // 
             // labelDOB
             // 
@@ -551,6 +586,7 @@
             this.labelDOB.Size = new System.Drawing.Size(72, 13);
             this.labelDOB.TabIndex = 22;
             this.labelDOB.Text = "Date of Birth: ";
+            this.tips.SetToolTip(this.labelDOB, "New patient\'s date of birth");
             // 
             // textBoxAddress
             // 
@@ -559,6 +595,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(245, 20);
             this.textBoxAddress.TabIndex = 5;
+            this.tips.SetToolTip(this.textBoxAddress, "Type new patient\'s address");
             this.textBoxAddress.TextChanged += new System.EventHandler(this.textBoxAddress_TextChanged);
             // 
             // maskedTextBoxID
@@ -568,6 +605,7 @@
             this.maskedTextBoxID.Name = "maskedTextBoxID";
             this.maskedTextBoxID.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxID.TabIndex = 4;
+            this.tips.SetToolTip(this.maskedTextBoxID, "Type new patient\'s CNP");
             this.maskedTextBoxID.Click += new System.EventHandler(this.maskedTextBoxID_Click);
             this.maskedTextBoxID.TextChanged += new System.EventHandler(this.maskedTextBoxID_TextChanged);
             // 
@@ -578,6 +616,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 2;
+            this.tips.SetToolTip(this.textBoxLastName, "Type new patient\'s last name");
             this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
             // 
             // textBoxName
@@ -587,17 +626,8 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(100, 20);
             this.textBoxName.TabIndex = 0;
+            this.tips.SetToolTip(this.textBoxName, "Type new patient\'s name");
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
-            // 
-            // radioButtonRetired
-            // 
-            this.radioButtonRetired.AutoSize = true;
-            this.radioButtonRetired.Location = new System.Drawing.Point(105, 3);
-            this.radioButtonRetired.Name = "radioButtonRetired";
-            this.radioButtonRetired.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonRetired.TabIndex = 12;
-            this.radioButtonRetired.Text = "Retired";
-            this.radioButtonRetired.UseVisualStyleBackColor = true;
             // 
             // AddPatientForm
             // 
@@ -605,12 +635,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Sienna;
+            this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(406, 423);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "AddPatientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Patient";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddPatientForm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -674,5 +707,6 @@
         private System.Windows.Forms.TextBox textBoxAllergies;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RadioButton radioButtonRetired;
+        private System.Windows.Forms.ToolTip tips;
     }
 }

@@ -51,5 +51,10 @@ namespace EESSP
 
             textBoxDiagnostic.AutoCompleteCustomSource = source;
         }
+
+        private void DiagnosticDialogForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !CIM.Equals("")) buttonChoose_Click(sender, e);
+        }
     }
 }

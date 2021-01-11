@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoctor = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonMyPatients = new System.Windows.Forms.Button();
@@ -115,6 +116,7 @@
             this.allPatientsReport1 = new EESSP.AllPatientsReport();
             this.myPatientsReport1 = new EESSP.MyPatientsReport();
             this.sameDiagnosticReport1 = new EESSP.SameDiagnosticReport();
+            this.tips = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
@@ -152,6 +154,7 @@
             this.buttonMyPatients.Size = new System.Drawing.Size(77, 23);
             this.buttonMyPatients.TabIndex = 98;
             this.buttonMyPatients.Text = "My Patients";
+            this.tips.SetToolTip(this.buttonMyPatients, "List your assignated pacients");
             this.buttonMyPatients.UseVisualStyleBackColor = false;
             this.buttonMyPatients.Click += new System.EventHandler(this.buttonMyPatients_Click);
             // 
@@ -164,6 +167,7 @@
             this.buttonSameDiagnostic.Size = new System.Drawing.Size(100, 23);
             this.buttonSameDiagnostic.TabIndex = 2;
             this.buttonSameDiagnostic.Text = "Same Diagnostic";
+            this.tips.SetToolTip(this.buttonSameDiagnostic, "List all pacients with the same diagnostic");
             this.buttonSameDiagnostic.UseVisualStyleBackColor = false;
             this.buttonSameDiagnostic.Click += new System.EventHandler(this.buttonSameDiagnostic_Click);
             // 
@@ -175,7 +179,8 @@
             this.buttonAddP.Name = "buttonAddP";
             this.buttonAddP.Size = new System.Drawing.Size(77, 23);
             this.buttonAddP.TabIndex = 0;
-            this.buttonAddP.Text = "Add Patient";
+            this.buttonAddP.Text = "Add";
+            this.tips.SetToolTip(this.buttonAddP, "Add a new pacient");
             this.buttonAddP.UseVisualStyleBackColor = false;
             this.buttonAddP.Click += new System.EventHandler(this.buttonAddP_Click);
             // 
@@ -188,6 +193,7 @@
             this.buttonList.Size = new System.Drawing.Size(77, 23);
             this.buttonList.TabIndex = 1;
             this.buttonList.Text = "All Patients";
+            this.tips.SetToolTip(this.buttonList, "List all registered pacients");
             this.buttonList.UseVisualStyleBackColor = false;
             this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
             // 
@@ -207,6 +213,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(324, 374);
             this.panel2.TabIndex = 26;
+            this.tips.SetToolTip(this.panel2, "Search patient by CNP.");
             // 
             // buttonCancelSearch
             // 
@@ -216,7 +223,8 @@
             this.buttonCancelSearch.Name = "buttonCancelSearch";
             this.buttonCancelSearch.Size = new System.Drawing.Size(94, 22);
             this.buttonCancelSearch.TabIndex = 5;
-            this.buttonCancelSearch.Text = "Cancel Search";
+            this.buttonCancelSearch.Text = "Cancel";
+            this.tips.SetToolTip(this.buttonCancelSearch, "Cancel search");
             this.buttonCancelSearch.UseVisualStyleBackColor = false;
             this.buttonCancelSearch.Visible = false;
             this.buttonCancelSearch.Click += new System.EventHandler(this.buttonCancelSearch_Click);
@@ -233,17 +241,17 @@
             this.dataGridViewPatients.Location = new System.Drawing.Point(7, 174);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewPatients.Size = new System.Drawing.Size(310, 194);
             this.dataGridViewPatients.TabIndex = 17;
             this.dataGridViewPatients.Visible = false;
@@ -312,6 +320,7 @@
             this.textBoxSearchLN.Name = "textBoxSearchLN";
             this.textBoxSearchLN.Size = new System.Drawing.Size(90, 20);
             this.textBoxSearchLN.TabIndex = 3;
+            this.tips.SetToolTip(this.textBoxSearchLN, "Search patient by last name");
             this.textBoxSearchLN.TextChanged += new System.EventHandler(this.textBoxSearchLN_TextChanged);
             // 
             // maskedTextBoxSearchCNP
@@ -321,6 +330,7 @@
             this.maskedTextBoxSearchCNP.Name = "maskedTextBoxSearchCNP";
             this.maskedTextBoxSearchCNP.Size = new System.Drawing.Size(90, 20);
             this.maskedTextBoxSearchCNP.TabIndex = 4;
+            this.tips.SetToolTip(this.maskedTextBoxSearchCNP, "Search patient by CNP");
             this.maskedTextBoxSearchCNP.Click += new System.EventHandler(this.maskedTextBoxSearchCNP_Click);
             this.maskedTextBoxSearchCNP.TextChanged += new System.EventHandler(this.maskedTextBoxSearchCNP_TextChanged);
             // 
@@ -331,6 +341,7 @@
             this.textBoxSearchN.Name = "textBoxSearchN";
             this.textBoxSearchN.Size = new System.Drawing.Size(90, 20);
             this.textBoxSearchN.TabIndex = 2;
+            this.tips.SetToolTip(this.textBoxSearchN, "Search pacient by name");
             this.textBoxSearchN.TextChanged += new System.EventHandler(this.textBoxSearchN_TextChanged);
             // 
             // label2
@@ -351,6 +362,7 @@
             this.buttonChangeP.Size = new System.Drawing.Size(113, 23);
             this.buttonChangeP.TabIndex = 10;
             this.buttonChangeP.Text = "Change Patient";
+            this.tips.SetToolTip(this.buttonChangeP, "Change displayed pacient");
             this.buttonChangeP.UseVisualStyleBackColor = false;
             this.buttonChangeP.Click += new System.EventHandler(this.buttonChangeP_Click);
             // 
@@ -450,6 +462,7 @@
             this.maskedTextBoxID.Name = "maskedTextBoxID";
             this.maskedTextBoxID.Size = new System.Drawing.Size(117, 20);
             this.maskedTextBoxID.TabIndex = 8;
+            this.tips.SetToolTip(this.maskedTextBoxID, "Modify pacient\'s CNP");
             this.maskedTextBoxID.Visible = false;
             this.maskedTextBoxID.Click += new System.EventHandler(this.maskedTextBoxID_Click);
             this.maskedTextBoxID.TextChanged += new System.EventHandler(this.maskedTextBoxID_TextChanged);
@@ -461,6 +474,7 @@
             this.textBoxAllergies.Name = "textBoxAllergies";
             this.textBoxAllergies.Size = new System.Drawing.Size(348, 20);
             this.textBoxAllergies.TabIndex = 95;
+            this.tips.SetToolTip(this.textBoxAllergies, "Modify pacient\'s allergies");
             this.textBoxAllergies.Visible = false;
             this.textBoxAllergies.TextChanged += new System.EventHandler(this.textBoxAllergies_TextChanged);
             // 
@@ -471,6 +485,7 @@
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(45, 20);
             this.textBoxWeight.TabIndex = 94;
+            this.tips.SetToolTip(this.textBoxWeight, "Modify pacient\'s weight");
             this.textBoxWeight.Visible = false;
             this.textBoxWeight.TextChanged += new System.EventHandler(this.textBoxWeight_TextChanged);
             this.textBoxWeight.VisibleChanged += new System.EventHandler(this.textBoxWeight_VisibleChanged);
@@ -483,6 +498,7 @@
             this.textBoxHeight.Name = "textBoxHeight";
             this.textBoxHeight.Size = new System.Drawing.Size(46, 20);
             this.textBoxHeight.TabIndex = 93;
+            this.tips.SetToolTip(this.textBoxHeight, "Modify pacient\'s height");
             this.textBoxHeight.Visible = false;
             this.textBoxHeight.TextChanged += new System.EventHandler(this.textBoxHeight_TextChanged);
             this.textBoxHeight.VisibleChanged += new System.EventHandler(this.textBoxHeight_VisibleChanged);
@@ -495,6 +511,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(257, 20);
             this.textBoxAddress.TabIndex = 92;
+            this.tips.SetToolTip(this.textBoxAddress, "Modify pacient\'s address");
             this.textBoxAddress.Visible = false;
             this.textBoxAddress.TextChanged += new System.EventHandler(this.textBoxAddress_TextChanged);
             // 
@@ -506,6 +523,7 @@
             this.checkBoxWeight.Size = new System.Drawing.Size(60, 17);
             this.checkBoxWeight.TabIndex = 91;
             this.checkBoxWeight.Text = "Weight";
+            this.tips.SetToolTip(this.checkBoxWeight, "Change weight");
             this.checkBoxWeight.UseVisualStyleBackColor = true;
             this.checkBoxWeight.Visible = false;
             this.checkBoxWeight.CheckedChanged += new System.EventHandler(this.checkBoxWeight_CheckedChanged);
@@ -518,6 +536,7 @@
             this.checkBoxAllergies.Size = new System.Drawing.Size(65, 17);
             this.checkBoxAllergies.TabIndex = 90;
             this.checkBoxAllergies.Text = "Allergies";
+            this.tips.SetToolTip(this.checkBoxAllergies, "Change allergies");
             this.checkBoxAllergies.UseVisualStyleBackColor = true;
             this.checkBoxAllergies.Visible = false;
             this.checkBoxAllergies.CheckedChanged += new System.EventHandler(this.checkBoxAllergies_CheckedChanged);
@@ -530,6 +549,7 @@
             this.checkBoxHeight.Size = new System.Drawing.Size(57, 17);
             this.checkBoxHeight.TabIndex = 89;
             this.checkBoxHeight.Text = "Height";
+            this.tips.SetToolTip(this.checkBoxHeight, "Change height");
             this.checkBoxHeight.UseVisualStyleBackColor = true;
             this.checkBoxHeight.Visible = false;
             this.checkBoxHeight.CheckedChanged += new System.EventHandler(this.checkBoxHeight_CheckedChanged);
@@ -542,6 +562,7 @@
             this.checkBoxAddress.Size = new System.Drawing.Size(64, 17);
             this.checkBoxAddress.TabIndex = 88;
             this.checkBoxAddress.Text = "Address";
+            this.tips.SetToolTip(this.checkBoxAddress, "Change address");
             this.checkBoxAddress.UseVisualStyleBackColor = true;
             this.checkBoxAddress.Visible = false;
             this.checkBoxAddress.CheckedChanged += new System.EventHandler(this.checkBoxAddress_CheckedChanged);
@@ -553,6 +574,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(101, 20);
             this.textBoxLastName.TabIndex = 86;
+            this.tips.SetToolTip(this.textBoxLastName, "Modify pacient\'s last name");
             this.textBoxLastName.Visible = false;
             this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
             // 
@@ -563,6 +585,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(79, 20);
             this.textBoxName.TabIndex = 84;
+            this.tips.SetToolTip(this.textBoxName, "Modify pacient\'s name");
             this.textBoxName.Visible = false;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
@@ -573,6 +596,7 @@
             this.textBoxMI.Name = "textBoxMI";
             this.textBoxMI.Size = new System.Drawing.Size(34, 20);
             this.textBoxMI.TabIndex = 85;
+            this.tips.SetToolTip(this.textBoxMI, "Modify pacient\'s middle initials");
             this.textBoxMI.Visible = false;
             this.textBoxMI.TextChanged += new System.EventHandler(this.textBoxMI_TextChanged);
             // 
@@ -582,6 +606,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(145, 20);
             this.textBoxEmail.TabIndex = 87;
+            this.tips.SetToolTip(this.textBoxEmail, "Modify pacient\'s email");
             this.textBoxEmail.Visible = false;
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
@@ -593,6 +618,7 @@
             this.checkBoxOccupation.Size = new System.Drawing.Size(81, 17);
             this.checkBoxOccupation.TabIndex = 83;
             this.checkBoxOccupation.Text = "Occupation";
+            this.tips.SetToolTip(this.checkBoxOccupation, "Change occupation");
             this.checkBoxOccupation.UseVisualStyleBackColor = true;
             this.checkBoxOccupation.Visible = false;
             this.checkBoxOccupation.CheckedChanged += new System.EventHandler(this.checkBoxOccupation_CheckedChanged);
@@ -605,6 +631,7 @@
             this.checkBoxCnp.Size = new System.Drawing.Size(48, 17);
             this.checkBoxCnp.TabIndex = 82;
             this.checkBoxCnp.Text = "CNP";
+            this.tips.SetToolTip(this.checkBoxCnp, "Change CNP");
             this.checkBoxCnp.UseVisualStyleBackColor = true;
             this.checkBoxCnp.Visible = false;
             this.checkBoxCnp.CheckedChanged += new System.EventHandler(this.checkBoxCnp_CheckedChanged);
@@ -616,6 +643,7 @@
             this.textBoxOccupation.Name = "textBoxOccupation";
             this.textBoxOccupation.Size = new System.Drawing.Size(119, 20);
             this.textBoxOccupation.TabIndex = 8;
+            this.tips.SetToolTip(this.textBoxOccupation, "Enter the pacient\'s profession");
             this.textBoxOccupation.Visible = false;
             this.textBoxOccupation.TextChanged += new System.EventHandler(this.textBoxOccupation_TextChanged);
             // 
@@ -627,6 +655,7 @@
             this.checkBoxEmail.Size = new System.Drawing.Size(51, 17);
             this.checkBoxEmail.TabIndex = 81;
             this.checkBoxEmail.Text = "Email";
+            this.tips.SetToolTip(this.checkBoxEmail, "Change email");
             this.checkBoxEmail.UseVisualStyleBackColor = true;
             this.checkBoxEmail.Visible = false;
             this.checkBoxEmail.CheckedChanged += new System.EventHandler(this.checkBoxEmail_CheckedChanged);
@@ -650,6 +679,7 @@
             this.comboBoxOccupation.Name = "comboBoxOccupation";
             this.comboBoxOccupation.Size = new System.Drawing.Size(115, 21);
             this.comboBoxOccupation.TabIndex = 8;
+            this.tips.SetToolTip(this.comboBoxOccupation, "Choose an occupation for the selected pacient");
             this.comboBoxOccupation.Visible = false;
             this.comboBoxOccupation.SelectedIndexChanged += new System.EventHandler(this.comboBoxOccupation_SelectedIndexChanged);
             this.comboBoxOccupation.Enter += new System.EventHandler(this.comboBoxOccupation_Enter);
@@ -662,6 +692,7 @@
             this.checkBoxLastName.Size = new System.Drawing.Size(77, 17);
             this.checkBoxLastName.TabIndex = 80;
             this.checkBoxLastName.Text = "Last Name";
+            this.tips.SetToolTip(this.checkBoxLastName, "Change last name");
             this.checkBoxLastName.UseVisualStyleBackColor = true;
             this.checkBoxLastName.Visible = false;
             this.checkBoxLastName.CheckedChanged += new System.EventHandler(this.checkBoxLastName_CheckedChanged);
@@ -674,6 +705,7 @@
             this.checkBoxMI.Size = new System.Drawing.Size(41, 17);
             this.checkBoxMI.TabIndex = 79;
             this.checkBoxMI.Text = "M.I";
+            this.tips.SetToolTip(this.checkBoxMI, "Change middle initials");
             this.checkBoxMI.UseVisualStyleBackColor = true;
             this.checkBoxMI.Visible = false;
             this.checkBoxMI.CheckedChanged += new System.EventHandler(this.checkBoxMI_CheckedChanged);
@@ -686,6 +718,7 @@
             this.checkBoxName.Size = new System.Drawing.Size(54, 17);
             this.checkBoxName.TabIndex = 78;
             this.checkBoxName.Text = "Name";
+            this.tips.SetToolTip(this.checkBoxName, "Change name");
             this.checkBoxName.UseVisualStyleBackColor = true;
             this.checkBoxName.Visible = false;
             this.checkBoxName.CheckedChanged += new System.EventHandler(this.checkBoxName_CheckedChanged);
@@ -911,7 +944,8 @@
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(113, 23);
             this.buttonDiscard.TabIndex = 10;
-            this.buttonDiscard.Text = "Discard Modification";
+            this.buttonDiscard.Text = "Discard";
+            this.tips.SetToolTip(this.buttonDiscard, "Discard modification");
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
@@ -1015,7 +1049,8 @@
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(113, 23);
             this.buttonConfirm.TabIndex = 9;
-            this.buttonConfirm.Text = "Confirm Modification";
+            this.buttonConfirm.Text = "Confirm";
+            this.tips.SetToolTip(this.buttonConfirm, "Confirm modification");
             this.buttonConfirm.UseVisualStyleBackColor = false;
             this.buttonConfirm.Visible = false;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
@@ -1028,7 +1063,8 @@
             this.buttonModifyP.Name = "buttonModifyP";
             this.buttonModifyP.Size = new System.Drawing.Size(113, 23);
             this.buttonModifyP.TabIndex = 6;
-            this.buttonModifyP.Text = "Modify Patient";
+            this.buttonModifyP.Text = "Modify";
+            this.tips.SetToolTip(this.buttonModifyP, "Modify a pacient");
             this.buttonModifyP.UseVisualStyleBackColor = false;
             this.buttonModifyP.Click += new System.EventHandler(this.buttonModifyP_Click);
             // 
@@ -1041,6 +1077,7 @@
             this.buttonConsultationsP.Size = new System.Drawing.Size(113, 23);
             this.buttonConsultationsP.TabIndex = 7;
             this.buttonConsultationsP.Text = "Consultations";
+            this.tips.SetToolTip(this.buttonConsultationsP, "Pacient\'s consultations");
             this.buttonConsultationsP.UseVisualStyleBackColor = false;
             this.buttonConsultationsP.Click += new System.EventHandler(this.buttonConsultationsP_Click);
             // 
@@ -1052,7 +1089,8 @@
             this.buttonRemoveP.Name = "buttonRemoveP";
             this.buttonRemoveP.Size = new System.Drawing.Size(113, 23);
             this.buttonRemoveP.TabIndex = 8;
-            this.buttonRemoveP.Text = "Remove Patient";
+            this.buttonRemoveP.Text = "Remove";
+            this.tips.SetToolTip(this.buttonRemoveP, "Remove pacient");
             this.buttonRemoveP.UseVisualStyleBackColor = false;
             this.buttonRemoveP.Click += new System.EventHandler(this.buttonRemoveP_Click);
             // 
@@ -1065,9 +1103,11 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MedApp";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1166,5 +1206,6 @@
         private System.Windows.Forms.Button buttonSameDiagnostic;
         private MyPatientsReport myPatientsReport1;
         private SameDiagnosticReport sameDiagnosticReport1;
+        private System.Windows.Forms.ToolTip tips;
     }
 }

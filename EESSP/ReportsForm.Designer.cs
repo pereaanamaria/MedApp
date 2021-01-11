@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonExit = new System.Windows.Forms.Button();
             this.crystalReportViewerReports = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.tips = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // buttonExit
@@ -42,6 +44,7 @@
             this.buttonExit.Size = new System.Drawing.Size(90, 23);
             this.buttonExit.TabIndex = 24;
             this.buttonExit.Text = "Exit";
+            this.tips.SetToolTip(this.buttonExit, "Close Reports");
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
@@ -62,10 +65,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Sienna;
+            this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(896, 506);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.crystalReportViewerReports);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "ReportsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reports";
@@ -77,5 +82,6 @@
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewerReports;
         private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.ToolTip tips;
     }
 }

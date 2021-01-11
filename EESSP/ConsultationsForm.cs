@@ -76,6 +76,8 @@ namespace EESSP
 
         private void buttonReport_Click(object sender, EventArgs e)
         {
+            labelOption.Text = "Report consultations";
+
             patientReport1.SetParameterValue("cnpParam", selectedPatient.CNP);
             new ReportsForm(patientReport1).Show();
         }
@@ -191,6 +193,21 @@ namespace EESSP
             radioButtonToday.Visible = checkBoxDate.Checked;
             radioButtonAnotherDate.Visible = checkBoxDate.Checked;
             maskedTextBoxDate.Visible = radioButtonAnotherDate.Checked && checkBoxDate.Checked;
+        }
+
+        private void ConsultationsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A) buttonAdd_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.Enter)
+                if (labelOption.Text.Contains("Add") && buttonConfirm.Enabled) buttonConfirm_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.A) buttonReport_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.M) buttonManage_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.M && labelOption.Text.Contains("Manage")) buttonModify_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.R && labelOption.Text.Contains("Manage")) buttonConsultationRep_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.Delete)
+                if (labelOption.Text.Contains("Manage")) buttonRemove_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.Delete)
+                if (labelOption.Text.Contains("Manage")) buttonDiscard_Click(sender, e);
         }
 
         private void clickedAdd()

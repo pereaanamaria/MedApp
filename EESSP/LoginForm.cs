@@ -17,9 +17,6 @@ namespace EESSP
         {
             InitializeComponent();
             helperForm = new HelperForm(this);
-            //hardcoded login
-            textBoxUsername.Text = "ana.perea";
-            textBoxPassword.Text = "parola";
         }
 
         private void buttonShow_MouseDown(object sender, MouseEventArgs e)

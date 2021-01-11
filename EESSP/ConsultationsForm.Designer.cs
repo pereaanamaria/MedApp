@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonManage = new System.Windows.Forms.Button();
             this.buttonReport = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.patientReport1 = new EESSP.PatientReport();
             this.consultationReport1 = new EESSP.ConsultationReport();
+            this.tips = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearchID)).BeginInit();
@@ -86,11 +88,12 @@
             // 
             this.buttonManage.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonManage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonManage.Location = new System.Drawing.Point(27, 154);
+            this.buttonManage.Location = new System.Drawing.Point(27, 191);
             this.buttonManage.Name = "buttonManage";
-            this.buttonManage.Size = new System.Drawing.Size(90, 52);
+            this.buttonManage.Size = new System.Drawing.Size(90, 23);
             this.buttonManage.TabIndex = 1;
-            this.buttonManage.Text = "Manage Consultations";
+            this.buttonManage.Text = "Manage";
+            this.tips.SetToolTip(this.buttonManage, "Manage consultations");
             this.buttonManage.UseVisualStyleBackColor = false;
             this.buttonManage.Click += new System.EventHandler(this.buttonManage_Click);
             // 
@@ -98,18 +101,19 @@
             // 
             this.buttonReport.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonReport.Location = new System.Drawing.Point(27, 212);
+            this.buttonReport.Location = new System.Drawing.Point(27, 220);
             this.buttonReport.Name = "buttonReport";
-            this.buttonReport.Size = new System.Drawing.Size(90, 52);
+            this.buttonReport.Size = new System.Drawing.Size(90, 23);
             this.buttonReport.TabIndex = 2;
-            this.buttonReport.Text = "General Pacient Report";
+            this.buttonReport.Text = "Report";
+            this.tips.SetToolTip(this.buttonReport, "Generate pacient\'s consultations report");
             this.buttonReport.UseVisualStyleBackColor = false;
             this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 87);
+            this.label1.Location = new System.Drawing.Point(22, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 0;
@@ -128,12 +132,14 @@
             // buttonExit
             // 
             this.buttonExit.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonExit.Location = new System.Drawing.Point(27, 270);
+            this.buttonExit.Location = new System.Drawing.Point(27, 249);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(90, 23);
             this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Exit";
+            this.tips.SetToolTip(this.buttonExit, "Close Consultations");
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
@@ -141,11 +147,12 @@
             // 
             this.buttonAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAdd.Location = new System.Drawing.Point(27, 125);
+            this.buttonAdd.Location = new System.Drawing.Point(27, 162);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(90, 23);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "Add";
+            this.tips.SetToolTip(this.buttonAdd, "Add new patient");
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -158,6 +165,7 @@
             this.buttonRemove.Size = new System.Drawing.Size(114, 23);
             this.buttonRemove.TabIndex = 7;
             this.buttonRemove.Text = "Remove";
+            this.tips.SetToolTip(this.buttonRemove, "Remove consultation");
             this.buttonRemove.UseVisualStyleBackColor = false;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
@@ -170,6 +178,7 @@
             this.buttonModify.Size = new System.Drawing.Size(114, 23);
             this.buttonModify.TabIndex = 5;
             this.buttonModify.Text = "Modify";
+            this.tips.SetToolTip(this.buttonModify, "Modify consultation");
             this.buttonModify.UseVisualStyleBackColor = false;
             this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
             // 
@@ -211,6 +220,7 @@
             this.buttonConsultationRep.Size = new System.Drawing.Size(114, 23);
             this.buttonConsultationRep.TabIndex = 6;
             this.buttonConsultationRep.Text = "Consultation Report";
+            this.tips.SetToolTip(this.buttonConsultationRep, "Generate consultation report");
             this.buttonConsultationRep.UseVisualStyleBackColor = false;
             this.buttonConsultationRep.Click += new System.EventHandler(this.buttonConsultationRep_Click);
             // 
@@ -230,6 +240,7 @@
             this.checkBoxDate.Name = "checkBoxDate";
             this.checkBoxDate.Size = new System.Drawing.Size(15, 14);
             this.checkBoxDate.TabIndex = 2;
+            this.tips.SetToolTip(this.checkBoxDate, "Search consultation by consultation date");
             this.checkBoxDate.UseVisualStyleBackColor = true;
             this.checkBoxDate.Visible = false;
             this.checkBoxDate.CheckedChanged += new System.EventHandler(this.checkBoxDate_CheckedChanged);
@@ -241,6 +252,7 @@
             this.checkBoxDiagnostic.Name = "checkBoxDiagnostic";
             this.checkBoxDiagnostic.Size = new System.Drawing.Size(15, 14);
             this.checkBoxDiagnostic.TabIndex = 1;
+            this.tips.SetToolTip(this.checkBoxDiagnostic, "Search consultation by diagnostic");
             this.checkBoxDiagnostic.UseVisualStyleBackColor = true;
             this.checkBoxDiagnostic.Visible = false;
             this.checkBoxDiagnostic.CheckedChanged += new System.EventHandler(this.checkBoxDiagnostic_CheckedChanged);
@@ -252,6 +264,7 @@
             this.checkBoxID.Name = "checkBoxID";
             this.checkBoxID.Size = new System.Drawing.Size(15, 14);
             this.checkBoxID.TabIndex = 0;
+            this.tips.SetToolTip(this.checkBoxID, "Search consultation by ID");
             this.checkBoxID.UseVisualStyleBackColor = true;
             this.checkBoxID.Visible = false;
             this.checkBoxID.CheckedChanged += new System.EventHandler(this.checkBoxID_CheckedChanged);
@@ -273,6 +286,7 @@
             this.numericUpDownSearchID.Size = new System.Drawing.Size(42, 20);
             this.numericUpDownSearchID.TabIndex = 0;
             this.numericUpDownSearchID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tips.SetToolTip(this.numericUpDownSearchID, "Choose consultation ID");
             this.numericUpDownSearchID.Value = new decimal(new int[] {
             1,
             0,
@@ -367,6 +381,7 @@
             this.buttonDiscard.Size = new System.Drawing.Size(114, 23);
             this.buttonDiscard.TabIndex = 8;
             this.buttonDiscard.Text = "Discard";
+            this.tips.SetToolTip(this.buttonDiscard, "Discard changes");
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
@@ -380,6 +395,7 @@
             this.textBoxDiagnostic.Name = "textBoxDiagnostic";
             this.textBoxDiagnostic.Size = new System.Drawing.Size(255, 20);
             this.textBoxDiagnostic.TabIndex = 1;
+            this.tips.SetToolTip(this.textBoxDiagnostic, "Type diagnostic");
             this.textBoxDiagnostic.Visible = false;
             this.textBoxDiagnostic.TextChanged += new System.EventHandler(this.textBoxDiagnostic_TextChanged);
             this.textBoxDiagnostic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxDiagnostic_KeyDown);
@@ -402,6 +418,7 @@
             this.maskedTextBoxDate.Name = "maskedTextBoxDate";
             this.maskedTextBoxDate.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxDate.TabIndex = 4;
+            this.tips.SetToolTip(this.maskedTextBoxDate, "Type consultation date");
             this.maskedTextBoxDate.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxDate.Visible = false;
             this.maskedTextBoxDate.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.maskedTextBoxDate_TypeValidationCompleted);
@@ -418,6 +435,7 @@
             this.buttonConfirm.Size = new System.Drawing.Size(114, 23);
             this.buttonConfirm.TabIndex = 5;
             this.buttonConfirm.Text = "Confirm";
+            this.tips.SetToolTip(this.buttonConfirm, "Confirm new patient");
             this.buttonConfirm.UseVisualStyleBackColor = false;
             this.buttonConfirm.Visible = false;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
@@ -463,13 +481,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Sienna;
+            this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(838, 394);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "ConsultationsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultations";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsultationsForm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -516,5 +537,6 @@
         private System.Windows.Forms.Button buttonManage;
         private System.Windows.Forms.Button buttonConsultationRep;
         private ConsultationReport consultationReport1;
+        private System.Windows.Forms.ToolTip tips;
     }
 }

@@ -23,7 +23,7 @@ namespace EESSP
             labelDoctor.Text = "Doctor: " + userDoctor.Name + " " + userDoctor.LastName;
             helperForm = new HelperForm(this);
             patientDetails(false);
-            ActiveControl = textBoxSearchN;
+            //ActiveControl = textBoxSearchN;
         }
 
         private void buttonAddP_Click(object sender, EventArgs e)
@@ -596,6 +596,24 @@ namespace EESSP
             checkBoxHeight.Visible = visible;
             checkBoxWeight.Visible = visible;
             checkBoxAllergies.Visible = visible;
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A) buttonAddP_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.A) buttonList_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.M) buttonMyPatients_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.D) buttonSameDiagnostic_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.M) buttonModifyP_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.Delete)
+            {
+                if (buttonRemoveP.Enabled) buttonRemoveP_Click(sender, e);
+                else if (!buttonRemoveP.Enabled) buttonDiscard_Click(sender, e);
+                else buttonCancelSearch_Click(sender, e);
+            }
+            if (e.Control && e.Shift && e.KeyCode == Keys.C) buttonConsultationsP_Click(sender, e);
+            if (e.Control && e.Shift && e.KeyCode == Keys.P) buttonChangeP_Click(sender, e);
+
         }
     }
 }

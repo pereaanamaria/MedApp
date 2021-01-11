@@ -236,5 +236,10 @@ namespace EESSP
             if (cnp || name || lastName || mi || address || email || height || weight || occupation || allergies) buttonAddP.Enabled = false;
             else buttonAddP.Enabled = true;
         }
+
+        private void AddPatientForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && buttonAddP.Enabled) buttonAddP_Click(sender, e);
+        }
     }
 }
