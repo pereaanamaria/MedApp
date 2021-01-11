@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonRemove = new System.Windows.Forms.Button();
-            this.buttonModify = new System.Windows.Forms.Button();
+            this.buttonManage = new System.Windows.Forms.Button();
             this.buttonReport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelPatient = new System.Windows.Forms.Label();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.buttonModify = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.PatientReport1 = new EESSP.PatientReport();
+            this.buttonConsultationRep = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBoxDate = new System.Windows.Forms.CheckBox();
             this.checkBoxDiagnostic = new System.Windows.Forms.CheckBox();
@@ -59,6 +60,8 @@
             this.radioButtonAnotherDate = new System.Windows.Forms.RadioButton();
             this.radioButtonToday = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
+            this.patientReport1 = new EESSP.PatientReport();
+            this.consultationReport1 = new EESSP.ConsultationReport();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearchID)).BeginInit();
@@ -68,8 +71,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Tan;
-            this.panel1.Controls.Add(this.buttonRemove);
-            this.panel1.Controls.Add(this.buttonModify);
+            this.panel1.Controls.Add(this.buttonManage);
             this.panel1.Controls.Add(this.buttonReport);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.labelPatient);
@@ -80,46 +82,34 @@
             this.panel1.Size = new System.Drawing.Size(143, 370);
             this.panel1.TabIndex = 0;
             // 
-            // buttonRemove
+            // buttonManage
             // 
-            this.buttonRemove.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonRemove.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonRemove.Location = new System.Drawing.Point(27, 169);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(90, 23);
-            this.buttonRemove.TabIndex = 2;
-            this.buttonRemove.Text = "Remove";
-            this.buttonRemove.UseVisualStyleBackColor = false;
-            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
-            // 
-            // buttonModify
-            // 
-            this.buttonModify.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonModify.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonModify.Location = new System.Drawing.Point(27, 140);
-            this.buttonModify.Name = "buttonModify";
-            this.buttonModify.Size = new System.Drawing.Size(90, 23);
-            this.buttonModify.TabIndex = 1;
-            this.buttonModify.Text = "Modify";
-            this.buttonModify.UseVisualStyleBackColor = false;
-            this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
+            this.buttonManage.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonManage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonManage.Location = new System.Drawing.Point(27, 154);
+            this.buttonManage.Name = "buttonManage";
+            this.buttonManage.Size = new System.Drawing.Size(90, 52);
+            this.buttonManage.TabIndex = 1;
+            this.buttonManage.Text = "Manage Consultations";
+            this.buttonManage.UseVisualStyleBackColor = false;
+            this.buttonManage.Click += new System.EventHandler(this.buttonManage_Click);
             // 
             // buttonReport
             // 
             this.buttonReport.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonReport.Location = new System.Drawing.Point(27, 198);
+            this.buttonReport.Location = new System.Drawing.Point(27, 212);
             this.buttonReport.Name = "buttonReport";
-            this.buttonReport.Size = new System.Drawing.Size(90, 23);
-            this.buttonReport.TabIndex = 3;
-            this.buttonReport.Text = "Report";
+            this.buttonReport.Size = new System.Drawing.Size(90, 52);
+            this.buttonReport.TabIndex = 2;
+            this.buttonReport.Text = "General Pacient Report";
             this.buttonReport.UseVisualStyleBackColor = false;
             this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 73);
+            this.label1.Location = new System.Drawing.Point(22, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 0;
@@ -139,10 +129,10 @@
             // 
             this.buttonExit.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonExit.Location = new System.Drawing.Point(27, 227);
+            this.buttonExit.Location = new System.Drawing.Point(27, 270);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(90, 23);
-            this.buttonExit.TabIndex = 4;
+            this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -151,7 +141,7 @@
             // 
             this.buttonAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAdd.Location = new System.Drawing.Point(27, 111);
+            this.buttonAdd.Location = new System.Drawing.Point(27, 125);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(90, 23);
             this.buttonAdd.TabIndex = 0;
@@ -159,11 +149,38 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // buttonRemove
+            // 
+            this.buttonRemove.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonRemove.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonRemove.Location = new System.Drawing.Point(179, 285);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(114, 23);
+            this.buttonRemove.TabIndex = 7;
+            this.buttonRemove.Text = "Remove";
+            this.buttonRemove.UseVisualStyleBackColor = false;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // buttonModify
+            // 
+            this.buttonModify.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonModify.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonModify.Location = new System.Drawing.Point(24, 285);
+            this.buttonModify.Name = "buttonModify";
+            this.buttonModify.Size = new System.Drawing.Size(114, 23);
+            this.buttonModify.TabIndex = 5;
+            this.buttonModify.Text = "Modify";
+            this.buttonModify.UseVisualStyleBackColor = false;
+            this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Tan;
+            this.panel2.Controls.Add(this.buttonConsultationRep);
             this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.buttonRemove);
             this.panel2.Controls.Add(this.checkBoxDate);
+            this.panel2.Controls.Add(this.buttonModify);
             this.panel2.Controls.Add(this.checkBoxDiagnostic);
             this.panel2.Controls.Add(this.checkBoxID);
             this.panel2.Controls.Add(this.numericUpDownSearchID);
@@ -184,6 +201,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(665, 370);
             this.panel2.TabIndex = 1;
+            // 
+            // buttonConsultationRep
+            // 
+            this.buttonConsultationRep.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonConsultationRep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonConsultationRep.Location = new System.Drawing.Point(24, 317);
+            this.buttonConsultationRep.Name = "buttonConsultationRep";
+            this.buttonConsultationRep.Size = new System.Drawing.Size(114, 23);
+            this.buttonConsultationRep.TabIndex = 6;
+            this.buttonConsultationRep.Text = "Consultation Report";
+            this.buttonConsultationRep.UseVisualStyleBackColor = false;
+            this.buttonConsultationRep.Click += new System.EventHandler(this.buttonConsultationRep_Click);
             // 
             // label6
             // 
@@ -271,9 +300,9 @@
             this.ID,
             this.Date,
             this.Diagnostic});
-            this.dataGridViewConsultations.Location = new System.Drawing.Point(343, 0);
+            this.dataGridViewConsultations.Location = new System.Drawing.Point(348, 0);
             this.dataGridViewConsultations.Name = "dataGridViewConsultations";
-            this.dataGridViewConsultations.Size = new System.Drawing.Size(321, 370);
+            this.dataGridViewConsultations.Size = new System.Drawing.Size(316, 370);
             this.dataGridViewConsultations.TabIndex = 13;
             this.dataGridViewConsultations.Visible = false;
             this.dataGridViewConsultations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConsultations_CellDoubleClick);
@@ -335,8 +364,8 @@
             this.buttonDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDiscard.Location = new System.Drawing.Point(179, 317);
             this.buttonDiscard.Name = "buttonDiscard";
-            this.buttonDiscard.Size = new System.Drawing.Size(90, 23);
-            this.buttonDiscard.TabIndex = 6;
+            this.buttonDiscard.Size = new System.Drawing.Size(114, 23);
+            this.buttonDiscard.TabIndex = 8;
             this.buttonDiscard.Text = "Discard";
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
@@ -384,9 +413,9 @@
             this.buttonConfirm.BackColor = System.Drawing.Color.Gainsboro;
             this.buttonConfirm.Enabled = false;
             this.buttonConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonConfirm.Location = new System.Drawing.Point(37, 317);
+            this.buttonConfirm.Location = new System.Drawing.Point(24, 317);
             this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(90, 23);
+            this.buttonConfirm.Size = new System.Drawing.Size(114, 23);
             this.buttonConfirm.TabIndex = 5;
             this.buttonConfirm.Text = "Confirm";
             this.buttonConfirm.UseVisualStyleBackColor = false;
@@ -483,6 +512,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diagnostic;
-        private PatientReport PatientReport1;
+        private PatientReport patientReport1;
+        private System.Windows.Forms.Button buttonManage;
+        private System.Windows.Forms.Button buttonConsultationRep;
+        private ConsultationReport consultationReport1;
     }
 }

@@ -76,13 +76,31 @@
     <Compile Include="AddPatientForm.Designer.cs">
       <DependentUpon>AddPatientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllPatientsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllPatientsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CimCodes.cs" />
     <Compile Include="Consultation.cs" />
+    <Compile Include="ConsultationReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsultationReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ConsultationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConsultationsForm.Designer.cs">
       <DependentUpon>ConsultationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DiagnosticDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiagnosticDialogForm.Designer.cs">
+      <DependentUpon>DiagnosticDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HelperForm.cs" />
     <Compile Include="ConnectionClass.cs" />
@@ -100,7 +118,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyPatientsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyPatientsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Patient.cs" />
+    <Compile Include="PatientDetailsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PatientDetailsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PatientReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,17 +145,42 @@
     <Compile Include="ReportsForm.Designer.cs">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SameDiagnosticReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SameDiagnosticReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="AddPatientForm.resx">
       <DependentUpon>AddPatientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AllPatientsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AllPatientsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultationReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ConsultationReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsultationsForm.resx">
       <DependentUpon>ConsultationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiagnosticDialogForm.resx">
+      <DependentUpon>DiagnosticDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyPatientsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MyPatientsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientDetailsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PatientDetailsReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -142,6 +197,10 @@
     </Compile>
     <EmbeddedResource Include="ReportsForm.resx">
       <DependentUpon>ReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SameDiagnosticReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SameDiagnosticReport.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

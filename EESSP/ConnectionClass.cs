@@ -57,14 +57,7 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
-                        int ID = int.Parse(rowReader["ID"].ToString());
-                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        string name = rowReader["name"].ToString();
-                        string mi = rowReader["MI"].ToString();
-                        string lastName = rowReader["lastname"].ToString();
-                        string cnp = rowReader["CNP"].ToString();
-                        string address = rowReader["address"].ToString();
-                        Patient p = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
+                        Patient p = readPatientRow(rowReader);
                         listPatients.Add(p);
                     }
                 }
@@ -93,13 +86,7 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
-                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        string name = rowReader["name"].ToString();
-                        string mi = rowReader["MI"].ToString();
-                        string lastName = rowReader["lastname"].ToString();
-                        string cnp = rowReader["CNP"].ToString();
-                        string address = rowReader["address"].ToString();
-                        patient = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
+                        patient = readPatientRow(rowReader);
                     }
                 }
                 rowReader.Close();
@@ -118,7 +105,6 @@ namespace EESSP
         {
             MySqlDataReader rowReader = null;
             Patient patient = null;
-
             try
             {
                 string query = "select * from patients WHERE cnp=\'" + cnp + "\'";
@@ -127,13 +113,7 @@ namespace EESSP
                 {
                     while (rowReader.Read())
                     {
-                        int ID = int.Parse(rowReader["ID"].ToString());
-                        int idDoc = int.Parse(rowReader["IDDoc"].ToString());
-                        string name = rowReader["name"].ToString();
-                        string mi = rowReader["MI"].ToString();
-                        string lastName = rowReader["lastname"].ToString();
-                        string address = rowReader["address"].ToString();
-                        patient = new Patient(ID, idDoc, name, mi, lastName, cnp, address);
+                        patient = readPatientRow(rowReader);
                     }
                 }
                 rowReader.Close();
@@ -256,6 +236,34 @@ namespace EESSP
         public void disconnect()
         {
             mySqlConn.Close();
+        }
+
+        private Patient readPatientRow(MySqlDataReader rowReader)
+        {
+            Patient patient = null;
+            try
+            {
+                int ID = int.Parse(rowReader["ID"].ToString());
+                int idDoc = int.Parse(rowReader["IDDoc"].ToString());
+                string name = rowReader["name"].ToString();
+                string mi = rowReader["MI"].ToString();
+                string lastName = rowReader["lastname"].ToString();
+                string cnp = rowReader["CNP"].ToString();
+                string email = rowReader["email"].ToString();
+                string occupation = rowReader["occupation"].ToString();
+                string address = rowReader["address"].ToString();
+                double weight = double.Parse(rowReader["weight"].ToString());
+                double height = double.Parse(rowReader["height"].ToString());
+                string bloodType = rowReader["bloodType"].ToString();
+                string rh = rowReader["rh"].ToString();
+                string allergies = rowReader["allergies"].ToString();
+                patient = new Patient(ID,idDoc,name,mi,lastName,cnp,email,occupation,address,bloodType,rh,height,weight,allergies);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+            return patient;
         }
     }
 }

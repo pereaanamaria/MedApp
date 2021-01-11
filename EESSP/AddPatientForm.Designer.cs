@@ -29,6 +29,33 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxAllergies = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.textBoxOccupation = new System.Windows.Forms.TextBox();
+            this.radioButtonNoOccupation = new System.Windows.Forms.RadioButton();
+            this.radioButtonStudent = new System.Windows.Forms.RadioButton();
+            this.radioButtonEmployed = new System.Windows.Forms.RadioButton();
+            this.radioButtonUnemployed = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxWeight = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxHeight = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.radioButtonPositive = new System.Windows.Forms.RadioButton();
+            this.radioButtonNegative = new System.Windows.Forms.RadioButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButton0I = new System.Windows.Forms.RadioButton();
+            this.radioButtonABIV = new System.Windows.Forms.RadioButton();
+            this.radioButtonBIII = new System.Windows.Forms.RadioButton();
+            this.radioButtonAII = new System.Windows.Forms.RadioButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,37 +76,11 @@
             this.maskedTextBoxID = new System.Windows.Forms.MaskedTextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.radioButton0I = new System.Windows.Forms.RadioButton();
-            this.radioButtonABIV = new System.Windows.Forms.RadioButton();
-            this.radioButtonBIII = new System.Windows.Forms.RadioButton();
-            this.radioButtonAII = new System.Windows.Forms.RadioButton();
-            this.radioButtonPositive = new System.Windows.Forms.RadioButton();
-            this.radioButtonNegative = new System.Windows.Forms.RadioButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxHeight = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxWeight = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.radioButtonStudent = new System.Windows.Forms.RadioButton();
-            this.radioButtonEmployed = new System.Windows.Forms.RadioButton();
-            this.radioButtonUnemployed = new System.Windows.Forms.RadioButton();
-            this.radioButtonNoOccupation = new System.Windows.Forms.RadioButton();
-            this.textBoxOccupation = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBoxAllergies = new System.Windows.Forms.TextBox();
+            this.radioButtonRetired = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -125,6 +126,281 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 403);
             this.panel1.TabIndex = 0;
+            // 
+            // textBoxAllergies
+            // 
+            this.textBoxAllergies.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxAllergies.Location = new System.Drawing.Point(67, 290);
+            this.textBoxAllergies.Name = "textBoxAllergies";
+            this.textBoxAllergies.Size = new System.Drawing.Size(302, 20);
+            this.textBoxAllergies.TabIndex = 12;
+            this.textBoxAllergies.Text = "-";
+            this.textBoxAllergies.TextChanged += new System.EventHandler(this.textBoxAllergies_TextChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(15, 293);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(46, 13);
+            this.label18.TabIndex = 60;
+            this.label18.Text = "Allergies";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(97, 167);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(19, 13);
+            this.label17.TabIndex = 59;
+            this.label17.Text = "kg";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(97, 128);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(21, 13);
+            this.label16.TabIndex = 58;
+            this.label16.Text = "cm";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.radioButtonRetired);
+            this.panel4.Controls.Add(this.textBoxOccupation);
+            this.panel4.Controls.Add(this.radioButtonNoOccupation);
+            this.panel4.Controls.Add(this.radioButtonStudent);
+            this.panel4.Controls.Add(this.radioButtonEmployed);
+            this.panel4.Controls.Add(this.radioButtonUnemployed);
+            this.panel4.Location = new System.Drawing.Point(18, 217);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(351, 51);
+            this.panel4.TabIndex = 57;
+            // 
+            // textBoxOccupation
+            // 
+            this.textBoxOccupation.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxOccupation.Location = new System.Drawing.Point(203, 25);
+            this.textBoxOccupation.Name = "textBoxOccupation";
+            this.textBoxOccupation.Size = new System.Drawing.Size(143, 20);
+            this.textBoxOccupation.TabIndex = 11;
+            this.textBoxOccupation.Visible = false;
+            this.textBoxOccupation.TextChanged += new System.EventHandler(this.textBoxOccupation_TextChanged);
+            // 
+            // radioButtonNoOccupation
+            // 
+            this.radioButtonNoOccupation.AutoSize = true;
+            this.radioButtonNoOccupation.Checked = true;
+            this.radioButtonNoOccupation.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonNoOccupation.Name = "radioButtonNoOccupation";
+            this.radioButtonNoOccupation.Size = new System.Drawing.Size(97, 17);
+            this.radioButtonNoOccupation.TabIndex = 10;
+            this.radioButtonNoOccupation.TabStop = true;
+            this.radioButtonNoOccupation.Text = "No Occupation";
+            this.radioButtonNoOccupation.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonStudent
+            // 
+            this.radioButtonStudent.AutoSize = true;
+            this.radioButtonStudent.Location = new System.Drawing.Point(3, 26);
+            this.radioButtonStudent.Name = "radioButtonStudent";
+            this.radioButtonStudent.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonStudent.TabIndex = 10;
+            this.radioButtonStudent.Text = "Student";
+            this.radioButtonStudent.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonEmployed
+            // 
+            this.radioButtonEmployed.AutoSize = true;
+            this.radioButtonEmployed.Location = new System.Drawing.Point(203, 3);
+            this.radioButtonEmployed.Name = "radioButtonEmployed";
+            this.radioButtonEmployed.Size = new System.Drawing.Size(71, 17);
+            this.radioButtonEmployed.TabIndex = 10;
+            this.radioButtonEmployed.Text = "Employed";
+            this.radioButtonEmployed.UseVisualStyleBackColor = true;
+            this.radioButtonEmployed.CheckedChanged += new System.EventHandler(this.radioButtonEmployed_CheckedChanged);
+            // 
+            // radioButtonUnemployed
+            // 
+            this.radioButtonUnemployed.AutoSize = true;
+            this.radioButtonUnemployed.Location = new System.Drawing.Point(105, 25);
+            this.radioButtonUnemployed.Name = "radioButtonUnemployed";
+            this.radioButtonUnemployed.Size = new System.Drawing.Size(84, 17);
+            this.radioButtonUnemployed.TabIndex = 10;
+            this.radioButtonUnemployed.Text = "Unemployed";
+            this.radioButtonUnemployed.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(15, 201);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 13);
+            this.label15.TabIndex = 55;
+            this.label15.Text = "Occupation";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(15, 148);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 13);
+            this.label14.TabIndex = 54;
+            this.label14.Text = "Weight";
+            // 
+            // textBoxWeight
+            // 
+            this.textBoxWeight.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBoxWeight.Location = new System.Drawing.Point(18, 164);
+            this.textBoxWeight.Name = "textBoxWeight";
+            this.textBoxWeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBoxWeight.Size = new System.Drawing.Size(73, 20);
+            this.textBoxWeight.TabIndex = 7;
+            this.textBoxWeight.TextChanged += new System.EventHandler(this.textBoxWeight_TextChanged);
+            this.textBoxWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWeight_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(15, 109);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 13);
+            this.label13.TabIndex = 52;
+            this.label13.Text = "Height";
+            // 
+            // textBoxHeight
+            // 
+            this.textBoxHeight.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBoxHeight.Location = new System.Drawing.Point(18, 125);
+            this.textBoxHeight.Name = "textBoxHeight";
+            this.textBoxHeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBoxHeight.Size = new System.Drawing.Size(73, 20);
+            this.textBoxHeight.TabIndex = 6;
+            this.textBoxHeight.TextChanged += new System.EventHandler(this.textBoxHeight_TextChanged);
+            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxHeight_KeyPress);
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.radioButtonPositive);
+            this.panel3.Controls.Add(this.radioButtonNegative);
+            this.panel3.Location = new System.Drawing.Point(296, 125);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(73, 59);
+            this.panel3.TabIndex = 50;
+            // 
+            // radioButtonPositive
+            // 
+            this.radioButtonPositive.AutoSize = true;
+            this.radioButtonPositive.Checked = true;
+            this.radioButtonPositive.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonPositive.Name = "radioButtonPositive";
+            this.radioButtonPositive.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonPositive.TabIndex = 9;
+            this.radioButtonPositive.TabStop = true;
+            this.radioButtonPositive.Text = "Pozitive";
+            this.radioButtonPositive.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNegative
+            // 
+            this.radioButtonNegative.AutoSize = true;
+            this.radioButtonNegative.Location = new System.Drawing.Point(3, 32);
+            this.radioButtonNegative.Name = "radioButtonNegative";
+            this.radioButtonNegative.Size = new System.Drawing.Size(68, 17);
+            this.radioButtonNegative.TabIndex = 9;
+            this.radioButtonNegative.Text = "Negative";
+            this.radioButtonNegative.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.radioButton0I);
+            this.panel2.Controls.Add(this.radioButtonABIV);
+            this.panel2.Controls.Add(this.radioButtonBIII);
+            this.panel2.Controls.Add(this.radioButtonAII);
+            this.panel2.Location = new System.Drawing.Point(147, 125);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(111, 59);
+            this.panel2.TabIndex = 49;
+            // 
+            // radioButton0I
+            // 
+            this.radioButton0I.AutoSize = true;
+            this.radioButton0I.Checked = true;
+            this.radioButton0I.Location = new System.Drawing.Point(3, 9);
+            this.radioButton0I.Name = "radioButton0I";
+            this.radioButton0I.Size = new System.Drawing.Size(43, 17);
+            this.radioButton0I.TabIndex = 8;
+            this.radioButton0I.TabStop = true;
+            this.radioButton0I.Text = "0 (I)";
+            this.radioButton0I.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonABIV
+            // 
+            this.radioButtonABIV.AutoSize = true;
+            this.radioButtonABIV.Location = new System.Drawing.Point(52, 32);
+            this.radioButtonABIV.Name = "radioButtonABIV";
+            this.radioButtonABIV.Size = new System.Drawing.Size(58, 17);
+            this.radioButtonABIV.TabIndex = 8;
+            this.radioButtonABIV.Text = "AB (IV)";
+            this.radioButtonABIV.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBIII
+            // 
+            this.radioButtonBIII.AutoSize = true;
+            this.radioButtonBIII.Location = new System.Drawing.Point(52, 9);
+            this.radioButtonBIII.Name = "radioButtonBIII";
+            this.radioButtonBIII.Size = new System.Drawing.Size(50, 17);
+            this.radioButtonBIII.TabIndex = 8;
+            this.radioButtonBIII.Text = "B (III)";
+            this.radioButtonBIII.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonAII
+            // 
+            this.radioButtonAII.AutoSize = true;
+            this.radioButtonAII.Location = new System.Drawing.Point(3, 32);
+            this.radioButtonAII.Name = "radioButtonAII";
+            this.radioButtonAII.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonAII.TabIndex = 8;
+            this.radioButtonAII.Text = "A (II)";
+            this.radioButtonAII.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(261, 14);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 13);
+            this.label12.TabIndex = 42;
+            this.label12.Text = "Email";
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBoxEmail.Location = new System.Drawing.Point(264, 30);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(105, 20);
+            this.textBoxEmail.TabIndex = 3;
+            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(293, 109);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(21, 13);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Rh";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(144, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 13);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Blood Type";
             // 
             // label6
             // 
@@ -313,278 +589,15 @@
             this.textBoxName.TabIndex = 0;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
-            // label10
+            // radioButtonRetired
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(144, 109);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 13);
-            this.label10.TabIndex = 38;
-            this.label10.Text = "Blood Type";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(293, 109);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(21, 13);
-            this.label11.TabIndex = 39;
-            this.label11.Text = "Rh";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(261, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 13);
-            this.label12.TabIndex = 42;
-            this.label12.Text = "Email";
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxEmail.Location = new System.Drawing.Point(264, 30);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(105, 20);
-            this.textBoxEmail.TabIndex = 3;
-            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
-            // 
-            // radioButton0I
-            // 
-            this.radioButton0I.AutoSize = true;
-            this.radioButton0I.Checked = true;
-            this.radioButton0I.Location = new System.Drawing.Point(3, 9);
-            this.radioButton0I.Name = "radioButton0I";
-            this.radioButton0I.Size = new System.Drawing.Size(43, 17);
-            this.radioButton0I.TabIndex = 8;
-            this.radioButton0I.TabStop = true;
-            this.radioButton0I.Text = "0 (I)";
-            this.radioButton0I.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonABIV
-            // 
-            this.radioButtonABIV.AutoSize = true;
-            this.radioButtonABIV.Location = new System.Drawing.Point(52, 32);
-            this.radioButtonABIV.Name = "radioButtonABIV";
-            this.radioButtonABIV.Size = new System.Drawing.Size(58, 17);
-            this.radioButtonABIV.TabIndex = 8;
-            this.radioButtonABIV.Text = "AB (IV)";
-            this.radioButtonABIV.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBIII
-            // 
-            this.radioButtonBIII.AutoSize = true;
-            this.radioButtonBIII.Location = new System.Drawing.Point(52, 9);
-            this.radioButtonBIII.Name = "radioButtonBIII";
-            this.radioButtonBIII.Size = new System.Drawing.Size(50, 17);
-            this.radioButtonBIII.TabIndex = 8;
-            this.radioButtonBIII.Text = "B (III)";
-            this.radioButtonBIII.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonAII
-            // 
-            this.radioButtonAII.AutoSize = true;
-            this.radioButtonAII.Location = new System.Drawing.Point(3, 32);
-            this.radioButtonAII.Name = "radioButtonAII";
-            this.radioButtonAII.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonAII.TabIndex = 8;
-            this.radioButtonAII.Text = "A (II)";
-            this.radioButtonAII.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonPositive
-            // 
-            this.radioButtonPositive.AutoSize = true;
-            this.radioButtonPositive.Checked = true;
-            this.radioButtonPositive.Location = new System.Drawing.Point(3, 9);
-            this.radioButtonPositive.Name = "radioButtonPositive";
-            this.radioButtonPositive.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonPositive.TabIndex = 9;
-            this.radioButtonPositive.TabStop = true;
-            this.radioButtonPositive.Text = "Pozitive";
-            this.radioButtonPositive.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonNegative
-            // 
-            this.radioButtonNegative.AutoSize = true;
-            this.radioButtonNegative.Location = new System.Drawing.Point(3, 32);
-            this.radioButtonNegative.Name = "radioButtonNegative";
-            this.radioButtonNegative.Size = new System.Drawing.Size(68, 17);
-            this.radioButtonNegative.TabIndex = 9;
-            this.radioButtonNegative.Text = "Negative";
-            this.radioButtonNegative.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.radioButton0I);
-            this.panel2.Controls.Add(this.radioButtonABIV);
-            this.panel2.Controls.Add(this.radioButtonBIII);
-            this.panel2.Controls.Add(this.radioButtonAII);
-            this.panel2.Location = new System.Drawing.Point(147, 125);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(111, 59);
-            this.panel2.TabIndex = 49;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.radioButtonPositive);
-            this.panel3.Controls.Add(this.radioButtonNegative);
-            this.panel3.Location = new System.Drawing.Point(296, 125);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(73, 59);
-            this.panel3.TabIndex = 50;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(15, 109);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 13);
-            this.label13.TabIndex = 52;
-            this.label13.Text = "Height";
-            // 
-            // textBoxHeight
-            // 
-            this.textBoxHeight.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxHeight.Location = new System.Drawing.Point(18, 125);
-            this.textBoxHeight.Name = "textBoxHeight";
-            this.textBoxHeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxHeight.Size = new System.Drawing.Size(73, 20);
-            this.textBoxHeight.TabIndex = 6;
-            this.textBoxHeight.TextChanged += new System.EventHandler(this.textBoxHeight_TextChanged);
-            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxHeight_KeyPress);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(15, 148);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(41, 13);
-            this.label14.TabIndex = 54;
-            this.label14.Text = "Weight";
-            // 
-            // textBoxWeight
-            // 
-            this.textBoxWeight.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxWeight.Location = new System.Drawing.Point(18, 164);
-            this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxWeight.Size = new System.Drawing.Size(73, 20);
-            this.textBoxWeight.TabIndex = 7;
-            this.textBoxWeight.TextChanged += new System.EventHandler(this.textBoxWeight_TextChanged);
-            this.textBoxWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWeight_KeyPress);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(15, 201);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(62, 13);
-            this.label15.TabIndex = 55;
-            this.label15.Text = "Occupation";
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.textBoxOccupation);
-            this.panel4.Controls.Add(this.radioButtonNoOccupation);
-            this.panel4.Controls.Add(this.radioButtonStudent);
-            this.panel4.Controls.Add(this.radioButtonEmployed);
-            this.panel4.Controls.Add(this.radioButtonUnemployed);
-            this.panel4.Location = new System.Drawing.Point(18, 217);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(351, 51);
-            this.panel4.TabIndex = 57;
-            // 
-            // radioButtonStudent
-            // 
-            this.radioButtonStudent.AutoSize = true;
-            this.radioButtonStudent.Location = new System.Drawing.Point(3, 26);
-            this.radioButtonStudent.Name = "radioButtonStudent";
-            this.radioButtonStudent.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonStudent.TabIndex = 10;
-            this.radioButtonStudent.Text = "Student";
-            this.radioButtonStudent.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonEmployed
-            // 
-            this.radioButtonEmployed.AutoSize = true;
-            this.radioButtonEmployed.Location = new System.Drawing.Point(106, 26);
-            this.radioButtonEmployed.Name = "radioButtonEmployed";
-            this.radioButtonEmployed.Size = new System.Drawing.Size(71, 17);
-            this.radioButtonEmployed.TabIndex = 10;
-            this.radioButtonEmployed.Text = "Employed";
-            this.radioButtonEmployed.UseVisualStyleBackColor = true;
-            this.radioButtonEmployed.CheckedChanged += new System.EventHandler(this.radioButtonEmployed_CheckedChanged);
-            // 
-            // radioButtonUnemployed
-            // 
-            this.radioButtonUnemployed.AutoSize = true;
-            this.radioButtonUnemployed.Location = new System.Drawing.Point(106, 3);
-            this.radioButtonUnemployed.Name = "radioButtonUnemployed";
-            this.radioButtonUnemployed.Size = new System.Drawing.Size(84, 17);
-            this.radioButtonUnemployed.TabIndex = 10;
-            this.radioButtonUnemployed.Text = "Unemployed";
-            this.radioButtonUnemployed.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonNoOccupation
-            // 
-            this.radioButtonNoOccupation.AutoSize = true;
-            this.radioButtonNoOccupation.Checked = true;
-            this.radioButtonNoOccupation.Location = new System.Drawing.Point(3, 3);
-            this.radioButtonNoOccupation.Name = "radioButtonNoOccupation";
-            this.radioButtonNoOccupation.Size = new System.Drawing.Size(97, 17);
-            this.radioButtonNoOccupation.TabIndex = 10;
-            this.radioButtonNoOccupation.TabStop = true;
-            this.radioButtonNoOccupation.Text = "No Occupation";
-            this.radioButtonNoOccupation.UseVisualStyleBackColor = true;
-            // 
-            // textBoxOccupation
-            // 
-            this.textBoxOccupation.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxOccupation.Location = new System.Drawing.Point(183, 25);
-            this.textBoxOccupation.Name = "textBoxOccupation";
-            this.textBoxOccupation.Size = new System.Drawing.Size(163, 20);
-            this.textBoxOccupation.TabIndex = 11;
-            this.textBoxOccupation.Visible = false;
-            this.textBoxOccupation.TextChanged += new System.EventHandler(this.textBoxOccupation_TextChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(97, 128);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(21, 13);
-            this.label16.TabIndex = 58;
-            this.label16.Text = "cm";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(97, 167);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 13);
-            this.label17.TabIndex = 59;
-            this.label17.Text = "kg";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(15, 293);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 13);
-            this.label18.TabIndex = 60;
-            this.label18.Text = "Allergies";
-            // 
-            // textBoxAllergies
-            // 
-            this.textBoxAllergies.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxAllergies.Location = new System.Drawing.Point(67, 290);
-            this.textBoxAllergies.Name = "textBoxAllergies";
-            this.textBoxAllergies.Size = new System.Drawing.Size(302, 20);
-            this.textBoxAllergies.TabIndex = 12;
-            this.textBoxAllergies.TextChanged += new System.EventHandler(this.textBoxAllergies_TextChanged);
+            this.radioButtonRetired.AutoSize = true;
+            this.radioButtonRetired.Location = new System.Drawing.Point(105, 3);
+            this.radioButtonRetired.Name = "radioButtonRetired";
+            this.radioButtonRetired.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonRetired.TabIndex = 12;
+            this.radioButtonRetired.Text = "Retired";
+            this.radioButtonRetired.UseVisualStyleBackColor = true;
             // 
             // AddPatientForm
             // 
@@ -600,12 +613,12 @@
             this.Text = "Add Patient";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -660,5 +673,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxAllergies;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.RadioButton radioButtonRetired;
     }
 }

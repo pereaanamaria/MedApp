@@ -44,6 +44,14 @@ namespace EESSP
             e.SuppressKeyPress = true;
         }
 
+        public void checkDigit(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         public void checkDoubles(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -55,6 +63,26 @@ namespace EESSP
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        public bool checkedAndNotEmpty(TextBox textBox, MaskedTextBox maskedTextBox, CheckBox checkBox)
+        {
+            if (maskedTextBox != null) return !maskedTextBox.Text.Equals("") == checkBox.Checked;
+            return !textBox.Text.Equals("") == checkBox.Checked;
+        }
+
+        public bool isValidEmail(string email)
+        {
+            if (email.Equals("-")) return true;
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

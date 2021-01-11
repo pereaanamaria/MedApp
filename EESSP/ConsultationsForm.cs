@@ -41,31 +41,43 @@ namespace EESSP
             clickedAdd();
         }
 
-        private void buttonModify_Click(object sender, EventArgs e)
+        private void buttonManage_Click(object sender, EventArgs e)
         {
             emptyFields();
             invisibleAll();
-            labelOption.Text = "Modify a consultation";
-            visibleModifyAndRemove();
+            labelOption.Text = "Manage consultations";
+            visibleManagement();
+        }
+
+        private void buttonModify_Click(object sender, EventArgs e)
+        {
+            if (selectedConsultation == null) MessageBox.Show("No consultation selected!");
+            else updateConsultation();
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            emptyFields();
-            invisibleAll();
-            labelOption.Text = "Delete a consultation";
-            visibleModifyAndRemove();
+            if (selectedConsultation == null) MessageBox.Show("No consultation selected!");
+            else deleteConsultation();
         }
+        
+        private void buttonConsultationRep_Click(object sender, EventArgs e)
+        {
+            if (selectedConsultation == null)
+            {
+                MessageBox.Show("No consultation selected!");
+                return;
+            }
 
+            consultationReport1.SetParameterValue("IdPatientParam", selectedPatient.ID);
+            consultationReport1.SetParameterValue("IdConsultationParam", selectedConsultation.ID);
+            new ReportsForm(consultationReport1).Show();
+        }
 
         private void buttonReport_Click(object sender, EventArgs e)
         {
-            emptyFields();
-            invisibleAll();
-            labelOption.Text = "Generate consultation report";
-
-            PatientReport1.SetParameterValue("cnpParam", selectedPatient.CNP);
-            new ReportsForm(PatientReport1).Show();
+            patientReport1.SetParameterValue("cnpParam", selectedPatient.CNP);
+            new ReportsForm(patientReport1).Show();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -75,32 +87,14 @@ namespace EESSP
         
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            switch (labelOption.Text)
-            {
-                case "Add new consultation":
-                    {
-                        insertConsultation();
-                        break;
-                    }
-                case "Modify a consultation":
-                    {
-                        if (selectedConsultation == null) MessageBox.Show("No consultation selected!");
-                        else updateConsultation();
-                        break;
-                    }
-                case "Delete a consultation":
-                    {
-                        if (selectedConsultation == null) MessageBox.Show("No consultation selected!");
-                        else deleteConsultation();
-                        break;
-                    }
-            }
+            insertConsultation();
         }
 
         private void buttonDiscard_Click(object sender, EventArgs e)
         {
             emptyFields();
             buttonConfirm.Enabled = false;
+            selectedConsultation = null;
         }
 
         private void radioButtonToday_CheckedChanged(object sender, EventArgs e)
@@ -392,14 +386,16 @@ namespace EESSP
             buttonDiscard.Visible = true;
         }
 
-        private void visibleModifyAndRemove()
+        private void visibleManagement()
         {
             label6.Visible = true;
             label2.Visible = true;
             label4.Visible = true;
             label5.Visible = true;
 
-            buttonConfirm.Visible = true;
+            buttonModify.Visible = true;
+            buttonRemove.Visible = true;
+            buttonConsultationRep.Visible = true;
             buttonDiscard.Visible = true;
 
             checkBoxID.Visible = true;
@@ -427,6 +423,9 @@ namespace EESSP
             radioButtonAnotherDate.Visible = false;
             maskedTextBoxDate.Visible = false;
 
+            buttonModify.Visible = false;
+            buttonRemove.Visible = false;
+            buttonConsultationRep.Visible = false;
             buttonConfirm.Visible = false;
             buttonDiscard.Visible = false;
 

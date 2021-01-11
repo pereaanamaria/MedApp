@@ -10,26 +10,40 @@ namespace EESSP
         public string MiddleInitials { get; private set; }
         public string LastName { get; private set; }
         public string CNP { get; private set; }
+        public string Email { get; private set; }
+        public string Occupation { get; private set; }
         public string Address { get; private set; }
         public DateTime DateOfBirth { get; private set; }
+        public string BirthPlace { get; private set; }
         public int Age { get; private set; }
         public string Sex { get; private set; }
-        public string BirthPlace { get; private set; }
         public string RegisterNr { get; private set; }
+        public string BloodType { get; private set; }
+        public string Rh { get; private set; }
+        public double Height { get; private set; }
+        public double Weight { get; private set; }
+        public string Allergies { get; private set; }
 
         private int IDDoc;
 
         public Patient() { }
 
-        public Patient(int ID, int IDDoc, string Name, string MiddleInitials, string LastName, string CNP, string Address)
+        public Patient(int ID, int IDDoc, string Name, string MiddleInitials, string LastName, string CNP, string Email, string Occupation, string Address, string BloodType, string Rh, double Height, double Weight, string Allergies)
         {
             this.ID = ID;
             this.IDDoc = IDDoc;
-            this.CNP = CNP;
             this.Name = Name;
             this.MiddleInitials = MiddleInitials;
             this.LastName = LastName;
+            this.CNP = CNP;
+            this.Email = Email;
+            this.Occupation = Occupation;
             this.Address = Address;
+            this.BloodType = BloodType;
+            this.Rh = Rh;
+            this.Height = Height;
+            this.Weight = Weight;
+            this.Allergies = Allergies;
 
             getCnpDetails(CNP);
         }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonExit = new System.Windows.Forms.Button();
-            this.PatientReport1 = new EESSP.PatientReport();
             this.crystalReportViewerReports = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
             // 
@@ -48,13 +47,12 @@
             // 
             // crystalReportViewerReports
             // 
-            this.crystalReportViewerReports.ActiveViewIndex = 0;
+            this.crystalReportViewerReports.ActiveViewIndex = -1;
             this.crystalReportViewerReports.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crystalReportViewerReports.Cursor = System.Windows.Forms.Cursors.Default;
             this.crystalReportViewerReports.DisplayStatusBar = false;
             this.crystalReportViewerReports.Location = new System.Drawing.Point(12, 53);
             this.crystalReportViewerReports.Name = "crystalReportViewerReports";
-            this.crystalReportViewerReports.ReportSource = this.PatientReport1;
             this.crystalReportViewerReports.Size = new System.Drawing.Size(868, 441);
             this.crystalReportViewerReports.TabIndex = 23;
             this.crystalReportViewerReports.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
@@ -79,6 +77,5 @@
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewerReports;
         private System.Windows.Forms.Button buttonExit;
-        private PatientReport PatientReport1;
     }
 }

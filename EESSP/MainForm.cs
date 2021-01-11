@@ -14,6 +14,7 @@ namespace EESSP
         private ArrayList patients;
         public Patient selectedPatient = null;
         private AddPatientForm addForm = null;
+        private DiagnosticDialogForm diagnosticForm = null;
 
         public MainForm(int IdDoc)
         {
@@ -21,10 +22,10 @@ namespace EESSP
             userDoctor = new Doctor(connectionClass, IdDoc);
             labelDoctor.Text = "Doctor: " + userDoctor.Name + " " + userDoctor.LastName;
             helperForm = new HelperForm(this);
-            removePatientDetails();
-            ActiveControl = buttonAddP;
+            patientDetails(false);
+            ActiveControl = textBoxSearchN;
         }
-        
+
         private void buttonAddP_Click(object sender, EventArgs e)
         {
             if (!maskedTextBoxSearchCNP.Text.Equals("") && maskedTextBoxSearchCNP.Text.Length == 13) addForm = new AddPatientForm(connectionClass, userDoctor.IDDoc, maskedTextBoxSearchCNP.Text);
@@ -34,22 +35,44 @@ namespace EESSP
             addForm.FormClosed += new FormClosedEventHandler(AddPatietForm_FormClosed);
         }
 
-        void AddPatietForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void AddPatietForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (addForm.result == DialogResult.OK)
             {
                 selectedPatient = addForm.newPatient;
-                patientDetails();
+                patientDetails(true);
             }
-            
+
             buttonCancelSearch_Click(sender, e);
             maskedTextBoxID.Text = string.Empty;
         }
-
-        //todo
+        
         private void buttonList_Click(object sender, EventArgs e)
         {
+            new ReportsForm(allPatientsReport1).Show();
+        }
+        
+        private void buttonMyPatients_Click(object sender, EventArgs e)
+        {
+            myPatientsReport1.SetParameterValue("IdDocParam", userDoctor.IDDoc);
+            new ReportsForm(myPatientsReport1).Show();
+        }
+        
+        private void buttonSameDiagnostic_Click(object sender, EventArgs e)
+        {
+            diagnosticForm = new DiagnosticDialogForm(connectionClass);
 
+            diagnosticForm.Show();
+            diagnosticForm.FormClosed += new FormClosedEventHandler(DiagnosticDialogForm_FormClosed);
+        }
+        
+        private void DiagnosticDialogForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!diagnosticForm.CIM.Equals(""))
+            {
+                sameDiagnosticReport1.SetParameterValue("CimParam", diagnosticForm.CIM);
+                new ReportsForm(sameDiagnosticReport1).Show();
+            }
         }
 
         private void buttonCancelSearch_Click(object sender, EventArgs e)
@@ -69,101 +92,117 @@ namespace EESSP
                 ActiveControl = textBoxSearchN;
                 return;
             }
+            
+            checkAll(true);
 
             buttonDiscard.Visible = true;
             buttonRemoveP.Enabled = false;
             buttonConsultationsP.Enabled = false;
-
-            domainUpDownOptions.Visible = true;
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            string option = "";
-            string modifiedField = "";
-            switch (domainUpDownOptions.Text)
+            int countCheck = 0; 
+           
+            string command = "UPDATE patients SET ";
+            List<string> paramList = new List<string>();
+            List<object> valueList = new List<object>();
+            
+            if (checkBoxCnp.Checked)
             {
-                case "Name":
-                    {
-                        option = "name";
-                        modifiedField = textBoxName.Text;
-                        break;
-                    }
-                case "Last Name":
-                    {
-                        option = "lastname";
-                        modifiedField = textBoxLastName.Text;
-                        break;
-                    }
-                case "M.I.":
-                    {
-                        option = "MI";
-                        modifiedField = textBoxMI.Text;
-                        break;
-                    }
-                case "CNP":
-                    {
-                        option = "cnp";
-                        modifiedField = maskedTextBoxID.Text;
-                        break;
-                    }
-                case "Address":
-                    {
-                        option = "address";
-                        modifiedField = textBoxAddress.Text;
-                        break;
-                    }
+                selectedPatient.getCnpDetails(maskedTextBoxID.Text);
+                command += "cnp=@cnp, sex=@sex, DOB=@DOB, RomanianCountry=@RomanianCountry, age=@age";
+                paramList.Add("@cnp"); valueList.Add(selectedPatient.CNP);
+                paramList.Add("@sex"); valueList.Add(selectedPatient.Sex);
+                paramList.Add("@DOB"); valueList.Add(selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy"));
+                paramList.Add("@RomanianCountry"); valueList.Add(selectedPatient.BirthPlace);
+                paramList.Add("@age"); valueList.Add(selectedPatient.Age);
+                countCheck++;
             }
-            var confirmResult = MessageBox.Show("Are you sure to modify this patient?", "Modify Patient", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
+            if (checkBoxName.Checked)
             {
-                string command;
-                List<string> paramList = new List<string>();
-                List<object> valueList = new List<object>();
+                if (countCheck > 0) command += ", ";
+                command += "name=@name";
+                paramList.Add("@name"); valueList.Add(textBoxName.Text);
+                countCheck++;
+            }
+            if (checkBoxLastName.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "lastname=@lastname";
+                paramList.Add("@lastname"); valueList.Add(textBoxLastName.Text);
+                countCheck++;
+            }
+            if (checkBoxMI.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "MI=@MI";
+                paramList.Add("@MI"); valueList.Add(textBoxMI.Text);
+                countCheck++;
+            }
+            if (checkBoxEmail.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "email=@email";
+                paramList.Add("@email"); valueList.Add(textBoxEmail.Text);
+                countCheck++;
+            }
+            if (checkBoxOccupation.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "occupation=@occupation";
+                paramList.Add("@occupation"); valueList.Add(textBoxOccupation.Text);
+                countCheck++;
+            }
+            if (checkBoxAddress.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "address=@address";
+                paramList.Add("@address"); valueList.Add(textBoxAddress.Text);
+                countCheck++;
+            }
+            if (checkBoxWeight.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "weight=@weight";
+                paramList.Add("@weight"); valueList.Add(double.Parse(textBoxWeight.Text));
+            }
+            if (checkBoxHeight.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "height=@height";
+                paramList.Add("@height"); valueList.Add(double.Parse(textBoxHeight.Text));
+            }
+            if (checkBoxAllergies.Checked)
+            {
+                if (countCheck > 0) command += ", ";
+                command += "allergies=@allergies";
+                paramList.Add("@allergies"); valueList.Add(textBoxAllergies.Text);
+                countCheck++;
+            }
 
-                if(option.Equals("cnp"))
-                {
-                    selectedPatient.getCnpDetails(maskedTextBoxID.Text);
-                    command = "UPDATE patients SET cnp=@cnp, sex=@sex, DOB=@DOB, RomanianCountry=@RomanianCountry, age=@age WHERE ID=@ID";
-                    paramList.Add("@cnp"); valueList.Add(selectedPatient.CNP);
-                    paramList.Add("@sex"); valueList.Add(selectedPatient.Sex);
-                    paramList.Add("@DOB"); valueList.Add(selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy"));
-                    paramList.Add("@RomanianCountry"); valueList.Add(selectedPatient.BirthPlace);
-                    paramList.Add("@age"); valueList.Add(selectedPatient.Age);
-                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
-                }
-                else
-                {
-                    command = "UPDATE patients SET " + option + "=@" + option + " WHERE ID=@ID";
-                    paramList.Add("@" + option); valueList.Add(modifiedField);
-                    paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
-                }
+            command += " WHERE ID=@ID";
+            paramList.Add("@ID"); valueList.Add(selectedPatient.ID);
 
-                if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
-                {
-                    MessageBox.Show("Successfully updated!");
-                    buttonDiscard_Click(sender, e);
-                    selectedPatient = connectionClass.updatePatient(selectedPatient.ID);
-                    patientDetails();
-                }
+            if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be modified!"))
+            {
+                buttonDiscard_Click(sender, e);
+                selectedPatient = connectionClass.updatePatient(selectedPatient.ID);
+                patientDetails(true);
             }
         }
 
         private void buttonDiscard_Click(object sender, EventArgs e)
         {
-            textBoxName.Text = string.Empty;
-            textBoxLastName.Text = string.Empty;
-            textBoxMI.Text = string.Empty;
+            textBoxOccupation.Text = string.Empty;
+            comboBoxOccupation.Text = string.Empty;
             maskedTextBoxID.Text = string.Empty;
-            textBoxAddress.Text = string.Empty;
 
-            makeAllBoxesInvisible();
+            checkAll(false);
 
             buttonRemoveP.Enabled = true;
             buttonConsultationsP.Enabled = true;
-
-            domainUpDownOptions.Text = "Choose category";
-            domainUpDownOptions.Visible = false;
+            
             buttonConfirm.Visible = false;
             buttonDiscard.Visible = false;
 
@@ -190,7 +229,7 @@ namespace EESSP
                 return;
             }
 
-            var confirmResult = MessageBox.Show("Warning! Deleting this patient implies deleting all its consultations as well.\nAre you sure to delete this patient?","Delete Patient",MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Warning! Deleting this patient implies deleting all its consultations as well.\nAre you sure to delete this patient?", "Delete Patient", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 string command = "DELETE FROM consultations WHERE IdPatient=@IdPatient";
@@ -207,7 +246,6 @@ namespace EESSP
 
                     if (connectionClass.sqlCommand(command, paramList, valueList, "Patient could not be deleted!"))
                     {
-                        MessageBox.Show("Successfully deleted!");
                         buttonChangeP_Click(sender, e);
                     }
                 }
@@ -222,7 +260,7 @@ namespace EESSP
                 ActiveControl = textBoxSearchN;
                 return;
             }
-            removePatientDetails();
+            patientDetails(false);
             buttonDiscard_Click(sender, e);
         }
 
@@ -249,6 +287,46 @@ namespace EESSP
             else dataGridViewPatients.Rows.Clear();
         }
 
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxMI_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxLastName_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxAddress_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxHeight_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxWeight_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
+        private void textBoxAllergies_TextChanged(object sender, EventArgs e)
+        {
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
+        }
+
         private void dataGridViewPatients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -256,7 +334,7 @@ namespace EESSP
                 selectedPatient = (Patient)patients[e.RowIndex];
                 if (selectedPatient != null)
                 {
-                    patientDetails();
+                    patientDetails(true);
 
                     string command = "UPDATE patients SET age=@age WHERE ID=@ID";
                     List<string> paramList = new List<string>();
@@ -275,97 +353,21 @@ namespace EESSP
             }
         }
 
-        private void domainUpDownOptions_SelectedItemChanged(object sender, EventArgs e)
+        private void comboBoxOccupation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            makeAllBoxesInvisible();
-
-            if (domainUpDownOptions.Text.Equals("Choose category"))
-            {
-                buttonConfirm.Visible = false;
-                return;
-            }
-
-            switch (domainUpDownOptions.Text)
-            {
-                case "Name":
-                    {
-                        textBoxName.Visible = true;
-                        break;
-                    }
-                case "Last Name":
-                    {
-                        textBoxLastName.Visible = true;
-                        break;
-                    }
-                case "M.I.":
-                    {
-                        textBoxMI.Visible = true;
-                        break;
-                    }
-                case "CNP":
-                    {
-                        maskedTextBoxID.Visible = true;
-                        break;
-                    }
-                case "Address":
-                    {
-                        textBoxAddress.Visible = true;
-                        break;
-                    }
-            }
-
-            buttonConfirm.Visible = true;
+            textBoxOccupation.Text = (comboBoxOccupation.Text.Equals("EMPLOYED")) ? "" : comboBoxOccupation.Text;
+            textBoxOccupation.Visible = comboBoxOccupation.Text.Equals("EMPLOYED");
+            if (textBoxOccupation.Visible) ActiveControl = textBoxOccupation;
         }
 
-        private void domainUpDownOptions_Enter(object sender, EventArgs e)
+        private void comboBoxOccupation_Enter(object sender, EventArgs e)
         {
-            ActiveControl = textBoxSearchN;
-            switch (domainUpDownOptions.Text)
-            {
-                case "Name":
-                    {
-                        ActiveControl = textBoxName;
-                        break;
-                    }
-                case "Last Name":
-                    {
-                        ActiveControl = textBoxLastName;
-                        break;
-                    }
-                case "M.I.":
-                    {
-                        ActiveControl = textBoxMI;
-                        break;
-                    }
-                case "CNP":
-                    {
-                        ActiveControl = maskedTextBoxID;
-                        break;
-                    }
-                case "Address":
-                    {
-                        ActiveControl = textBoxAddress;
-                        break;
-                    }
-            }
+            ActiveControl = buttonConfirm;
         }
 
-        private void textBoxName_TextChanged(object sender, EventArgs e)
+        private void textBoxOccupation_TextChanged(object sender, EventArgs e)
         {
-            buttonConfirm.Enabled = false;
-            if (checkAllNotEmptyFields()) buttonConfirm.Enabled = true;
-        }
-
-        private void textBoxLastName_TextChanged(object sender, EventArgs e)
-        {
-            buttonConfirm.Enabled = false;
-            if (checkAllNotEmptyFields()) buttonConfirm.Enabled = true;
-        }
-
-        private void textBoxMI_TextChanged(object sender, EventArgs e)
-        {
-            buttonConfirm.Enabled = false;
-            if (checkAllNotEmptyFields()) buttonConfirm.Enabled = true;
+            buttonConfirm.Enabled = checkAllNotEmptyFields();
         }
 
         private void maskedTextBoxID_Click(object sender, EventArgs e)
@@ -380,7 +382,7 @@ namespace EESSP
 
             if (maskedTextBoxID.Text.Length == 13)
             {
-                if (connectionClass.checkCNP(maskedTextBoxID.Text) == null)
+                if (connectionClass.checkCNP(maskedTextBoxID.Text) != null)
                 {
                     buttonConfirm.Enabled = true;
                 }
@@ -388,35 +390,98 @@ namespace EESSP
             }
         }
 
-        private void textBoxAddress_TextChanged(object sender, EventArgs e)
+        private void checkBoxName_CheckedChanged(object sender, EventArgs e)
         {
-            buttonConfirm.Enabled = false;
-            if (checkAllNotEmptyFields()) buttonConfirm.Enabled = true;
+            textBoxName.Visible = checkBoxName.Checked;
+            if (checkBoxName.Checked) ActiveControl = textBoxName;
+            if (!textBoxName.Visible) textBoxName.Text = "";
         }
 
-        private void textBoxName_Enter(object sender, EventArgs e)
+        private void checkBoxLastName_CheckedChanged(object sender, EventArgs e)
         {
-            ActiveControl = buttonConfirm;
+            textBoxLastName.Visible = checkBoxLastName.Checked;
+            if (checkBoxLastName.Checked) ActiveControl = textBoxLastName;
+            if (!textBoxLastName.Visible) textBoxLastName.Text = "";
         }
 
-        private void textBoxMI_Enter(object sender, EventArgs e)
+        private void checkBoxMI_CheckedChanged(object sender, EventArgs e)
         {
-            ActiveControl = buttonConfirm;
+            textBoxMI.Visible = checkBoxMI.Checked;
+            if (checkBoxMI.Checked) ActiveControl = textBoxMI;
+            if (!textBoxMI.Visible) textBoxMI.Text = "";
         }
 
-        private void textBoxLastName_Enter(object sender, EventArgs e)
+        private void checkBoxCnp_CheckedChanged(object sender, EventArgs e)
         {
-            ActiveControl = buttonConfirm;
+            maskedTextBoxID.Visible = checkBoxCnp.Checked;
+            if (checkBoxCnp.Checked) ActiveControl = maskedTextBoxID;
+            if (!maskedTextBoxID.Visible) maskedTextBoxID.Text = "";
         }
 
-        private void maskedTextBoxID_Enter(object sender, EventArgs e)
+        private void checkBoxEmail_CheckedChanged(object sender, EventArgs e)
         {
-            ActiveControl = buttonConfirm;
+            textBoxEmail.Visible = checkBoxEmail.Checked;
+            if (checkBoxEmail.Checked) ActiveControl = textBoxEmail;
+            if (!textBoxEmail.Visible) textBoxEmail.Text = "";
         }
 
-        private void textBoxAddress_Enter(object sender, EventArgs e)
+        private void checkBoxOccupation_CheckedChanged(object sender, EventArgs e)
         {
-            ActiveControl = buttonConfirm;
+            comboBoxOccupation.Visible = checkBoxOccupation.Checked;
+            if (checkBoxOccupation.Checked) ActiveControl = comboBoxOccupation;
+            if (!comboBoxOccupation.Visible)
+            {
+                textBoxOccupation.Visible = false;
+                textBoxOccupation.Text = "";
+            }
+        }
+
+        private void checkBoxAddress_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxAddress.Visible = checkBoxAddress.Checked;
+            if (checkBoxAddress.Checked) ActiveControl = textBoxAddress;
+            if (!textBoxAddress.Visible) textBoxAddress.Text = "";
+        }
+
+        private void checkBoxHeight_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxHeight.Visible = checkBoxHeight.Checked;
+            if (checkBoxHeight.Checked) ActiveControl = textBoxHeight;
+            if (!textBoxHeight.Visible) textBoxHeight.Text = "";
+        }
+
+        private void checkBoxWeight_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxWeight.Visible = checkBoxWeight.Checked;
+            if (checkBoxWeight.Checked) ActiveControl = textBoxWeight;
+            if (!textBoxWeight.Visible) textBoxWeight.Text = "";
+        }
+
+        private void checkBoxAllergies_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxAllergies.Visible = checkBoxAllergies.Checked;
+            if (checkBoxAllergies.Checked) ActiveControl = textBoxAllergies;
+            if (!textBoxAllergies.Visible) textBoxAllergies.Text = "";
+        }
+
+        private void textBoxWeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            helperForm.checkDoubles(sender, e);
+        }
+
+        private void textBoxHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            helperForm.checkDigit(sender, e);
+        }
+
+        private void textBoxHeight_VisibleChanged(object sender, EventArgs e)
+        {
+            labelCm.Visible = textBoxHeight.Visible;
+        }
+
+        private void textBoxWeight_VisibleChanged(object sender, EventArgs e)
+        {
+            labelKg.Visible = textBoxWeight.Visible;
         }
 
         private void updateDataGrid()
@@ -454,23 +519,19 @@ namespace EESSP
             }
         }
 
-        private void makeAllBoxesInvisible()
-        {
-            textBoxName.Visible = false;
-            textBoxLastName.Visible = false;
-            textBoxMI.Visible = false;
-            maskedTextBoxID.Visible = false;
-            textBoxAddress.Visible = false;
-        }
-
         private bool checkAllNotEmptyFields()
         {
-            if (textBoxName.Text == string.Empty &&
-                textBoxLastName.Text == string.Empty &&
-                textBoxMI.Text == string.Empty &&
-                maskedTextBoxID.Text == string.Empty &&
-                textBoxAddress.Text == string.Empty) return false;
-            return true;
+            var emailValid = (checkBoxEmail.Checked) ? helperForm.isValidEmail(textBoxEmail.Text) : true;
+            return helperForm.checkedAndNotEmpty(textBoxName, null, checkBoxName) &&
+                helperForm.checkedAndNotEmpty(textBoxLastName, null, checkBoxLastName) &&
+                helperForm.checkedAndNotEmpty(null, maskedTextBoxID, checkBoxCnp) &&
+                helperForm.checkedAndNotEmpty(textBoxMI, null, checkBoxMI) &&
+                helperForm.checkedAndNotEmpty(textBoxOccupation, null, checkBoxOccupation) &&
+                helperForm.checkedAndNotEmpty(textBoxEmail, null, checkBoxEmail) && emailValid &&
+                helperForm.checkedAndNotEmpty(textBoxAddress, null, checkBoxAddress) &&
+                helperForm.checkedAndNotEmpty(textBoxHeight, null, checkBoxHeight) &&
+                helperForm.checkedAndNotEmpty(textBoxWeight, null, checkBoxWeight) &&
+                helperForm.checkedAndNotEmpty(textBoxAllergies, null, checkBoxAllergies);
         }
 
         private bool checkNoEmptySearch()
@@ -486,33 +547,55 @@ namespace EESSP
             return true;
         }
 
-        private void patientDetails()
+        private void patientDetails(bool show)
         {
-            labelName.Text = selectedPatient.Name;
-            labelLastName.Text = selectedPatient.LastName;
-            labelMI.Text = selectedPatient.MiddleInitials;
-            labelCNP.Text = selectedPatient.CNP;
-            labelAddress.Text = selectedPatient.Address;
-            labelDOB.Text = selectedPatient.DateOfBirth.ToString("dd - MMM - yyyy");
-            labelAge.Text = selectedPatient.Age.ToString();
-            labelSex.Text = selectedPatient.Sex;
-            labelBirthPlace.Text = selectedPatient.BirthPlace;
-            selectedPatient.getDoc(connectionClass);
-            labelRefDoc.Text = selectedPatient.ReferingDoctor.Name + " " + selectedPatient.ReferingDoctor.LastName;
+            labelName.Text = (show) ? selectedPatient.Name : string.Empty;
+            labelMI.Text = (show) ? selectedPatient.MiddleInitials : string.Empty;
+            labelLastName.Text = (show) ? selectedPatient.LastName : string.Empty;
+            labelCNP.Text = (show) ? selectedPatient.CNP : string.Empty;
+            labelEmail.Text = (show) ? selectedPatient.Email : string.Empty;
+            labelOccupation.Text = (show) ? selectedPatient.Occupation : string.Empty;
+            labelAddress.Text = (show) ? selectedPatient.Address : string.Empty;
+            labelDOB.Text = (show) ? selectedPatient.DateOfBirth.ToString("dd-MMM-yyyy") : string.Empty;
+            labelBirthPlace.Text = (show) ? selectedPatient.BirthPlace : string.Empty;
+            labelAge.Text = (show) ? selectedPatient.Age.ToString() : string.Empty;
+            labelSex.Text = (show) ? selectedPatient.Sex : string.Empty;
+            labelBloodType.Text = (show) ? selectedPatient.BloodType : string.Empty;
+            labelRh.Text = (show) ? selectedPatient.Rh : string.Empty;
+            labelWeight.Text = (show) ? selectedPatient.Weight.ToString() + " kg" : string.Empty;
+            labelHeight.Text = (show) ? selectedPatient.Height.ToString() + " cm" : string.Empty;
+            labelAllergies.Text = (show) ? selectedPatient.Allergies : string.Empty;
+            if (show) selectedPatient.getDoc(connectionClass);
+            labelRefDoc.Text = (show) ? selectedPatient.ReferingDoctor.Name + " " + selectedPatient.ReferingDoctor.LastName : string.Empty;
         }
 
-        private void removePatientDetails()
+        private void checkAll(bool visible)
         {
-            labelName.Text = string.Empty;
-            labelLastName.Text = string.Empty;
-            labelMI.Text = string.Empty;
-            labelCNP.Text = string.Empty;
-            labelAddress.Text = string.Empty;
-            labelDOB.Text = string.Empty;
-            labelAge.Text = string.Empty;
-            labelSex.Text = string.Empty;
-            labelBirthPlace.Text = string.Empty;
-            labelRefDoc.Text = string.Empty;
+            if (visible) buttonConfirm.Visible = true;
+            else
+            {
+                checkBoxName.Checked = false;
+                checkBoxLastName.Checked = false;
+                checkBoxMI.Checked = false;
+                checkBoxEmail.Checked = false;
+                checkBoxOccupation.Checked = false;
+                checkBoxAddress.Checked = false;
+                checkBoxCnp.Checked = false;
+                checkBoxHeight.Checked = false;
+                checkBoxWeight.Checked = false;
+                checkBoxAllergies.Checked = false;
+            }
+
+            checkBoxName.Visible = visible;
+            checkBoxLastName.Visible = visible;
+            checkBoxMI.Visible = visible;
+            checkBoxEmail.Visible = visible;
+            checkBoxOccupation.Visible = visible;
+            checkBoxAddress.Visible = visible;
+            checkBoxCnp.Visible = visible;
+            checkBoxHeight.Visible = visible;
+            checkBoxWeight.Visible = visible;
+            checkBoxAllergies.Visible = visible;
         }
     }
 }

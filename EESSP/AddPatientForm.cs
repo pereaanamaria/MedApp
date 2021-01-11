@@ -27,20 +27,20 @@ namespace EESSP
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc)
         {
             startForm(connectionClass, IdDoc);
-            removeCNPDetails();
+            patientCNPDetails(null);
         }
 
         public AddPatientForm(ConnectionClass connectionClass, int IdDoc, string cnp)
         {
             maskedTextBoxID.Text = cnp;
             startForm(connectionClass, IdDoc);
-            removeCNPDetails();
+            patientCNPDetails(null);
         }
 
         private void buttonAddP_Click(object sender, EventArgs e)
         {
             string email = textBoxEmail.Text;
-            if (!isValidEmail(email))
+            if (!helperForm.isValidEmail(email))
             {
                 MessageBox.Show("Email format is not correct!");
                 return;
@@ -58,7 +58,8 @@ namespace EESSP
             string rh = (radioButtonPositive.Checked) ? "POSITIVE" : "NEGATIVE";
             string occupation = (radioButtonNoOccupation.Checked) ? "NO OCCUPATION" : (
                     (radioButtonStudent.Checked) ? "STUDENT" : (
-                    (radioButtonUnemployed.Checked) ? "UNEMPLOYED" : textBoxOccupation.Text));
+                    (radioButtonRetired.Checked) ? "RETIRED" : (
+                    (radioButtonUnemployed.Checked) ? "UNEMPLOYED" : textBoxOccupation.Text)));
             string allergies = textBoxAllergies.Text;
 
             string command = "INSERT INTO patients(IDDoc,name,MI,lastname,cnp,email,address,";
@@ -91,18 +92,13 @@ namespace EESSP
                 newPatient.getDoc(connectionClass);
                 result = MessageBox.Show("Successfully inserted!");
                 emptyFields();
-                Close();
             }
             else maskedTextBoxID.Text = string.Empty;
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
-            {
-                Close();
-            }
+            Close();
         }
 
         private void maskedTextBoxID_TextChanged(object sender, EventArgs e)
@@ -111,14 +107,14 @@ namespace EESSP
             {
                 if (maskedTextBoxID.Text.Equals(string.Empty))
                 {
-                    removeCNPDetails();
+                    patientCNPDetails(null);
                 }
 
                 if (maskedTextBoxID.Text.Length == 13)
                 {
                     Patient patient = new Patient();
                     patient.getCnpDetails(maskedTextBoxID.Text);
-                    addPatientCNPDetails(patient);
+                    patientCNPDetails(patient);
 
                     checkForEmptyField();
                 }
@@ -161,7 +157,7 @@ namespace EESSP
 
         private void textBoxHeight_KeyPress(object sender, KeyPressEventArgs e)
         {
-            helperForm.checkDoubles(sender,e);
+            helperForm.checkDigit(sender,e);
         }
 
         private void textBoxWeight_TextChanged(object sender, EventArgs e)
@@ -194,22 +190,14 @@ namespace EESSP
             textBoxOccupation.Visible = radioButtonEmployed.Checked;
         }
 
-        private void addPatientCNPDetails(Patient p)
+        private void patientCNPDetails(Patient p)
         {
-            labelDOB.Text = p.DateOfBirth.ToString("dd - MMM - yyyy");
-            labelAge.Text = p.Age.ToString();
-            labelSex.Text = p.Sex;
-            labelBirthPlace.Text = p.BirthPlace;
-        }
+            labelDOB.Text = (p != null) ? p.DateOfBirth.ToString("dd-MMM-yyyy") : string.Empty;
+            labelAge.Text = (p != null) ? p.Age.ToString() : string.Empty;
+            labelSex.Text = (p != null) ? p.Sex : string.Empty;
+            labelBirthPlace.Text = (p != null) ? p.BirthPlace : string.Empty;
 
-        private void removeCNPDetails()
-        {
-            labelDOB.Text = string.Empty;
-            labelAge.Text = string.Empty;
-            labelSex.Text = string.Empty;
-            labelBirthPlace.Text = string.Empty;
-
-            buttonAddP.Enabled = false;
+            if (p == null) buttonAddP.Enabled = false;
         }
 
         private void emptyFields()
@@ -223,11 +211,11 @@ namespace EESSP
             textBoxWeight.Text = string.Empty;
             textBoxHeight.Text = string.Empty;
             textBoxOccupation.Text = string.Empty;
-            textBoxAllergies.Text = string.Empty;
+            textBoxAllergies.Text = "-";
 
-            removeCheckedBloodType();
-            removeCheckedRh();
-            removeCheckedOccupation();
+            radioButtonNoOccupation.Checked = true;
+            radioButton0I.Checked = true;
+            radioButtonPositive.Checked = true;
 
             buttonAddP.Enabled = false;
         }
@@ -247,41 +235,6 @@ namespace EESSP
 
             if (cnp || name || lastName || mi || address || email || height || weight || occupation || allergies) buttonAddP.Enabled = false;
             else buttonAddP.Enabled = true;
-        }
-
-        private void removeCheckedBloodType()
-        {
-            radioButton0I.Checked = true;
-            radioButtonAII.Checked = false;
-            radioButtonBIII.Checked = false;
-            radioButtonABIV.Checked = false;
-        }
-
-        private void removeCheckedRh()
-        {
-            radioButtonPositive.Checked = true;
-            radioButtonNegative.Checked = false;
-        }
-
-        private void removeCheckedOccupation()
-        {
-            radioButtonNoOccupation.Checked = true;
-            radioButtonStudent.Checked = false;
-            radioButtonUnemployed.Checked = false;
-            radioButtonEmployed.Checked = false;
-        }
-
-        private bool isValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
 }
