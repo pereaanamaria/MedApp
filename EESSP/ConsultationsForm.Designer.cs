@@ -93,7 +93,7 @@
             this.buttonManage.Size = new System.Drawing.Size(90, 23);
             this.buttonManage.TabIndex = 1;
             this.buttonManage.Text = "Manage";
-            this.tips.SetToolTip(this.buttonManage, "Manage consultations");
+            this.tips.SetToolTip(this.buttonManage, "Manage consultations (Ctrl+Shift+M)");
             this.buttonManage.UseVisualStyleBackColor = false;
             this.buttonManage.Click += new System.EventHandler(this.buttonManage_Click);
             // 
@@ -106,7 +106,7 @@
             this.buttonReport.Size = new System.Drawing.Size(90, 23);
             this.buttonReport.TabIndex = 2;
             this.buttonReport.Text = "Report";
-            this.tips.SetToolTip(this.buttonReport, "Generate pacient\'s consultations report");
+            this.tips.SetToolTip(this.buttonReport, "Generate pacient\'s consultations report (Ctrl+Shift+A)");
             this.buttonReport.UseVisualStyleBackColor = false;
             this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
             // 
@@ -152,7 +152,7 @@
             this.buttonAdd.Size = new System.Drawing.Size(90, 23);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "Add";
-            this.tips.SetToolTip(this.buttonAdd, "Add new patient");
+            this.tips.SetToolTip(this.buttonAdd, "Add new patient (Ctrl+A)");
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -165,7 +165,7 @@
             this.buttonRemove.Size = new System.Drawing.Size(114, 23);
             this.buttonRemove.TabIndex = 7;
             this.buttonRemove.Text = "Remove";
-            this.tips.SetToolTip(this.buttonRemove, "Remove consultation");
+            this.tips.SetToolTip(this.buttonRemove, "Remove consultation (Ctrl+Del)");
             this.buttonRemove.UseVisualStyleBackColor = false;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
@@ -178,7 +178,7 @@
             this.buttonModify.Size = new System.Drawing.Size(114, 23);
             this.buttonModify.TabIndex = 5;
             this.buttonModify.Text = "Modify";
-            this.tips.SetToolTip(this.buttonModify, "Modify consultation");
+            this.tips.SetToolTip(this.buttonModify, "Modify consultation (Ctrl+M)");
             this.buttonModify.UseVisualStyleBackColor = false;
             this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
             // 
@@ -219,8 +219,8 @@
             this.buttonConsultationRep.Name = "buttonConsultationRep";
             this.buttonConsultationRep.Size = new System.Drawing.Size(114, 23);
             this.buttonConsultationRep.TabIndex = 6;
-            this.buttonConsultationRep.Text = "Consultation Report";
-            this.tips.SetToolTip(this.buttonConsultationRep, "Generate consultation report");
+            this.buttonConsultationRep.Text = "Report";
+            this.tips.SetToolTip(this.buttonConsultationRep, "Generate consultation report (Ctrl+R)");
             this.buttonConsultationRep.UseVisualStyleBackColor = false;
             this.buttonConsultationRep.Click += new System.EventHandler(this.buttonConsultationRep_Click);
             // 
@@ -381,7 +381,7 @@
             this.buttonDiscard.Size = new System.Drawing.Size(114, 23);
             this.buttonDiscard.TabIndex = 8;
             this.buttonDiscard.Text = "Discard";
-            this.tips.SetToolTip(this.buttonDiscard, "Discard changes");
+            this.tips.SetToolTip(this.buttonDiscard, "Discard changes (Ctrl+Shift+Del)");
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);

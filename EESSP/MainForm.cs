@@ -605,6 +605,8 @@ namespace EESSP
             if (e.Control && e.Shift && e.KeyCode == Keys.M) buttonMyPatients_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.D) buttonSameDiagnostic_Click(sender, e);
             if (e.Control && e.KeyCode == Keys.M) buttonModifyP_Click(sender, e);
+            if (e.KeyCode == Keys.Enter)
+                if (buttonConfirm.Enabled) buttonConfirm_Click(sender, e);
             if (e.Control && e.KeyCode == Keys.Delete)
             {
                 if (buttonRemoveP.Enabled) buttonRemoveP_Click(sender, e);

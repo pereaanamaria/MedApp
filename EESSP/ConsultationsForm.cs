@@ -198,7 +198,7 @@ namespace EESSP
         private void ConsultationsForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A) buttonAdd_Click(sender, e);
-            if (e.Control && e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
                 if (labelOption.Text.Contains("Add") && buttonConfirm.Enabled) buttonConfirm_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.A) buttonReport_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.M) buttonManage_Click(sender, e);

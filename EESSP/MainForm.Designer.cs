@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoctor = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonMyPatients = new System.Windows.Forms.Button();
@@ -154,7 +154,7 @@
             this.buttonMyPatients.Size = new System.Drawing.Size(77, 23);
             this.buttonMyPatients.TabIndex = 98;
             this.buttonMyPatients.Text = "My Patients";
-            this.tips.SetToolTip(this.buttonMyPatients, "List your assignated pacients");
+            this.tips.SetToolTip(this.buttonMyPatients, "List your assignated pacients (Ctrl+Shift+M)");
             this.buttonMyPatients.UseVisualStyleBackColor = false;
             this.buttonMyPatients.Click += new System.EventHandler(this.buttonMyPatients_Click);
             // 
@@ -167,7 +167,7 @@
             this.buttonSameDiagnostic.Size = new System.Drawing.Size(100, 23);
             this.buttonSameDiagnostic.TabIndex = 2;
             this.buttonSameDiagnostic.Text = "Same Diagnostic";
-            this.tips.SetToolTip(this.buttonSameDiagnostic, "List all pacients with the same diagnostic");
+            this.tips.SetToolTip(this.buttonSameDiagnostic, "List all pacients with the same diagnostic (Ctrl+Shift+D)");
             this.buttonSameDiagnostic.UseVisualStyleBackColor = false;
             this.buttonSameDiagnostic.Click += new System.EventHandler(this.buttonSameDiagnostic_Click);
             // 
@@ -180,7 +180,7 @@
             this.buttonAddP.Size = new System.Drawing.Size(77, 23);
             this.buttonAddP.TabIndex = 0;
             this.buttonAddP.Text = "Add";
-            this.tips.SetToolTip(this.buttonAddP, "Add a new pacient");
+            this.tips.SetToolTip(this.buttonAddP, "Add a new pacient (Ctrl+A)");
             this.buttonAddP.UseVisualStyleBackColor = false;
             this.buttonAddP.Click += new System.EventHandler(this.buttonAddP_Click);
             // 
@@ -193,7 +193,7 @@
             this.buttonList.Size = new System.Drawing.Size(77, 23);
             this.buttonList.TabIndex = 1;
             this.buttonList.Text = "All Patients";
-            this.tips.SetToolTip(this.buttonList, "List all registered pacients");
+            this.tips.SetToolTip(this.buttonList, "List all registered pacients (Ctrl+Shift+A)");
             this.buttonList.UseVisualStyleBackColor = false;
             this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
             // 
@@ -224,7 +224,7 @@
             this.buttonCancelSearch.Size = new System.Drawing.Size(94, 22);
             this.buttonCancelSearch.TabIndex = 5;
             this.buttonCancelSearch.Text = "Cancel";
-            this.tips.SetToolTip(this.buttonCancelSearch, "Cancel search");
+            this.tips.SetToolTip(this.buttonCancelSearch, "Cancel search (Ctrl+Del)");
             this.buttonCancelSearch.UseVisualStyleBackColor = false;
             this.buttonCancelSearch.Visible = false;
             this.buttonCancelSearch.Click += new System.EventHandler(this.buttonCancelSearch_Click);
@@ -241,17 +241,17 @@
             this.dataGridViewPatients.Location = new System.Drawing.Point(7, 174);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewPatients.Size = new System.Drawing.Size(310, 194);
             this.dataGridViewPatients.TabIndex = 17;
             this.dataGridViewPatients.Visible = false;
@@ -362,7 +362,7 @@
             this.buttonChangeP.Size = new System.Drawing.Size(113, 23);
             this.buttonChangeP.TabIndex = 10;
             this.buttonChangeP.Text = "Change Patient";
-            this.tips.SetToolTip(this.buttonChangeP, "Change displayed pacient");
+            this.tips.SetToolTip(this.buttonChangeP, "Change displayed pacient (Ctrl+Shift+P)");
             this.buttonChangeP.UseVisualStyleBackColor = false;
             this.buttonChangeP.Click += new System.EventHandler(this.buttonChangeP_Click);
             // 
@@ -945,7 +945,7 @@
             this.buttonDiscard.Size = new System.Drawing.Size(113, 23);
             this.buttonDiscard.TabIndex = 10;
             this.buttonDiscard.Text = "Discard";
-            this.tips.SetToolTip(this.buttonDiscard, "Discard modification");
+            this.tips.SetToolTip(this.buttonDiscard, "Discard modification (Ctrl+Del)");
             this.buttonDiscard.UseVisualStyleBackColor = false;
             this.buttonDiscard.Visible = false;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
@@ -1064,7 +1064,7 @@
             this.buttonModifyP.Size = new System.Drawing.Size(113, 23);
             this.buttonModifyP.TabIndex = 6;
             this.buttonModifyP.Text = "Modify";
-            this.tips.SetToolTip(this.buttonModifyP, "Modify a pacient");
+            this.tips.SetToolTip(this.buttonModifyP, "Modify a pacient (Ctrl+M)");
             this.buttonModifyP.UseVisualStyleBackColor = false;
             this.buttonModifyP.Click += new System.EventHandler(this.buttonModifyP_Click);
             // 
@@ -1077,7 +1077,7 @@
             this.buttonConsultationsP.Size = new System.Drawing.Size(113, 23);
             this.buttonConsultationsP.TabIndex = 7;
             this.buttonConsultationsP.Text = "Consultations";
-            this.tips.SetToolTip(this.buttonConsultationsP, "Pacient\'s consultations");
+            this.tips.SetToolTip(this.buttonConsultationsP, "Pacient\'s consultations (Ctrl+Shift+C)");
             this.buttonConsultationsP.UseVisualStyleBackColor = false;
             this.buttonConsultationsP.Click += new System.EventHandler(this.buttonConsultationsP_Click);
             // 
@@ -1090,7 +1090,7 @@
             this.buttonRemoveP.Size = new System.Drawing.Size(113, 23);
             this.buttonRemoveP.TabIndex = 8;
             this.buttonRemoveP.Text = "Remove";
-            this.tips.SetToolTip(this.buttonRemoveP, "Remove pacient");
+            this.tips.SetToolTip(this.buttonRemoveP, "Remove pacient (Ctrl+Del)");
             this.buttonRemoveP.UseVisualStyleBackColor = false;
             this.buttonRemoveP.Click += new System.EventHandler(this.buttonRemoveP_Click);
             // 
