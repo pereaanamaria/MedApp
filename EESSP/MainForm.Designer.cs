@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelDoctor = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonMyPatients = new System.Windows.Forms.Button();
@@ -117,6 +117,8 @@
             this.myPatientsReport1 = new EESSP.MyPatientsReport();
             this.sameDiagnosticReport1 = new EESSP.SameDiagnosticReport();
             this.tips = new System.Windows.Forms.ToolTip(this.components);
+            this.helpProviderExample = new System.Windows.Forms.HelpProvider();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
@@ -200,6 +202,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Tan;
+            this.panel2.Controls.Add(this.buttonHelp);
             this.panel2.Controls.Add(this.buttonCancelSearch);
             this.panel2.Controls.Add(this.dataGridViewPatients);
             this.panel2.Controls.Add(this.label6);
@@ -241,17 +244,17 @@
             this.dataGridViewPatients.Location = new System.Drawing.Point(7, 174);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewPatients.Size = new System.Drawing.Size(310, 194);
             this.dataGridViewPatients.TabIndex = 17;
             this.dataGridViewPatients.Visible = false;
@@ -1094,6 +1097,24 @@
             this.buttonRemoveP.UseVisualStyleBackColor = false;
             this.buttonRemoveP.Click += new System.EventHandler(this.buttonRemoveP_Click);
             // 
+            // helpProviderExample
+            // 
+            this.helpProviderExample.HelpNamespace = "D:\\faculta\\master_sem1\\eessp\\proiect\\EESSP\\EESSP\\help.html";
+            // 
+            // buttonHelp
+            // 
+            this.buttonHelp.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonHelp.Location = new System.Drawing.Point(299, 3);
+            this.buttonHelp.Name = "buttonHelp";
+            this.helpProviderExample.SetShowHelp(this.buttonHelp, true);
+            this.buttonHelp.Size = new System.Drawing.Size(22, 22);
+            this.buttonHelp.TabIndex = 11;
+            this.buttonHelp.Text = "?";
+            this.tips.SetToolTip(this.buttonHelp, "Help (Ctrl+H)");
+            this.buttonHelp.UseVisualStyleBackColor = false;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1207,5 +1228,7 @@
         private MyPatientsReport myPatientsReport1;
         private SameDiagnosticReport sameDiagnosticReport1;
         private System.Windows.Forms.ToolTip tips;
+        private System.Windows.Forms.HelpProvider helpProviderExample;
+        private System.Windows.Forms.Button buttonHelp;
     }
 }

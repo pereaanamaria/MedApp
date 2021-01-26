@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EESSP
@@ -26,6 +19,7 @@ namespace EESSP
 
         private void buttonChoose_Click(object sender, EventArgs e)
         {
+
             CIM = new CimCodes(cims, textBoxDiagnostic.Text, "ID").ID;
             Close();
         }
@@ -54,7 +48,7 @@ namespace EESSP
 
         private void DiagnosticDialogForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && !CIM.Equals("")) buttonChoose_Click(sender, e);
+            if (e.KeyCode == Keys.Enter) ActiveControl = buttonChoose;
         }
     }
 }

@@ -249,7 +249,7 @@ namespace EESSP
 
         private void updateConsultation()
         {
-            var confirmResult = MessageBox.Show("Are you sure to modify this patient?", "Modify Patient", MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Are you sure you want to modify this consultation?", "Modify Consultation", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 string cim = new CimCodes(cims, textBoxDiagnostic.Text, "ID").ID;
@@ -280,7 +280,7 @@ namespace EESSP
                 return;
             }
 
-            var confirmResult = MessageBox.Show("Are you sure to delete this consultation?", "Delete Consultation", MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Are you sure you want to delete this consultation?", "Delete Consultation", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 string command = "DELETE FROM consultations WHERE ID=@ID";

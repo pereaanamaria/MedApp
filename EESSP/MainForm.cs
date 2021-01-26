@@ -229,7 +229,7 @@ namespace EESSP
                 return;
             }
 
-            var confirmResult = MessageBox.Show("Warning! Deleting this patient implies deleting all its consultations as well.\nAre you sure to delete this patient?", "Delete Patient", MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Warning! Deleting this patient implies deleting all its consultations as well.\nAre you sure you want to delete this patient?", "Delete Patient", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 string command = "DELETE FROM consultations WHERE IdPatient=@IdPatient";
@@ -262,6 +262,11 @@ namespace EESSP
             }
             patientDetails(false);
             buttonDiscard_Click(sender, e);
+        }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, helpProviderExample.HelpNamespace);
         }
 
         private void textBoxSearchN_TextChanged(object sender, EventArgs e)
@@ -601,6 +606,7 @@ namespace EESSP
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A) buttonAddP_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.H) buttonHelp_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.A) buttonList_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.M) buttonMyPatients_Click(sender, e);
             if (e.Control && e.Shift && e.KeyCode == Keys.D) buttonSameDiagnostic_Click(sender, e);
